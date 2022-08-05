@@ -3,6 +3,9 @@ import Cart from "@/components/Cart.vue"
 import SearchBar from "@/components/SearchBar.vue"
 import AddCartModal from "@/components/AddCartModal.vue"
 
+import chevronDown from "@/assets/img/chevron_down.svg"
+import close from "@/assets/img/x.svg"
+
 import CartDB from '@/utils/IndexedDbCart.js'
 import translatedCategories from "@/utils/translatedCategories"
 
@@ -30,7 +33,7 @@ export default {
 
   computed: {
     categoriesIcon () {
-      return this.isCategoriesVisible ? 'x' : 'chevron_down'
+      return this.isCategoriesVisible ? close : chevronDown
     }
   },
 

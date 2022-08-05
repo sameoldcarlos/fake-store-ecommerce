@@ -1,3 +1,6 @@
+import iconHeart from '@/assets/img/icon_heart.svg'
+import iconHeartFill from '@/assets/img/icon_heart_filled.svg'
+
 export default {
   props: {
     productInfo: {
@@ -23,7 +26,7 @@ export default {
     },
 
     favoriteIcon () {
-      return this.isFavorite ? 'heart_filled' : 'heart'
+      return this.isFavorite ? iconHeartFill : iconHeart
     }
   },
   methods: {
