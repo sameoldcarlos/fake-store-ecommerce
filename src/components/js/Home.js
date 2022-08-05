@@ -23,14 +23,14 @@ export default {
       categoriesList: [],
       cartItems: [],
       selectedProduct: {},
+      userData: {},
       isWaitingProductsFetch: true,
       isWaitingCategoriesFetch: true,
       isCategoriesVisible: false,
       isAddCartModalVisible: false,
       isAddingProductToCart: false,
       isWaitingUserFetch: true,
-      isUserInfoVisible: false,
-      userData: {}
+      isUserInfoVisible: false
     }
   },
 
@@ -49,13 +49,21 @@ export default {
           this.isWaitingUserFetch = false
         })
     },
+
     fetchProducts (params = '', searchParam = '') {
       this.isWaitingProductsFetch = true
       this.isCategoriesVisible = false
       fetch(`https://fakestoreapi.com/products${params}`)
         .then(res => res.json())
         .then(json => {
-          this.productsList = !searchParam.length ? json : json.filter(product => ({ ...product }).title.toLowerCase().includes(searchParam))
+          if (!searchParam.length) {
+            this.productsList = json  
+          } else {
+            this.productsList = json.filter(product => {
+              return ({ ...product }).title.toLowerCase().includes(searchParam)
+            })
+          }
+          
           this.isWaitingProductsFetch = false
         })
     },
