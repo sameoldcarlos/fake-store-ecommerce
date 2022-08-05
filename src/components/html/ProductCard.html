@@ -1,0 +1,43 @@
+<div
+  v-if="Object.keys(productInfo)"
+  class="product-card card px-2">
+  <div class="product-card__header">
+    <h3 class="product-card__price py-1">
+      {{ formattedPrice }}
+    </h3>
+    <button
+      class="add-to-favorites"
+      @click="toggleFavorite"
+    >
+      <img 
+        :src="`/src/assets/img/icon_${ favoriteIcon }.svg`"
+        alt="Adicionar aos Favoritos"
+        width="18"
+        height="15"
+      >
+    </button>
+    
+  </div>
+  <div class="product-card__img-container d-flex">
+    <img 
+      :src="productInfo.image"
+      class="product-card__image card-img-top"
+      :alt="productInfo.title"
+    >
+  </div>
+  <div class="card-body px-2 py-1">
+    <span
+      class="product-card__title card-title ms-2"
+      :title="productInfo.title"
+    >
+      {{ productInfo.title }}
+    </span>
+    <button
+      class="btn btn-primary w-100 product-card__add"
+      :disabled="isAddingProductToCart"
+      @click="showAddToCartModal"
+    >
+      Adicionar
+    </button>
+  </div>
+</div>

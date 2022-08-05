@@ -1,0 +1,30 @@
+.checkout-card {
+  width: 363px;
+  box-sizing: border-box;
+  box-shadow: var(--primary-box-shadow);
+  margin-bottom: 39px;
+
+  img {
+    object-fit: contain;
+  }
+
+  .card-body {
+    display: flex;
+    margin: 0 auto;
+  }
+  .product-values {
+    display: flex;
+    align-items: center;
+  }
+  .product-info {
+    margin-left: 15px;
+  }
+  .product-total {
+    margin-left: 15px;
+  }
+  .card-title {
+    max-width: 189px;
+    height: 48px;
+    overflow: hidden;
+  }
+}

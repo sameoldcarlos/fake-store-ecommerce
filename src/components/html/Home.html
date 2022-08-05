@@ -1,0 +1,115 @@
+<div class="home">
+  <header class="header">
+    <section class="header__content">
+      <div class="greetings">
+        <h2>Hi, Dwight</h2>
+        <h4>
+          1725 Slough Avenue
+          <img
+            src="/src/assets/img/chevron_down.svg"
+            alt="Exibir/Esconder Endereço"
+          >
+        </h4>
+      </div>
+      <nav class="user-actions">
+        <router-link 
+          :to="{ name: 'checkout', params: { cart_items: JSON.stringify(cartItems) } }"
+          class="user-actions__action open-cart"
+        >
+          <img
+            src="@/assets/img/icon_cart.svg"
+            alt="Carrinho"
+            width="42"
+            height="39"
+          >
+          <span
+            v-if="cartItems.length"
+            class="badge badge-primary open-cart__badge"
+          >
+            {{ cartItems.length }}
+          </span>
+        </router-link>
+        <div>
+          <img
+            src="/src/assets/img/icon.svg"
+            alt=""
+            width="42"
+            height="39"
+          >
+        </div>
+      </nav>
+    </section>
+  </header>
+  <main>
+    <search-bar
+      @searchFor="searchFor"
+    ></search-bar>
+    <section class="products">
+      <div class="products__header d-flex justify-content-center">
+        <h3>Produtos</h3>
+        <div
+          v-if="!isWaitingCategoriesFetch"
+          class="categories-selector"
+        >
+          <span class="categories-selector__title">
+            Categorias
+          </span>
+          <button
+            class="categories-selector__btn"
+            @click="toggleCategories"
+          >
+            <img
+              :src="`/src/assets/img/${categoriesIcon}.svg`"
+              alt="Exibir/Esconder Categorias"
+            >
+          </button>
+        </div>
+      </div>
+      <div
+        v-if="categoriesList.length"
+        class="categories-container"
+        :class="{'categories-container--visible': isCategoriesVisible}"
+      >
+        <div
+          class="category"
+          @click="fetchProducts('')"
+        >
+          Todas
+        </div>
+        <div
+          v-for="category in categoriesList"
+          class="category"
+          @click="fetchProducts(`/category/${category}`)"
+        >
+          {{ translatedCategory(category) }}
+        </div>
+      </div>
+      <div
+        v-if="!isWaitingProductsFetch"
+        class="products__container"
+      >
+        <product-card
+          v-for="product in productsList"
+          :product-info="product"
+          :is-adding-product-to-cart="isAddingProductToCart"
+          @showAddToCartModal="showAddToCartModal"
+        ></product-card>
+      </div>
+      <div 
+        v-else
+        class="spinner-border text-primary"
+        role="status"
+      >
+        <span class="visually-hidden">
+          Loading...
+        </span>
+      </div>
+    </section>
+  </main>
+  <add-cart-modal
+    v-if="isAddCartModalVisible"
+    :product-info="selectedProduct"
+    @addToCart="addToCart"
+    @hideAddToCartModal="hideAddToCartModal"
+  ></add-cart-modal>
+</div>

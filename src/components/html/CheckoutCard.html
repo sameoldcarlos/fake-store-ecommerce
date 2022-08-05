@@ -1,0 +1,50 @@
+<div
+  v-if="Object.keys(productInfo).length"
+  class="checkout-card card"
+>
+  <div class="card-body">
+      <img
+        :src="productInfo.image"
+        :alt="productInfo.title"
+        class="product-image"
+        width="83">
+     
+    <div class="product-info">
+      <h5 class="card-title">{{ productInfo.title }}</h5>
+      <div class="product-values">
+        <div class="quantity-selector">
+          <button
+            class="quantity-selector__minus"
+            :disabled="productInfo.quantity <= 0"
+            @click="decrementQuantity"
+          >
+            <img
+              src="/src/assets/img/chevron_down.svg"
+              alt="Diminuir quantidade"
+            >
+          </button>
+          <input
+            v-model="productInfo.quantity"
+            class="quantity-selector__input"
+            type="text"
+          >
+          <button
+            class="quantity-selector__plus"
+            @click="incrementQuantity"
+          >
+            <img
+              src="/src/assets/img/chevron_down.svg"
+              alt="Aumentar quantidade"
+            >
+          </button>
+        </div>
+        <div class="product-total">
+          Total
+          <h5 class="product-value">
+            {{ formattedPrice }}
+          </h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

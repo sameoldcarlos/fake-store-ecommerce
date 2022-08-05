@@ -1,0 +1,50 @@
+<section 
+  v-if="cartItems && Object.keys(cartItems).length && !isWaitingItemsFetch"
+  class="cart"
+>
+  <div
+    v-if="!isWaitingItemsFetch"
+    class="cart__items">
+    <checkout-card
+      v-for="(item, index) in cartItems"
+      :product-info="item"
+      :index="index"
+      @updateProductQuantity="updateProductQuantity"
+      @removeProductFromCart="removeProductFromCart"
+    ></checkout-card>
+  </div>
+  <div class="payment-details">
+    <h5>
+      Detalhes do Pagamento
+    </h5>
+    <div class="payment-details__info-container">
+      <div class="payment-details__info">
+        <span>Número de itens:</span>
+        <span>{{ `${cartItems.length} itens` }}</span>
+      </div>
+      <div class="payment-details__info">
+        <span>Subtotal</span>
+        <span class="subtotal">{{ subtotal }}</span>
+      </div>
+    </div>
+    <button class="btn btn-primary payment-details__buy">Finalizar compra</button>
+  </div>
+</section>
+<div 
+  v-else-if="isWaitingItemsFetch"
+  class="spinner-border text-primary"
+  role="status"
+>
+  <span class="visually-hidden">
+    Loading...
+  </span>
+</div>
+<div
+  v-else
+  class="empty-cart"
+>
+  <h5>
+    Carrinho vazio...
+  </h5>
+  <img src="/src/assets/img/empty_cart.svg" alt="Carrinho Vazio" width="250">
+</div>

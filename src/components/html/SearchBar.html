@@ -1,0 +1,17 @@
+<form class="search-bar">
+  <input
+    v-model="searchParam"
+    type="search"
+    class="search-bar__input"
+    placeholder="Busque seu produto"
+    @keyup.enter="submit"
+    @keydown.enter="$event.preventDefault()"
+  >
+  <button
+    type="button"
+    class="search-bar__btn"
+    @click="submit"
+  >
+    <img src="/src/assets/img/search_icon.svg" alt="">
+  </button>
+</form>

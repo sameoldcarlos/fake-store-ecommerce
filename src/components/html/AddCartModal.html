@@ -1,0 +1,61 @@
+<div class="add-cart-modal">
+  <div class="modal-dialog add-cart-modal__dialog">
+    <div class="modal-content">
+      <div class="modal-header add-cart-modal__header">
+        <h3 class="modal-title">Escolha a quantidade</h3>
+        <button
+          class="add-cart-modal__close"
+          type="button"
+          @click="hideAddToCartModal"
+        >
+          <span>
+            <img src="/src/assets/img/x.svg" alt="Fechar">
+          </span>
+        </button>
+      </div>
+      <div class="modal-body add-cart-modal__body">
+        <img
+          :src="productInfo.image"
+          alt=""
+          width="136"
+        >
+        <div class="add-cart-modal__info">
+          <h5>{{ productInfo.title }}</h5>
+          <div class="quantity-selector">
+            <button
+              class="quantity-selector__minus"
+              :disabled="quantity <= 1"
+              @click="decrementQuantity"
+            >
+              <img
+                src="/src/assets/img/chevron_down.svg"
+                alt="Diminuir quantidade"
+              >
+            </button>
+            <input
+              v-model="quantity"
+              class="quantity-selector__input"
+              type="text"
+            >
+            <button
+              class="quantity-selector__plus"
+              @click="incrementQuantity"
+            >
+              <img
+                src="/src/assets/img/chevron_down.svg"
+                alt="Aumentar quantidade"
+              >
+            </button>
+          </div>
+          <button
+            type="button"
+            class="btn btn-primary add-cart-modal__buy"
+            @click="addProductToCart"
+          >
+            Comprar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
