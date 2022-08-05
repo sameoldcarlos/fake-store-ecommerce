@@ -1,10 +1,19 @@
-<div class="home">
+<div
+  class="home"
+  :class="{'modal-open': isAddCartModalVisible}"
+>
   <header class="header">
     <section class="header__content">
-      <div class="greetings">
-        <h2>Hi, Dwight</h2>
+      <div
+        v-if="!isWaitingUserFetch"
+        class="greetings"
+      >
+        <h2>
+          Hi, {{ userData.name.firstname }}
+        </h2>
         <h4>
-          1725 Slough Avenue
+          {{ userData.address.number }}
+          {{ userData.address.street }}
           <img
             src="@/assets/img/chevron_down.svg"
             alt="Exibir/Esconder Endereço"
@@ -29,13 +38,51 @@
             {{ cartItems.length }}
           </span>
         </router-link>
-        <div>
+        <div
+          class="user-info"
+          @mouseenter="isUserInfoVisible = true"
+          @mouseleave="isUserInfoVisible = false"
+          @click="isUserInfoVisible = !isUserInfoVisible"
+        >
           <img
             src="@/assets/img/icon.svg"
             alt=""
             width="42"
             height="39"
           >
+          <div
+            v-if="!isWaitingUserFetch"
+            class="user-data"
+            :class="{'user-data--visible': isUserInfoVisible}"
+            @mouseenter="isUserInfoVisible = true"
+            @mouseleave="isUserInfoVisible = false"
+          >
+            <h6>
+              Nome:
+              <span>
+                {{ userData.name.firstname }}
+                {{ userData.name.lastname }}
+              </span>
+            </h6>
+            <h6>Endereço:
+              <span>
+                {{ userData.address.number }},
+                {{ userData.address.street }},
+                {{ userData.address.city }}
+              </span>
+            </h6>
+            <h6>Telefone:
+              <span>
+                {{ userData.phone }}
+              </span>
+            </h6>
+            <h6>
+              Email:
+              <span class="email">
+                {{ userData.email }}
+              </span>
+            </h6>
+          </div>
         </div>
       </nav>
     </section>

@@ -12,6 +12,7 @@
       width: 100%;
       max-width: 1200px;
       padding: 10px 2.5%;
+      text-transform: capitalize;
     }
 
     .user-actions {
@@ -19,6 +20,42 @@
       gap: 30px;
     }
 
+    .user-info {
+      position: relative;
+      width: 42px;
+      height: 39px;
+      cursor: pointer;
+      
+      img {
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 7;
+      }
+    }
+    
+    .user-data {
+      display: none;
+      position: absolute;
+      right: -10px;
+      top: -8px;
+      width: 210px;
+      padding: 15px 42px 15px 15px;
+      background-color: rgba(0, 81, 157, 0.7);
+      border-radius: 4px;
+      z-index: 6;
+
+      * {
+        color: var(--primary-bg-color);
+      }
+
+      .email {
+        text-transform: lowercase;
+      }
+    }
+    .user-data--visible {
+      display: block;
+    }
     .open-cart {
       position: relative;
 
@@ -82,6 +119,7 @@
 
 
     }
+
     .categories-container {
       height: 0;
       opacity: 0;

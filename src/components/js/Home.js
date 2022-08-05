@@ -27,7 +27,10 @@ export default {
       isWaitingCategoriesFetch: true,
       isCategoriesVisible: false,
       isAddCartModalVisible: false,
-      isAddingProductToCart: false
+      isAddingProductToCart: false,
+      isWaitingUserFetch: true,
+      isUserInfoVisible: false,
+      userData: {}
     }
   },
 
@@ -38,6 +41,14 @@ export default {
   },
 
   methods: {
+    fetchUser () {
+      fetch('https://fakestoreapi.com/users/1')
+        .then(res => res.json())
+        .then(json => {
+          this.userData = json
+          this.isWaitingUserFetch = false
+        })
+    },
     fetchProducts (params = '', searchParam = '') {
       this.isWaitingProductsFetch = true
       this.isCategoriesVisible = false
@@ -99,16 +110,15 @@ export default {
     showAddToCartModal (product) {
       this.isAddCartModalVisible = true
       this.selectedProduct = product
-      document.body.classList.add('modal-open')
     },
 
     hideAddToCartModal () {
       this.isAddCartModalVisible = false
-      document.body.classList.remove('modal-open')
     }
   },
 
   async created () {
+    this.fetchUser()
     try {
       const openDBResult = await CartDB.openCartDB()
       this.cartItems = await CartDB.getCartItemsFromDB()

@@ -21,12 +21,15 @@ export default {
       this.quantity -= 1
     },
 
-    hideAddToCartModal () {
-      this.$emit('hideAddToCartModal')
+    hideAddToCartModal (event) {
+      const targetClass = event.target.className
+      if (targetClass === 'add-cart-modal' || targetClass === 'add-cart-modal__close') {
+        this.$emit('hideAddToCartModal')
+      }
     },
 
     addProductToCart () {
       this.$emit('addToCart', { id: this.productInfo.id, quantity: this.quantity })
-    }
+    },
   },
 }

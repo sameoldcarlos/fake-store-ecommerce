@@ -1,4 +1,7 @@
-<div class="add-cart-modal">
+<div
+  class="add-cart-modal"  
+  @click="hideAddToCartModal($event)"
+>
   <div class="modal-dialog add-cart-modal__dialog">
     <div class="modal-content">
       <div class="modal-header add-cart-modal__header">
@@ -6,7 +9,6 @@
         <button
           class="add-cart-modal__close"
           type="button"
-          @click="hideAddToCartModal"
         >
           <span>
             <img src="@/assets/img/x.svg" alt="Fechar">
