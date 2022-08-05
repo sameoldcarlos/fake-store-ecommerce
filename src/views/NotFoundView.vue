@@ -3,7 +3,7 @@
     <h1>OPS...</h1>
     <h4>Esta página não foi encontrada</h4>
     <img
-      src="/src/assets/img/bg_404_mobile.svg"
+      src="@/assets/img/bg_404_mobile.svg"
       alt="Página não encontrada"
       width="500"
     >
