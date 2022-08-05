@@ -60,7 +60,7 @@ export default {
             this.productsList = json  
           } else {
             this.productsList = json.filter(product => {
-              return ({ ...product }).title.toLowerCase().includes(searchParam)
+              return ({ ...product }).title.includes(searchParam.toLowerCase())
             })
           }
           
