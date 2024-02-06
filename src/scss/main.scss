@@ -25,6 +25,13 @@ body {
   --bs-btn-hover-boder-color: var(--highlight);
 }
 
+.btn-success {
+  --bs-btn-bg: var(--success-dark);
+  --bs-btn-border-color: var(--success-dark);
+  --bs-btn-hover-bg: var(--success);
+  --bs-btn-hover-boder-color: var(--success);
+}
+
 .quantity-selector {
   display: flex;
   width: 126px;
