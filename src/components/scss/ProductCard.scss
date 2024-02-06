@@ -3,6 +3,15 @@
   height: 247px;
   background-color: var(--primary-bg-color);
   box-shadow: var(--primary-box-shadow);
+  transition: transform .3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+
+    .product-card__add {
+      display: block;
+    }
+  }
 
   &__header {
     display: flex;
@@ -21,6 +30,7 @@
   }
 
   &__add {
+    display: none;
     text-transform: uppercase;
     font-size: 14px;
     font-weight: 700;
