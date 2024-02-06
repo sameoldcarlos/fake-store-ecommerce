@@ -41,41 +41,54 @@ export default {
   },
 
   methods: {
-    fetchUser () {
-      fetch('https://fakestoreapi.com/users/1')
-        .then(res => res.json())
-        .then(json => {
-          this.userData = json
-          this.isWaitingUserFetch = false
-        })
+    async fetchUser () {
+      this.isWaitingUserFetch = true
+
+      try {
+        const response = await fetch('https://fakestoreapi.com/users/1')
+
+        this.userData = await response.json()
+      } catch (error) {
+        console.error('Erro ao consultar informações do usuário')
+      } finally {
+        this.isWaitingUserFetch = false
+      }
     },
 
-    fetchProducts (params = '', searchParam = '') {
+    async fetchProducts (params = '', searchParam = '') {
       this.isWaitingProductsFetch = true
       this.isCategoriesVisible = false
-      fetch(`https://fakestoreapi.com/products${params}`)
-        .then(res => res.json())
-        .then(json => {
+      
+      try {
+        const response = await fetch(`https://fakestoreapi.com/products${params}`)
+
+        this.productsList = await response.json().then(products => {
           if (!searchParam.length) {
-            this.productsList = json  
-          } else {
-            this.productsList = json.filter(product => {
-              return ({ ...product }).title.toLowerCase().includes(searchParam.toLowerCase())
-            })
+            return products
           }
-          
-          this.isWaitingProductsFetch = false
+
+          return products.filter(product => product.title.toLowerCase().includes(searchParam.toLowerCase()))
         })
+      } catch (error) {
+        console.error('Erro ao buscar produtos')
+      } finally {
+        this.isWaitingProductsFetch = false
+      }
+      
     },
 
-    fetchCategories () {
+    async fetchCategories () {
       this.isWaitingCategoriesFetch = true
-      fetch('https://fakestoreapi.com/products/categories')
-        .then(res => res.json())
-        .then(json => { 
-          this.categoriesList = json
-          this.isWaitingCategoriesFetch = false
-        })
+
+      try {
+        const response = await fetch('https://fakestoreapi.com/products/categories')
+
+        this.categoriesList = await response.json()
+      } catch (error) {
+        console.error('Erro ao consultar categorias')
+      } finally {
+        this.isWaitingCategoriesFetch = false
+      }
     },
 
     async addToCart (product) {
@@ -83,7 +96,7 @@ export default {
       
       const alredyOnCart = this.cartItems.find(item => product.id === item.id)
 
-      if(alredyOnCart) {
+      if (alredyOnCart) {
         alredyOnCart.quantity += product.quantity
       } else { 
         const item = this.productsList.find(item => item.id === product.id)
@@ -111,8 +124,8 @@ export default {
       return translatedCategories[cat]
     },
 
-    searchFor (searchParam) {
-      this.fetchProducts('', searchParam)
+    async searchFor (searchParam) {
+      await this.fetchProducts('', searchParam)
     },
 
     showAddToCartModal (product) {
@@ -126,7 +139,7 @@ export default {
   },
 
   async created () {
-    this.fetchUser()
+    await this.fetchUser()
     try {
       const openDBResult = await CartDB.openCartDB()
       this.cartItems = await CartDB.getCartItemsFromDB()
@@ -140,7 +153,7 @@ export default {
     
     this.isWaitingItemsFetch = false
     
-    this.fetchCategories()
-    this.fetchProducts()
+    await this.fetchCategories()
+    await this.fetchProducts()
   }
 }
