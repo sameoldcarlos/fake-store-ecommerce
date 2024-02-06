@@ -19,8 +19,10 @@ body {
 }
 
 .btn-primary {
-  --bs-btn-bg: #00519D;
-  --bs-btn-border-color: #00519D;
+  --bs-btn-bg: var(--highlight-dark);
+  --bs-btn-border-color: var(--highlight-dark);
+  --bs-btn-hover-bg: var(--highlight);
+  --bs-btn-hover-boder-color: var(--highlight);
 }
 
 .quantity-selector {
