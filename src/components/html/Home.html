@@ -89,7 +89,7 @@
   </header>
   <main>
     <search-bar
-      @searchFor="searchFor"
+      @searchFor="fetchProducts({search: $event})"
     ></search-bar>
     <section class="products">
       <div class="products__header d-flex justify-content-center">

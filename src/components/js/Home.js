@@ -130,10 +130,6 @@ export default {
       return translatedCategories[cat]
     },
 
-    async searchFor (searchParam) {
-      await this.fetchProducts({search: searchParam})
-    },
-
     showAddToCartModal (product) {
       this.isAddCartModalVisible = true
       this.selectedProduct = product
