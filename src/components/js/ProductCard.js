@@ -1,6 +1,8 @@
 import iconHeart from '@/assets/img/icon_heart.svg'
 import iconHeartFill from '@/assets/img/icon_heart_filled.svg'
 
+import formatPrice from '@/utils/formatPrice.ts'
+
 export default {
   props: {
     productInfo: {
@@ -21,8 +23,7 @@ export default {
 
   computed : {
     formattedPrice () {
-      const result = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'USD' }).format(this.productInfo.price)
-      return result.replace('US', '')
+      return formatPrice(this.productInfo.price) || '0'
     },
 
     favoriteIcon () {
