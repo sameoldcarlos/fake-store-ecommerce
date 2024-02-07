@@ -30,7 +30,8 @@ export default {
       isAddCartModalVisible: false,
       isAddingProductToCart: false,
       isWaitingUserFetch: true,
-      isUserInfoVisible: false
+      isUserInfoVisible: false,
+      apiBaseUrl: new URL('/', 'https://fakestoreapi.com')
     }
   },
 
@@ -45,7 +46,8 @@ export default {
       this.isWaitingUserFetch = true
 
       try {
-        const response = await fetch('https://fakestoreapi.com/users/1')
+        const url = new URL('users/1', this.apiBaseUrl)
+        const response = await fetch(url)
 
         this.userData = await response.json()
       } catch (error) {
@@ -55,19 +57,22 @@ export default {
       }
     },
 
-    async fetchProducts (params = '', searchParam = '') {
+    async fetchProducts ({category, search}) {
       this.isWaitingProductsFetch = true
       this.isCategoriesVisible = false
       
+      const pathname = category?.length ? `products/category/${category}` : 'products'
+
       try {
-        const response = await fetch(`https://fakestoreapi.com/products${params}`)
+        const url = new URL(pathname, this.apiBaseUrl)
+        const response = await fetch(url)
 
         this.productsList = await response.json().then(products => {
-          if (!searchParam.length) {
+          if (!search?.length) {
             return products
           }
 
-          return products.filter(product => product.title.toLowerCase().includes(searchParam.toLowerCase()))
+          return products.filter(product => product.title.toLowerCase().includes(search.toLowerCase()))
         })
       } catch (error) {
         console.error('Erro ao buscar produtos')
@@ -81,7 +86,8 @@ export default {
       this.isWaitingCategoriesFetch = true
 
       try {
-        const response = await fetch('https://fakestoreapi.com/products/categories')
+        const url = new URL('products/categories', this.apiBaseUrl)
+        const response = await fetch(url)
 
         this.categoriesList = await response.json()
       } catch (error) {
@@ -125,7 +131,7 @@ export default {
     },
 
     async searchFor (searchParam) {
-      await this.fetchProducts('', searchParam)
+      await this.fetchProducts({search: searchParam})
     },
 
     showAddToCartModal (product) {
@@ -154,6 +160,6 @@ export default {
     this.isWaitingItemsFetch = false
     
     await this.fetchCategories()
-    await this.fetchProducts()
+    await this.fetchProducts({})
   }
 }

@@ -119,14 +119,14 @@
       >
         <div
           class="category"
-          @click="fetchProducts('')"
+          @click="fetchProducts({})"
         >
           Todas
         </div>
         <div
           v-for="category in categoriesList"
           class="category"
-          @click="fetchProducts(`/category/${category}`)"
+          @click="fetchProducts({category})"
         >
           {{ translatedCategory(category) }}
         </div>
