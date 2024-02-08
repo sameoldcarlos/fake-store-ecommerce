@@ -8,6 +8,7 @@ import close from "@/assets/img/x.svg"
 
 import CartDB from '@/utils/IndexedDbCart.js'
 import translatedCategories from "@/utils/translatedCategories"
+import { getData } from "@/utils/CacheService"
 
 export default {
   components: {
@@ -31,7 +32,8 @@ export default {
       isAddingProductToCart: false,
       isWaitingUserFetch: true,
       isUserInfoVisible: false,
-      apiBaseUrl: new URL('/', 'https://fakestoreapi.com')
+      apiBaseUrl: new URL('/', import.meta.env.VITE_API_BASE_URL),
+      appName: import.meta.env.VITE_APP_NAME
     }
   },
 
@@ -47,7 +49,8 @@ export default {
 
       try {
         const url = new URL('users/1', this.apiBaseUrl)
-        const response = await fetch(url)
+        
+        const response = await getData(this.appName, url)
 
         this.userData = await response.json()
       } catch (error) {
@@ -65,7 +68,8 @@ export default {
 
       try {
         const url = new URL(pathname, this.apiBaseUrl)
-        const response = await fetch(url)
+        
+        const response = await getData(this.appName, url)
 
         this.productsList = await response.json().then(products => {
           if (!search?.length) {
@@ -87,7 +91,8 @@ export default {
 
       try {
         const url = new URL('products/categories', this.apiBaseUrl)
-        const response = await fetch(url)
+        
+        const response = await getData(this.appName, url)
 
         this.categoriesList = await response.json()
       } catch (error) {
