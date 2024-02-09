@@ -1,7 +1,5 @@
-import iconHeart from '@/assets/img/icon_heart.svg'
-import iconHeartFill from '@/assets/img/icon_heart_filled.svg'
-
 import formatPrice from '@/utils/formatPrice.ts'
+import { getCssVariable } from '@/utils/cssVars'
 
 export default {
   props: {
@@ -17,7 +15,8 @@ export default {
 
   data () {
     return {
-      isFavorite: false
+      isFavorite: false,
+      heartColor: getCssVariable('danger')
     }
   },
 
@@ -26,8 +25,8 @@ export default {
       return formatPrice(this.productInfo.price) || '0'
     },
 
-    favoriteIcon () {
-      return this.isFavorite ? iconHeartFill : iconHeart
+    favoriteFill () {
+      return this.isFavorite ? this.heartColor : 'none'
     }
   },
   methods: {

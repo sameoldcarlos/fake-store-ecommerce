@@ -8,7 +8,7 @@ import Cart from '@/components/Cart.vue'
       <router-link
         :to="{ name: 'home', params: { cart_items: $route.params ? $route.params.cart_items : '[]' } }"
       >
-        <img src="@/assets/img/chevron_down.svg" alt="Voltar" class="back">
+        <vue-feather type="chevron-left" size="48"></vue-feather>
       </router-link>
       Meu Carrinho
     </h5>

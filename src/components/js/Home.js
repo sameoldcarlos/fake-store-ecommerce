@@ -3,12 +3,10 @@ import Cart from "@/components/Cart.vue"
 import SearchBar from "@/components/SearchBar.vue"
 import AddCartModal from "@/components/AddCartModal.vue"
 
-import chevronDown from "@/assets/img/chevron_down.svg"
-import close from "@/assets/img/x.svg"
-
 import CartDB from '@/utils/IndexedDbCart.js'
 import translatedCategories from "@/utils/translatedCategories"
 import { getData } from "@/utils/CacheService"
+import { getCssVariable } from "@/utils/cssVars"
 
 export default {
   components: {
@@ -33,13 +31,14 @@ export default {
       isWaitingUserFetch: true,
       isUserInfoVisible: false,
       apiBaseUrl: new URL('/', import.meta.env.VITE_API_BASE_URL),
-      appName: import.meta.env.VITE_APP_NAME
+      appName: import.meta.env.VITE_APP_NAME,
+      highlightColor: getCssVariable('highlight')
     }
   },
 
   computed: {
     categoriesIcon () {
-      return this.isCategoriesVisible ? close : chevronDown
+      return this.isCategoriesVisible ? 'x' : 'chevron-down'
     }
   },
 

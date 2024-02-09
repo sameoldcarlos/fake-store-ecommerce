@@ -29,10 +29,7 @@
               :disabled="quantity <= 1"
               @click="decrementQuantity"
             >
-              <img
-                src="@/assets/img/chevron_down.svg"
-                alt="Diminuir quantidade"
-              >
+              <vue-feather type="minus"/>
             </button>
             <input
               v-model="quantity"
@@ -43,10 +40,7 @@
               class="quantity-selector__plus"
               @click="incrementQuantity"
             >
-              <img
-                src="@/assets/img/chevron_down.svg"
-                alt="Aumentar quantidade"
-              >
+              <vue-feather type="plus" />
             </button>
           </div>
           <button

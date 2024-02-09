@@ -15,6 +15,19 @@
       text-transform: capitalize;
     }
 
+    .greetings {
+      font-size: 32px;
+
+      &__address-block {
+        display: flex;
+        align-items: center;
+
+        h2 {
+          font-size: 24px;
+        }
+      }
+    }
+
     .user-actions {
       display: flex;
       gap: 20px;
@@ -41,7 +54,7 @@
       top: -8px;
       width: 210px;
       padding: 15px 42px 15px 15px;
-      background-color: rgba(0, 81, 157, 0.7);
+      background-color: rgba(0, 81, 157, 1);
       border-radius: 4px;
       z-index: 6;
 
@@ -53,9 +66,15 @@
         text-transform: lowercase;
       }
     }
+
     .user-data--visible {
       display: block;
     }
+
+    .user-image {
+      border-radius: 50%;
+    }
+
     .open-cart {
       position: relative;
 
@@ -64,7 +83,7 @@
         right: -25%;
         width: 15px;
         height: 15px;
-        background-color: var(--highlight);
+        background-color: var(--warning-bg);
         color: var(--primary-bg-color);
         border-radius: 50%;
         font-size: 8px;
@@ -95,13 +114,15 @@
       margin-left: auto;
       border-radius: 4px;
       box-shadow: var(--secondary-box-shadow);
+      display: flex;
+      align-items: center;
 
       &__title {
         display: inline-block;
         width: 121px;
-        height: 100%;
         text-align: center;
         font-size: 14px;
+        margin: 0;
       }
       &__btn {
         position: relative;
@@ -111,10 +132,6 @@
         border: none;
         border-left: 1px solid var(--secondary-bg-color);
         z-index: 5;
-
-        img {
-          transition: all .3s ease;
-        }
       }
 
 

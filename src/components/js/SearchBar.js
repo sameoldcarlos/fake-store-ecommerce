@@ -1,7 +1,10 @@
+import { getCssVariable } from "@/utils/cssVars"
+
 export default {
   data () {
     return {
-      searchParam: ''
+      searchParam: '',
+      strokeColor: getCssVariable('highlight-dark')
     }
   },
 

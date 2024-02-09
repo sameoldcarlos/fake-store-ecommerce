@@ -9,12 +9,13 @@
       class="add-to-favorites"
       @click="toggleFavorite"
     >
-      <img 
-        :src="favoriteIcon"
-        alt="Adicionar aos Favoritos"
-        width="18"
-        height="15"
-      >
+      <vue-feather
+        class="product-card__add-to-favorites"
+        type="heart"
+        :fill="favoriteFill"
+        size="18"
+        alt="Adicionar aos favoritos"
+      />
     </button>
     
   </div>

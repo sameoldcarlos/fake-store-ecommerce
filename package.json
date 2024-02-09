@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "bootstrap": "^5.2.0",
+    "feather-icons": "^4.29.1",
     "sass": "^1.49.10",
-    "vue": "^3.2.37",
+    "vue": "^3.4.17",
+    "vue-feather": "^2.0.0",
     "vue-router": "^4.1.2"
   },
   "devDependencies": {

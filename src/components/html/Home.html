@@ -8,29 +8,27 @@
         v-if="!isWaitingUserFetch"
         class="greetings"
       >
-        <h2>
+        <h1>
           Hi, {{ userData.name.firstname }}
-        </h2>
-        <h4>
-          {{ userData.address.number }}
-          {{ userData.address.street }}
-          <img
-            src="@/assets/img/chevron_down.svg"
-            alt="Exibir/Esconder Endereço"
-          >
-        </h4>
+        </h1>
+        <div class="greetings__address-block">
+          <h2>
+            {{ userData.address.number }}
+            {{ userData.address.street }}
+          </h2>
+          <vue-feather type="chevron-down" size="32" :stroke="highlightColor" />
+        </div>
       </div>
       <nav class="user-actions">
         <router-link 
           :to="{ name: 'checkout', params: { cart_items: JSON.stringify(cartItems) } }"
           class="user-actions__action open-cart"
         >
-          <img
-            src="@/assets/img/icon_cart.svg"
-            alt="Carrinho"
-            width="42"
-            height="39"
-          >
+          <vue-feather
+            type="shopping-bag"
+            size="28"
+            :stroke="highlightColor"
+          />
           <span
             v-if="cartItems.length"
             class="badge badge-primary open-cart__badge"
@@ -45,10 +43,11 @@
           @click="isUserInfoVisible = !isUserInfoVisible"
         >
           <img
-            src="@/assets/img/icon.svg"
+            src="https://thispersondoesnotexist.com/"
             alt=""
             width="42"
             height="39"
+            class="user-image"
           >
           <div
             v-if="!isWaitingUserFetch"
@@ -98,17 +97,18 @@
           v-if="!isWaitingCategoriesFetch"
           class="categories-selector"
         >
-          <span class="categories-selector__title">
+          <p class="categories-selector__title">
             Categorias
-          </span>
+          </p>
           <button
             class="categories-selector__btn"
             @click="toggleCategories"
           >
-            <img
-              :src="categoriesIcon"
-              alt="Exibir/Esconder Categorias"
-            >
+            <vue-feather
+              :type="categoriesIcon"
+              size="32"
+              :stroke="highlightColor"
+            />
           </button>
         </div>
       </div>

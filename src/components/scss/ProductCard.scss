@@ -11,6 +11,10 @@
     .product-card__add {
       display: block;
     }
+
+    .add-to-favorites {
+      display: flex;
+    }
   }
 
   &__header {
@@ -19,7 +23,7 @@
     margin-top: 8px;
 
     .add-to-favorites {
-      display: flex;
+      display: none;
       width: 21px;
       height: 17px;
       margin-top: 0.25rem;
