@@ -43,13 +43,21 @@
               <vue-feather type="plus" />
             </button>
           </div>
-          <button
-            type="button"
-            class="btn btn-primary add-cart-modal__buy"
-            @click="addProductToCart"
-          >
-            Comprar
-          </button>
+          <div class="add-cart-modal__actions">
+            <button
+              class="btn btn-link add-cart-modal__cancel"
+              @click="hideAddToCartModal($event)"
+            >
+              Cancelar
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary add-cart-modal__buy"
+              @click="addProductToCart"
+            >
+              Comprar
+            </button>
+          </div>
         </div>
       </div>
     </div>

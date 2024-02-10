@@ -22,8 +22,11 @@ export default {
     },
 
     hideAddToCartModal (event) {
-      const targetClass = event.target.className
-      if (targetClass === 'add-cart-modal' || targetClass === 'add-cart-modal__close') {
+      const targetClass = event.target.className.split(' ').pop()
+
+      const hidingTargetClasses = ['add-cart-modal', 'add-cart-modal__close', 'add-cart-modal__cancel']
+
+      if (hidingTargetClasses.includes(targetClass)) {
         this.$emit('hideAddToCartModal')
       }
     },
