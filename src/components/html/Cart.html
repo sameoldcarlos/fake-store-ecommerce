@@ -4,14 +4,17 @@
 >
   <div
     v-if="!isWaitingItemsFetch"
-    class="cart__items">
-    <checkout-card
-      v-for="(item, index) in cartItems"
-      :product-info="item"
-      :index="index"
-      @updateProductQuantity="updateProductQuantity"
-      @removeProductFromCart="removeProductFromCart"
-    ></checkout-card>
+    class="cart__items"
+  >
+    <transition-group name="list">
+      <checkout-card
+        v-for="(item, index) in cartItems"
+        :product-info="item"
+        :index="index"
+        @updateProductQuantity="updateProductQuantity"
+        @removeProductFromCart="removeProductFromCart"
+      ></checkout-card>
+    </transition-group>
   </div>
   <div class="payment-details">
     <h5>

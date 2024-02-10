@@ -53,8 +53,10 @@ export default {
     removeProductFromCart(productIndex) {
       this.isWaitingItemsFetch = true
 
-      this.cartItems = this.cartItems.filter((item, index) => index !== productIndex)
-      this.$router.replace( {params: { cart_items: JSON.stringify(this.cartItems) } })
+      const spliced = this.cartItems.toSpliced(productIndex, 1)
+      this.$router.replace( {params: { cart_items: JSON.stringify(spliced) } })
+
+      this.cartItems = spliced
 
       this.isWaitingItemsFetch = false
     }
