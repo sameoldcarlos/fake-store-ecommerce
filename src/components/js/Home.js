@@ -8,6 +8,23 @@ import translatedCategories from "@/utils/translatedCategories"
 import { getData } from "@/utils/CacheService"
 import { getCssVariable } from "@/utils/cssVars"
 
+const ORDER_OPTIONS = {
+  decscendingPrice: {
+    value: 'descending_price',
+    label: 'Preço: do maior para o menor'
+  },
+
+  ascendingPrice: {
+    value: 'ascending_price',
+    label: 'Preço: do menor para o maior'
+  },
+
+  rating: {
+    value: 'rating',
+    label: 'Avaliação'
+  }
+}
+
 export default {
   components: {
     ProductCard,
@@ -32,7 +49,10 @@ export default {
       isUserInfoVisible: false,
       apiBaseUrl: new URL('/', import.meta.env.VITE_API_BASE_URL),
       appName: import.meta.env.VITE_APP_NAME,
-      highlightColor: getCssVariable('highlight')
+      highlightColor: getCssVariable('highlight'),
+      selectedCategory: '',
+      selectedOrder: '',
+      orderOptions: ORDER_OPTIONS
     }
   },
 
@@ -77,6 +97,8 @@ export default {
 
           return products.filter(product => product.title.toLowerCase().includes(search.toLowerCase()))
         })
+
+        this.sortProducts()
       } catch (error) {
         console.error('Erro ao buscar produtos')
       } finally {
@@ -141,6 +163,41 @@ export default {
 
     hideAddToCartModal () {
       this.isAddCartModalVisible = false
+    },
+
+    sortProducts() {
+      const { selectedOrder } = this;
+      const { ascendingPrice, decscendingPrice, rating } = ORDER_OPTIONS
+
+      if (selectedOrder === ascendingPrice.value) {
+        this.productsList.sort((firstItem, secondItem) => firstItem.price - secondItem.price)
+        
+        return
+      }
+
+      if (selectedOrder === decscendingPrice.value) {
+        this.productsList.sort((firstItem, secondItem) => secondItem.price - firstItem.price)
+
+        return
+      }
+
+      if (selectedOrder === rating.value) {
+        this.productsList.sort((firstItem, secondItem) => secondItem.rating.rate - firstItem.rating.rate)
+      }
+    }
+  },
+
+  watch: {
+    selectedCategory(category, oldCategory) {
+      if (category !== oldCategory) {
+        this.fetchProducts({category})
+      }
+    },
+
+    selectedOrder(order, oldOrder) {
+      if (order !== oldOrder) {
+        this.sortProducts()
+      }
     }
   },
 
