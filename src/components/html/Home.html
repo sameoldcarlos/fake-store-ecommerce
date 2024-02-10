@@ -82,17 +82,43 @@
         <h3 class="mb-4">Produtos</h3>
         <div class="d-flex justify-content-between gap-2">
           <div class="order">
-            <label for="orderSelect">Ordenar <vue-feather size="16" type="arrow-up" style="margin-right: -8px" /><vue-feather size="16" type="arrow-down" /></label>
-            <select id="orderSelect" class="form-select form-select-md categories-container" aria-label="Default select example" v-model="selectedOrder">
+            <label for="orderSelect">
+              Ordenar
+              <vue-feather size="16" type="arrow-up" style="margin-right: -8px" />
+              <vue-feather size="16" type="arrow-down" />
+            </label>
+            <select
+              id="orderSelect"
+              class="form-select form-select-md action-container"
+              aria-label="Default select example"
+              v-model="selectedOrder"
+            >
               <option value="" disabled>Selecione</option>
-              <option :value="order.value" v-for="order in orderOptions">{{ order.label }}</option>
+              <option
+                v-for="order in orderOptions"
+                :key="order.value"
+                :value="order.value"
+              >{{ order.label }}</option>
             </select>
           </div>
           <div class="order">
-            <label for="filterSelect">Filtrar por categoria <vue-feather size="16" type="filter" /></label>
-            <select id="filterSelect" class="form-select form-select-md categories-container" name="" v-model="selectedCategory">
+            <label for="filterSelect">
+              Filtrar por categoria
+              <vue-feather size="16" type="filter" />
+            </label>
+            <select
+              id="filterSelect"
+              class="form-select form-select-md action-container"
+              v-model="selectedCategory"
+            >
               <option class="category" value="">Todas</option>
-              <option class="category" v-for="category in categoriesList" :value="category">{{ translatedCategory(category) }}</option>
+              <option
+                v-for="category in categoriesList"
+                :key="category"
+                :value="category"
+              >
+                {{ translatedCategory(category) }}
+              </option>
             </select>
           </div>
         </div>
