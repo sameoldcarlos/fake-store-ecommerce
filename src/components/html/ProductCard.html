@@ -9,7 +9,8 @@
       <vue-feather
         class="product-card__add-to-favorites"
         type="heart"
-        :fill="favoriteFill"
+        :fill="favoriteColors.fill"
+        :stroke="favoriteColors.stroke"
         size="18"
         alt="Adicionar aos favoritos"
       />
@@ -32,10 +33,10 @@
     </p>
     <div class="d-flex justify-content-between mt-3">
       <div>
-        <span class="star">
-          <vue-feather type="star" size="16" />
+        <div class="rating d-flex align-items-center gap-1">
+          <vue-feather type="star" size="16" :stroke="ratingStars" />
           {{ productInfo.rating.rate }}
-        </span>
+        </div>
       </div>
       <h3 class="product-card__price py-1">
         {{ formattedPrice }}

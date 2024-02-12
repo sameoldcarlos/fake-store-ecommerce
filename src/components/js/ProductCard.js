@@ -16,21 +16,24 @@ export default {
   data () {
     return {
       isFavorite: false,
-      heartColor: getCssVariable('danger')
+      heartColor: getCssVariable('danger'),
+      ratingStars: getCssVariable('rating-stars')
     }
   },
 
   computed : {
-    formattedPrice () {
+    formattedPrice() {
       return formatPrice(this.productInfo.price) || '0'
     },
 
-    favoriteFill () {
-      return this.isFavorite ? this.heartColor : 'none'
+    favoriteColors() {
+      const { isFavorite, heartColor } = this;
+
+      return isFavorite ? {fill: heartColor, stroke: heartColor} : {fill: 'none', stroke: 'currentColor'}
     }
   },
   methods: {
-    addProductToCart () {
+    addProductToCart() {
       this.productInfo.quantity = 1
       this.$emit('addToCart', this.productInfo)
     },
