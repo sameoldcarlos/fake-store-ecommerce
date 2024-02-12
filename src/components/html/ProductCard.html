@@ -32,15 +32,15 @@
       {{ productInfo.title }}
     </p>
     <div class="d-flex justify-content-between mt-3">
+      <h3 class="product-card__price py-1">
+        {{ formattedPrice }}
+      </h3>
       <div>
         <div class="rating d-flex align-items-center gap-1">
           <vue-feather type="star" size="16" :stroke="ratingStars" />
           {{ productInfo.rating.rate }}
         </div>
       </div>
-      <h3 class="product-card__price py-1">
-        {{ formattedPrice }}
-      </h3>
     </div>
     <button
       class="btn btn-success w-100 product-card__add"
