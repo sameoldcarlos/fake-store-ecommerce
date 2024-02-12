@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap');
+
 :root {
+  // Colors
   --primary-bg-color: #ffffff;
   --secondary-bg-color: #f5f5f5;
   --primary-text-color: #333333;
@@ -14,4 +17,9 @@
   --warning-bg: #e65b0b;
   --danger: #e74c3c;
   --rating-stars: #bbbb44;
+
+  // Fonts
+  --primary-font-family: 'Roboto';
+  --secondary-font-family: 'Montserrat';
+  --logo-font-family: 'Kaushan Script'
 }
