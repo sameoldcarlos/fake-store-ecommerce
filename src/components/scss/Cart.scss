@@ -81,31 +81,19 @@
   height: 100%;
 }
 
-.v-enter-active,
-.v-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
+.product-enter,
+.product-leave-to {
   opacity: 0;
 }
 
-.list-item {
-  display: inline-block;
-  margin-right: 10px;
+.product-enter {
+  transform: translateY(30%);
 }
 
-.list-enter-active,
-.list-leave-active {
-  transition: all 1s;
+.product-leave-to {
+  transform: translateY(50%);
 }
 
-.list-enter,
-.list-leave-to
-
-/* .list-leave-active em versões anteriores a 2.1.8 */
-  {
-  opacity: 0;
-  transform: translateY(-30px);
+.product-leave-active {
+  position: absolute;
 }

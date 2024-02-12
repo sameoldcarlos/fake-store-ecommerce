@@ -6,9 +6,10 @@
     v-if="!isWaitingItemsFetch"
     class="cart__items"
   >
-    <transition-group name="list">
+    <transition-group name="product" tag="div">
       <checkout-card
         v-for="(item, index) in cartItems"
+        :key="`product${item.id}`"
         :product-info="item"
         :index="index"
         @updateProductQuantity="updateProductQuantity"

@@ -3,6 +3,7 @@
   box-sizing: border-box;
   box-shadow: var(--primary-box-shadow);
   margin-bottom: 39px;
+  transition: all .5s ease;
 
   img {
     object-fit: contain;
