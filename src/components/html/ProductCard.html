@@ -1,10 +1,7 @@
 <div
   v-if="Object.keys(productInfo)"
-  class="product-card card px-2">
+  class="product-card card p-2">
   <div class="product-card__header">
-    <h3 class="product-card__price py-1">
-      {{ formattedPrice }}
-    </h3>
     <button
       class="add-to-favorites"
       @click="toggleFavorite"
@@ -27,12 +24,23 @@
     >
   </div>
   <div class="card-body px-2 py-1">
-    <span
-      class="product-card__title card-title ms-2"
+    <p
+      class="product-card__title card-title text-center"
       :title="productInfo.title"
     >
       {{ productInfo.title }}
-    </span>
+    </p>
+    <div class="d-flex justify-content-between mt-3">
+      <div>
+        <span class="star">
+          <vue-feather type="star" size="16" />
+          {{ productInfo.rating.rate }}
+        </span>
+      </div>
+      <h3 class="product-card__price py-1">
+        {{ formattedPrice }}
+      </h3>
+    </div>
     <button
       class="btn btn-success w-100 product-card__add"
       :disabled="isAddingProductToCart"
