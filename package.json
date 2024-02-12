@@ -11,6 +11,7 @@
   "dependencies": {
     "bootstrap": "^5.2.0",
     "feather-icons": "^4.29.1",
+    "idb": "^8.0.0",
     "sass": "^1.49.10",
     "vue": "^3.4.17",
     "vue-feather": "^2.0.0",

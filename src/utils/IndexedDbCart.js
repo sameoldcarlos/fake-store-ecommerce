@@ -1,4 +1,4 @@
-import { openDB, deleteDB } from 'https://unpkg.com/idb@7.0.2/build/index.js?module'
+import { openDB, deleteDB } from 'idb'
 
 const dbName = 'fakeStore'
 const storeName = 'user_cart'
