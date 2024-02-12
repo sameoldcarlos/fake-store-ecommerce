@@ -2,77 +2,9 @@
   class="home"
   :class="{'modal-open': isAddCartModalVisible}"
 >
-  <header class="header">
-    <section class="header__content">
-      <div
-        v-if="!isWaitingUserFetch"
-        class="greetings"
-      >
-        <h1>
-          Hi, {{ userData.name.firstname }}
-        </h1>
-        <div class="greetings__address-block">
-          <h2>
-            {{ userData.address.number }}
-            {{ userData.address.street }}
-          </h2>
-          <vue-feather type="chevron-down" size="32" :stroke="highlightColor" />
-        </div>
-      </div>
-      <nav class="user-actions">
-        <router-link 
-          :to="{ name: 'checkout', params: { cart_items: JSON.stringify(cartItems) } }"
-          class="user-actions__action open-cart"
-        >
-          <vue-feather
-            type="shopping-bag"
-            size="28"
-            :stroke="highlightColor"
-          />
-          <span
-            v-if="cartItems.length"
-            class="badge badge-primary open-cart__badge"
-          >
-            {{ cartItems.length }}
-          </span>
-        </router-link>
-        <button
-          class="user-info"
-          @click="isUserInfoVisible = !isUserInfoVisible"
-        >
-          <img
-            src="https://thispersondoesnotexist.com/"
-            alt=""
-            width="40"
-            height="40"
-            class="user-image"
-          >
-          <div
-            v-if="!isWaitingUserFetch"
-            class="user-data"
-            :class="{'user-data--visible': isUserInfoVisible}"
-          >
-            <p>
-              <strong>Nome</strong>
-              <p>{{ userData.name.firstname }} {{ userData.name.lastname }}</p>
-            </p>
-            <p>
-              <strong>Endereço</strong>
-              <p>{{ userData.address.number }}, {{ userData.address.street }}, {{ userData.address.city }}</p>
-            </p>
-            <p>
-              <strong>Telefone</strong>
-              <p>{{ userData.phone }}</p>
-            </p>
-            <p>
-              <strong>Email</strong>
-              <p class="email">{{ userData.email }}</p>
-            </p>
-          </div>
-        </button>
-      </nav>
-    </section>
-  </header>
+  <Header
+    :cart-items="cartItems"
+  />
   <main>
     <search-bar
       @searchFor="fetchProducts({search: $event})"

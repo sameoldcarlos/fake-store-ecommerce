@@ -1,0 +1,7 @@
+<div class="menu">
+  <ul class="menu__options d-flex">
+    <li v-for="category in menuOptions" :key="category.value" class="menu__item">
+      <router-link :to="category.link">{{ category.label }}</router-link>
+    </li>
+  </ul>
+</div>

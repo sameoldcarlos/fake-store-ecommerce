@@ -33,6 +33,10 @@
   &__header {
     position: relative;
     justify-content: center;
+
+    * {
+      font-family: var(--secondary-font-family), sans-serif;
+    }
     
     h3 {
       text-align: center;

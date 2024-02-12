@@ -2,11 +2,11 @@ import ProductCard from "@/components/ProductCard.vue"
 import Cart from "@/components/Cart.vue"
 import SearchBar from "@/components/SearchBar.vue"
 import AddCartModal from "@/components/AddCartModal.vue"
+import Header from "@/components/Header.vue"
 
 import CartDB from '@/utils/IndexedDbCart.js'
-import translatedCategories from "@/utils/translatedCategories"
+import { categories, formattedCategories } from "@/utils/content.js"
 import { getData } from "@/utils/CacheService"
-import { getCssVariable } from "@/utils/cssVars"
 
 const ORDER_OPTIONS = {
   decscendingPrice: {
@@ -30,7 +30,8 @@ export default {
     ProductCard,
     Cart,
     SearchBar,
-    AddCartModal
+    AddCartModal,
+    Header
   },
 
   data () {
@@ -39,17 +40,13 @@ export default {
       categoriesList: [],
       cartItems: [],
       selectedProduct: {},
-      userData: {},
       isWaitingProductsFetch: true,
       isWaitingCategoriesFetch: true,
       isCategoriesVisible: false,
       isAddCartModalVisible: false,
       isAddingProductToCart: false,
-      isWaitingUserFetch: true,
-      isUserInfoVisible: false,
       apiBaseUrl: new URL('/', import.meta.env.VITE_API_BASE_URL),
       appName: import.meta.env.VITE_APP_NAME,
-      highlightColor: getCssVariable('highlight'),
       selectedCategory: '',
       selectedOrder: '',
       orderOptions: ORDER_OPTIONS
@@ -63,22 +60,6 @@ export default {
   },
 
   methods: {
-    async fetchUser () {
-      this.isWaitingUserFetch = true
-
-      try {
-        const url = new URL('users/1', this.apiBaseUrl)
-        
-        const response = await getData(this.appName, url)
-
-        this.userData = await response.json()
-      } catch (error) {
-        console.error('Erro ao consultar informações do usuário')
-      } finally {
-        this.isWaitingUserFetch = false
-      }
-    },
-
     async fetchProducts ({category, search}) {
       this.isWaitingProductsFetch = true
       this.isCategoriesVisible = false
@@ -152,8 +133,10 @@ export default {
     },
 
     translatedCategory(category) {
-      const cat = category.replaceAll(/ /g, "_").replaceAll("'", "")
-      return translatedCategories[cat]
+      const categoryKey = category.replaceAll(/ /g, "_").replaceAll("'", "")
+      const selectedCategory = categories.find(item => item.value === categoryKey)
+
+      return selectedCategory.label
     },
 
     showAddToCartModal (product) {
@@ -202,7 +185,6 @@ export default {
   },
 
   async created () {
-    await this.fetchUser()
     try {
       const openDBResult = await CartDB.openCartDB()
       this.cartItems = await CartDB.getCartItemsFromDB()
