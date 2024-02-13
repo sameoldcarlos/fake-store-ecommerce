@@ -1,8 +1,8 @@
-# Fake-store - E-commerce
+# GoodBuy store
 
-Autor: [Carlos Alberto Alves Pereira](https://github.com/sameoldcarlos)
+Autor: [Carlos Alves](https://github.com/sameoldcarlos)
 
-Esta é uma aplicação ilustrativa de um e-commerce simples, desenvolvida como teste para a vaga de Desenvolvedor Frontend Jr da empresa Melhor Envio.
+A GoodBuy store é uma aplicação ilustrativa de um e-commerce, desenvolvida puramente com o objetivo de testar minhas habilidades com desenvolvimento frontend.
 
 ## Funcionalidades implementadas
 
