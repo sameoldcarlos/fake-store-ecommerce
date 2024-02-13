@@ -1,14 +1,24 @@
-<header class="header">
+<header :class="['header', {'disabled': isDisabled}]">
   <section class="header__content">
+    <div class="menu-button-container d-flex align-items-center d-lg-none me-3">
+      <button
+        class="btn__icon-only"
+        @click="openMobileMenu"
+      >
+        <vue-feather type="menu" :stroke="iconLight" :size="36"></vue-feather>
+      </button>
+    </div>
     <div class="logo-container">
       <p class="logo mb-0">GoodBuy</p>
       <p class="sublogo mb-0">store</p>
     </div>
-    <Menu />
+    <Menu
+      menu-options="menuOptions"
+    />
     <nav class="user-actions">
       <router-link :to="{ name: 'checkout', params: { cart_items: JSON.stringify(cartItems) } }"
         class="user-actions__action open-cart">
-        <vue-feather type="shopping-bag" size="28" :stroke="bagColor" />
+        <vue-feather type="shopping-bag" size="28" :stroke="iconLight" />
         <span v-if="cartItems.length" class="badge badge-primary open-cart__badge">
           {{ cartItems.length }}
         </span>

@@ -43,8 +43,7 @@
       </div>
     </div>
     <button
-      class="btn btn-success w-100 product-card__add"
-      :disabled="isAddingProductToCart"
+      :class="['btn btn-success w-100 product-card__add', {'disabled': isAddingProductToCart}]"
       @click="showAddToCartModal"
     >
       Adicionar

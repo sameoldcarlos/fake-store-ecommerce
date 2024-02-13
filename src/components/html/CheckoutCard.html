@@ -14,8 +14,7 @@
       <div class="product-values">
         <div class="quantity-selector">
           <button
-            class="quantity-selector__minus"
-            :disabled="productInfo.quantity <= 0"
+            :class="['quantity-selector__minus btn__icon-only', {'disabled': productInfo.quantity <= 0}]"
             @click="decrementQuantity"
           >
             <vue-feather
@@ -29,7 +28,7 @@
             type="text"
           >
           <button
-            class="quantity-selector__plus"
+            class="quantity-selector__plus btn__icon-only"
             @click="incrementQuantity"
           >
             <vue-feather

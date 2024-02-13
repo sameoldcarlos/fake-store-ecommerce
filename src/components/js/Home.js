@@ -3,10 +3,13 @@ import Cart from "@/components/Cart.vue"
 import SearchBar from "@/components/SearchBar.vue"
 import AddCartModal from "@/components/AddCartModal.vue"
 import Header from "@/components/Header.vue"
+import MenuMobile from "@/components/MenuMobile.vue"
 
 import CartDB from '@/utils/IndexedDbCart.js'
-import { categories, formattedCategories } from "@/utils/content.js"
+import { categories } from "@/utils/content.js"
 import { getData } from "@/utils/CacheService"
+
+const MENU_OPTIONS = categories.filter(item => item.value !== 'all').map(item => ({ ...item, link: `/products/${item.value}` }))
 
 const ORDER_OPTIONS = {
   decscendingPrice: {
@@ -31,7 +34,8 @@ export default {
     Cart,
     SearchBar,
     AddCartModal,
-    Header
+    Header,
+    MenuMobile
   },
 
   data () {
@@ -49,7 +53,9 @@ export default {
       appName: import.meta.env.VITE_APP_NAME,
       selectedCategory: '',
       selectedOrder: '',
-      orderOptions: ORDER_OPTIONS
+      orderOptions: ORDER_OPTIONS,
+      menuOptions: MENU_OPTIONS,
+      isMobileMenuActive: false
     }
   },
 
@@ -167,6 +173,14 @@ export default {
       if (selectedOrder === rating.value) {
         this.productsList.sort((firstItem, secondItem) => secondItem.rating.rate - firstItem.rating.rate)
       }
+    },
+
+    openMobileMenu() {
+      this.isMobileMenuActive = true;
+    },
+
+    closeMobileMenu() {
+      this.isMobileMenuActive = false;
     }
   },
 

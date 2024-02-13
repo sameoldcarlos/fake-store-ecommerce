@@ -3,9 +3,18 @@
   :class="{'modal-open': isAddCartModalVisible}"
 >
   <Header
+    :is-disabled="isMobileMenuActive"
     :cart-items="cartItems"
+    @openMobileMenu="openMobileMenu"
   />
-  <main>
+  <MenuMobile
+    :is-active="isMobileMenuActive"
+    :menu-options="menuOptions"
+    @closeMobileMenu="closeMobileMenu"
+  />
+  <main
+    :class="{'disabled': isMobileMenuActive}"
+  >
     <search-bar
       @searchFor="fetchProducts({search: $event})"
     ></search-bar>

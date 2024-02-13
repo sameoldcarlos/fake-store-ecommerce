@@ -1,0 +1,46 @@
+.menu-mobile {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100vh;
+  background-color: var(--primary-bg-color);
+  color: var(--primary-text-color);
+  border: 1px solid var(--bs-border-color-translucent);
+  box-shadow: var(--right-box-shadow);
+  transform: translateX(-150%);
+  transition: transform .5s ease;
+  z-index: -100;
+  opacity: 0;
+
+  &__option {
+    text-align: center;
+    font-family: var(--secondary-font-family);
+    text-transform: capitalize;
+    border: 1px solid var(--bs-border-color-translucent);
+    border-left: none;
+    border-right: none;
+
+    a.menu-link {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      padding: 8px 16px;
+
+      &:hover {
+        background-color: var(--input-border-color);
+      }
+    }
+
+    &--close {
+      justify-content: end;
+      padding: 8px 16px;
+    }
+  }
+
+  &--active {
+    transform: translateX(0%);
+    z-index: 2;
+    opacity: 1;
+  }
+}

@@ -9,13 +9,18 @@ export default {
     cartItems: {
       type: Array,
       required: true
+    },
+
+    isDisabled: {
+      type: Boolean,
+      default: false
     }
   },
 
   data() {
     return {
       isUserInfoVisible: false,
-      bagColor: getCssVariable('primary-bg-color'),
+      iconLight: getCssVariable('primary-bg-color'),
       apiBaseUrl: new URL('/', import.meta.env.VITE_API_BASE_URL),
       userData: {},
       isWaitingUserFetch: false
@@ -37,6 +42,10 @@ export default {
       } finally {
         this.isWaitingUserFetch = false
       }
+    },
+
+    openMobileMenu() {
+      this.$emit('openMobileMenu')
     }
   },
 

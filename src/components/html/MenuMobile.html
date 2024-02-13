@@ -1,0 +1,18 @@
+<aside :class="['menu-mobile', {'menu-mobile--active': isActive}]">
+  <div class="menu-mobile__options">
+    <div class="menu-mobile__option menu-mobile__option--close d-flex">
+      <button
+        class="btn__icon-only"
+        @click="closeMobileMenu"
+        title="Esconder menu"
+      >
+        <vue-feather type="x" />
+      </button>
+    </div>
+    <div v-for="option in menuOptions" :key="option.value" class="menu-mobile__option">
+      <router-link class="menu-link" :to="option.link">
+        {{ option.label }}
+      </router-link>
+    </div>
+  </div>
+</aside>
