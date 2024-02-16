@@ -1,6 +1,6 @@
 <div
   v-if="Object.keys(productInfo)"
-  class="product-card card p-2">
+  class="col-5 col-md-4 product-card col-lg-3 card p-2">
   <div class="product-card__header">
     <button
       class="add-to-favorites"
@@ -24,14 +24,14 @@
       :alt="productInfo.title"
     >
   </div>
-  <div class="card-body px-2 py-1">
+  <div class="p-1">
     <p
       class="product-card__title card-title text-center"
       :title="productInfo.title"
     >
       {{ productInfo.title }}
     </p>
-    <div class="d-flex justify-content-between mt-3">
+    <div class="d-flex flex-column-reverse flex-md-row justify-content-between mt-2 mt-md-3 px-1">
       <h3 class="product-card__price py-1">
         {{ formattedPrice }}
       </h3>
