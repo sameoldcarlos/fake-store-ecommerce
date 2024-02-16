@@ -1,10 +1,13 @@
 .header {
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: center;
   margin: 0;
   background-color: var(--primary-text-color);
   color: var(--primary-bg-color);
   width: 100vw;
+  z-index: 3;
 
   &__content {
     display: flex;
@@ -17,21 +20,9 @@
     }
   }
 
-  .logo {
-    font-family: var(--logo-font-family);
-    font-size: 32px;
-  }
-
-  .sublogo {
-    font-family: var(--secondary-font-family);
-    margin-top: -16px;
-    font-size: 20px;
-  }
-
   .logo,
   .sublogo {
     color: var(--primary-bg-color);
-    text-align: center;
   }
 
   .user-actions {

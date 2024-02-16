@@ -27,7 +27,7 @@ body {
   display: none;
   width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   background-color: var(--primary-bg-color);
   opacity: .7;
   z-index: 4;
@@ -86,4 +86,17 @@ a.menu-link {
   text-decoration: none;
   transition: all .1s linear;
   color: currentColor;
+}
+
+.logo {
+  font-family: var(--logo-font-family);
+  font-size: 32px;
+  text-align: center;
+}
+
+.sublogo {
+  font-family: var(--secondary-font-family);
+  margin-top: -16px;
+  font-size: 20px;
+  text-align: center;
 }

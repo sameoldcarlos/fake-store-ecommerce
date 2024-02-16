@@ -4,6 +4,7 @@ import SearchBar from "@/components/SearchBar.vue"
 import AddCartModal from "@/components/AddCartModal.vue"
 import Header from "@/components/Header.vue"
 import MenuMobile from "@/components/MenuMobile.vue"
+import Footer from "@/components/Footer.vue"
 
 import CartDB from '@/utils/IndexedDbCart.js'
 import { categories } from "@/utils/content.js"
@@ -35,7 +36,8 @@ export default {
     SearchBar,
     AddCartModal,
     Header,
-    MenuMobile
+    MenuMobile,
+    Footer
   },
 
   data () {
