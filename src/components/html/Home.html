@@ -2,8 +2,11 @@
   class="home"
   :class="{'modal-open': isAddCartModalVisible}"
 >
+  <div
+    :class="['mobile-menu-overlay', {'mobile-menu-overlay--visible': isMobileMenuActive}]"
+    @click="closeMobileMenu"
+  ></div>
   <Header
-    :is-disabled="isMobileMenuActive"
     :cart-items="cartItems"
     @openMobileMenu="openMobileMenu"
   />
@@ -12,9 +15,7 @@
     :menu-options="menuOptions"
     @closeMobileMenu="closeMobileMenu"
   />
-  <main
-    :class="{'disabled': isMobileMenuActive}"
-  >
+  <main>
     <search-bar
       @searchFor="fetchProducts({search: $event})"
     ></search-bar>

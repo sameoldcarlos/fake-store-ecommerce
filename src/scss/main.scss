@@ -23,6 +23,20 @@ body {
   overflow: hidden;
 }
 
+.mobile-menu-overlay {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: var(--primary-bg-color);
+  opacity: .7;
+  z-index: 4;
+
+  &--visible {
+    display: block;
+  }
+}
+
 .btn-primary {
   --bs-btn-bg: var(--highlight-dark);
   --bs-btn-border-color: var(--highlight-dark);

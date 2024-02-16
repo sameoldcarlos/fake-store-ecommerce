@@ -9,11 +9,6 @@ export default {
     cartItems: {
       type: Array,
       required: true
-    },
-
-    isDisabled: {
-      type: Boolean,
-      default: false
     }
   },
 
