@@ -5,7 +5,9 @@ import VueFeather from 'vue-feather';
 import CartDB from './utils/IndexedDbCart';
 
 
-await CartDB.openCartDB()
+(async () => {
+  await CartDB.openCartDB()
+})()
 
 const app = createApp(App)
 
