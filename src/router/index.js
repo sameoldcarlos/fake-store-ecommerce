@@ -19,7 +19,7 @@ const router = createRouter({
     },
     {
       path: '/product',
-      name: 'checkout',
+      name: 'product',
       component: ProductPageView
     },
     {

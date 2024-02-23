@@ -6,18 +6,15 @@ const version = 1
 const key = 'cart_items'
 
 export default {
-  async openCartDB (version = 1) {
-    let objStore
-    const cartDB = await openDB(dbName, version, {
+  async openCartDB () {
+    await openDB(dbName, version, {
       upgrade(db) {
-        objStore = db.createObjectStore(storeName)
+        db.createObjectStore(storeName)
       }
     })
-    const dbInfo = ({ name: cartDB.name, store_name: cartDB.objectStoreNames[0] }) || {}
-    return dbInfo
   },
 
-  async updateCartDB(cartItems, version = 1) {
+  async updateCartDB(cartItems) {
     const cartDB = await openDB(dbName, version)
 
     const transaction = cartDB.transaction(storeName, 'readwrite')
@@ -28,7 +25,7 @@ export default {
     return result
   },
 
-  async getCartItemsFromDB(version = 1) {
+  async getCartItemsFromDB() {
     const cartDB = await openDB(dbName, version)
     const item = await cartDB.transaction('user_cart').objectStore('user_cart').get(key)
     

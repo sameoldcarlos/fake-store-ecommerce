@@ -1,13 +1,18 @@
+import { categories } from "@/utils/content.js"
+
+const MENU_OPTIONS = categories.filter(item => item.value !== 'all').map(item => ({ ...item, link: `/products/${item.value}` }))
+
 export default {
   props: {
     isActive: {
       type: Boolean,
       default: false
-    },
+    }
+  },
 
-    menuOptions: {
-      type: Array,
-      required: true
+  data() {
+    return {
+      menuOptions: MENU_OPTIONS
     }
   },
 
