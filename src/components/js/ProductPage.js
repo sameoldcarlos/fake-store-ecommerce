@@ -1,6 +1,7 @@
 import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 import MenuMobile from '@/components/MenuMobile.vue'
+import SearchBar from '@/components/SearchBar.vue'
 
 import CartDB from '@/utils/IndexedDbCart.js'
 
@@ -8,13 +9,33 @@ export default {
   components: {
     Header,
     Footer,
-    MenuMobile
+    MenuMobile,
+    SearchBar
+  },
+
+  props: {
+    product: {
+      type: Object,
+      default: {
+        category: "men's clothing",
+        description: "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+        id: 1,
+        image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+        price: 109.95,
+        rating: {
+          count: 120,
+          rate: 3.9
+        },
+        title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops"
+      }
+    }
   },
 
   data() {
     return {
       cartItems: [],
-      isMobileMenuActive: false
+      isMobileMenuActive: false,
+      isAddingProductToCart: false
     }
   },
 
@@ -25,6 +46,10 @@ export default {
 
     closeMobileMenu() {
       this.isMobileMenuActive = false;
+    },
+
+    addToCart() {
+
     }
   },
 
