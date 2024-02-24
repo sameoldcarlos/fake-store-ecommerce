@@ -1,0 +1,10 @@
+<div class="product-page">
+  <div
+    :class="['mobile-menu-overlay', {'mobile-menu-overlay--visible': isMobileMenuActive}]"
+    @click="closeMobileMenu"
+  ></div>
+  <Header :cart-items="cartItems" @openMobileMenu="openMobileMenu"/>
+  <MenuMobile :is-active="isMobileMenuActive" @closeMobileMenu="closeMobileMenu" />
+  <main></main>
+  <Footer />
+</div>

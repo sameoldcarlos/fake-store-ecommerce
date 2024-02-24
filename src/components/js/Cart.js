@@ -64,7 +64,6 @@ export default {
 
   async created() {
     try {
-      const openDBResult = await CartDB.openCartDB()
       this.cartItems = await CartDB.getCartItemsFromDB()
     } catch (err) {
       this.cartItems = this.$route.params && this.$route.params.cart_items ? JSON.parse(this.$route.params.cart_items) : []

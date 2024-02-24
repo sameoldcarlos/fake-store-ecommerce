@@ -10,9 +10,7 @@ import CartDB from '@/utils/IndexedDbCart.js'
 import { categories } from "@/utils/content.js"
 import { getData } from "@/utils/CacheService"
 
-const MENU_OPTIONS = categories.filter(item => item.value !== 'all').map(item => ({ ...item, link: `/products/${item.value}` }))
-
-const ORDER_OPTIONS = {
+const SORT_OPTIONS = {
   decscendingPrice: {
     value: 'descending_price',
     label: 'Preço: do maior para o menor'
@@ -54,9 +52,8 @@ export default {
       apiBaseUrl: new URL('/', import.meta.env.VITE_API_BASE_URL),
       appName: import.meta.env.VITE_APP_NAME,
       selectedCategory: '',
-      selectedOrder: '',
-      orderOptions: ORDER_OPTIONS,
-      menuOptions: MENU_OPTIONS,
+      selectedSort: '',
+      sortOptions: SORT_OPTIONS,
       isMobileMenuActive: false
     }
   },
@@ -157,22 +154,22 @@ export default {
     },
 
     sortProducts() {
-      const { selectedOrder } = this;
-      const { ascendingPrice, decscendingPrice, rating } = ORDER_OPTIONS
+      const { selectedSort } = this;
+      const { ascendingPrice, decscendingPrice, rating } = SORT_OPTIONS
 
-      if (selectedOrder === ascendingPrice.value) {
+      if (selectedSort === ascendingPrice.value) {
         this.productsList.sort((firstItem, secondItem) => firstItem.price - secondItem.price)
         
         return
       }
 
-      if (selectedOrder === decscendingPrice.value) {
+      if (selectedSort === decscendingPrice.value) {
         this.productsList.sort((firstItem, secondItem) => secondItem.price - firstItem.price)
 
         return
       }
 
-      if (selectedOrder === rating.value) {
+      if (selectedSort === rating.value) {
         this.productsList.sort((firstItem, secondItem) => secondItem.rating.rate - firstItem.rating.rate)
       }
     },
@@ -193,8 +190,8 @@ export default {
       }
     },
 
-    selectedOrder(order, oldOrder) {
-      if (order !== oldOrder) {
+    selectedSort(sort, oldSort) {
+      if (sort !== oldSort) {
         this.sortProducts()
       }
     }
@@ -202,9 +199,9 @@ export default {
 
   async created () {
     try {
-      const openDBResult = await CartDB.openCartDB()
       this.cartItems = await CartDB.getCartItemsFromDB()
     } catch (err) {
+      console.error(err)
       if (this.$route.params && this.$route.params.cart_items) {
         this.cartItems = JSON.parse(this.$route.params.cart_items)
       } else {

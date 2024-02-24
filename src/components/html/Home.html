@@ -12,7 +12,6 @@
   />
   <MenuMobile
     :is-active="isMobileMenuActive"
-    :menu-options="menuOptions"
     @closeMobileMenu="closeMobileMenu"
   />
   <main>
@@ -23,27 +22,27 @@
       <div class="products__header">
         <h3 class="mb-4">Produtos</h3>
         <div class="d-flex justify-content-between gap-2">
-          <div class="order">
-            <label for="orderSelect">
+          <div class="sort">
+            <label for="sortSelect">
               Ordenar
               <vue-feather size="16" type="arrow-up" style="margin-right: -8px" />
               <vue-feather size="16" type="arrow-down" />
             </label>
             <select
-              id="orderSelect"
+              id="sortSelect"
               class="form-select form-select-md action-container"
               aria-label="Default select example"
-              v-model="selectedOrder"
+              v-model="selectedSort"
             >
               <option value="" disabled>Selecione</option>
               <option
-                v-for="order in orderOptions"
-                :key="order.value"
-                :value="order.value"
-              >{{ order.label }}</option>
+                v-for="sort in sortOptions"
+                :key="sort.value"
+                :value="sort.value"
+              >{{ sort.label }}</option>
             </select>
           </div>
-          <div class="order">
+          <div class="sort">
             <label for="filterSelect">
               Filtrar por categoria
               <vue-feather size="16" type="filter" />

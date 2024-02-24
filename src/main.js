@@ -2,8 +2,12 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import VueFeather from 'vue-feather';
+import CartDB from './utils/IndexedDbCart';
 
 
+(async () => {
+  await CartDB.openCartDB()
+})()
 
 const app = createApp(App)
 

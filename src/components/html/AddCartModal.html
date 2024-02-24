@@ -1,6 +1,6 @@
 <div
   class="add-cart-modal"  
-  @click="hideAddToCartModal($event)"
+  @click.self="hideAddToCartModal"
 >
   <div class="modal-dialog add-cart-modal__dialog">
     <div class="modal-content">
@@ -9,6 +9,7 @@
         <button
           class="add-cart-modal__close"
           type="button"
+          @click.self="hideAddToCartModal"
         >
           <span>
             <vue-feather type="x" />
@@ -45,7 +46,7 @@
           <div class="add-cart-modal__actions">
             <button
               class="btn btn-link add-cart-modal__cancel"
-              @click="hideAddToCartModal($event)"
+              @click.self="hideAddToCartModal"
             >
               Cancelar
             </button>
