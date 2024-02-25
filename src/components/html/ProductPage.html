@@ -8,17 +8,39 @@
   <main>
     <SearchBar/>
     <section class="product-page__resume">  
-      <h1 class="text-center">{{ product.title }}</h1>
+      <h1 class="text-center product-page__title">{{ product.title }}</h1>
       <button class="btn__icon-only add-to-favorites">
         <vue-feather type="heart" />
       </button>
-      <div class="image-container text-center">
+      <div class="product-page__image-container text-center">
         <img class="product-page__image" :src="product.image" alt="Imagem do Produto">
       </div>
       <div class="rating-and-price">
         <div class="product-page__price-container">
           <h2 class="product-price">R$ 546,13</h2>
           <p class="product-conciliations">ou 10x de R$ 54,62 sem juros</p>
+        </div>
+      </div>
+      <div class="quantity-container d-flex flex-column">
+        <p class="mb-1 text--normal">Quantidade</p>      
+        <div class="quantity-selector w-100">
+          <button
+            :class="['quantity-selector__minus btn btn__icon-only', {'disabled': quantity <= 1}]"
+            @click="decrementQuantity"
+          >
+            <vue-feather type="minus"/>
+          </button>
+          <input
+            v-model="quantity"
+            class="quantity-selector__input"
+            type="text"
+          >
+          <button
+            class="quantity-selector__plus btn btn__icon-only"
+            @click="incrementQuantity"
+          >
+            <vue-feather type="plus" />
+          </button>
         </div>
       </div>
       <div class="product-page__buy-actions">

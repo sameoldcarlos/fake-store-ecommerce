@@ -35,7 +35,8 @@ export default {
     return {
       cartItems: [],
       isMobileMenuActive: false,
-      isAddingProductToCart: false
+      isAddingProductToCart: false,
+      quantity: 1
     }
   },
 
@@ -50,6 +51,14 @@ export default {
 
     addToCart() {
 
+    },
+
+    incrementQuantity() {
+      this.quantity++
+    },
+
+    decrementQuantity() {
+      this.quantity--
     }
   },
 
