@@ -1,5 +1,5 @@
 .product-page {
-  h1 {
+  &__title {
     font-weight: 700;
     margin-bottom: 32px;
     text-align: justify;
@@ -7,9 +7,9 @@
 
   &__resume {
     width: 100%;
-    max-width: 760px;
-    margin: 48px auto;
-    padding: 32px 12px;
+    max-width: 1200px;
+    margin: 88px auto;
+    padding: 48px 16px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,54 +21,6 @@
     font-weight: 700;
     text-align: center;
     margin-bottom: 8px;
-  }
-
- 
- @media screen and (min-width: 992px) {
-    &__resume {
-      display: grid;
-      grid-template-rows: 30% 20% 10% 40%;
-      grid-template-columns: 50% 1fr 40px;
-      row-gap: 10px;
-      column-gap: 30px;
-    }
-
-    &__image-container {
-      grid-column: 1/2;
-      grid-row: 1/4;
-      display: flex;
-      align-items: center;
-      padding: 20px;
-
-      img {
-        max-width: initial;
-      }
-    }
-
-    &__title {
-      grid-column: 2/3;
-      grid-row: 1/2;
-    }
-
-    .rating-and-price {
-      grid-row: 2/3;
-      grid-column: 2/3;
-    }
-
-    &__buy-actions {
-      grid-column: 2/4;
-    }
-
-    .quantity-container {
-      grid-row: 3/4;
-      grid-column: 2/4;
-    }
-  }
-
-  &__image {
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
   }
 
   .rating-and-price {
@@ -86,6 +38,16 @@
     }
   }
 
+  &__image-container {
+    text-align: center;
+  }
+ 
+  &__image {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
   .add-to-favorites {
     display: inline-block;
     width: 40px;
@@ -101,12 +63,65 @@
   &__buy-actions {
     margin-bottom: 32px;
 
-    & > * {
+    & > button {
       height: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
+    }
+  }
+
+  @media screen and (min-width: 992px) {
+    &__resume {
+      display: grid;
+      grid-template-rows: 120px 200px 200px;
+      grid-template-columns: auto 1fr 40px;
+      row-gap: 12px;
+      column-gap: 32px;
+    }
+
+    &__image-container {
+      grid-column: 1/2;
+      grid-row: 1/4;
+      display: flex;
+      text-align: left;
+
+      img {
+        max-width: 450px;
+        height: 100%;
+        width: auto;
+        margin: 0;
+      }
+    }
+
+    &__title {
+      grid-column: 2/3;
+      grid-row: 1/2;
+      font-size: 32px;
+      text-align: left;
+    }
+
+    .rating-and-price {
+      grid-row: 2/3;
+      grid-column: 2/3;
+      display: flex;
+      flex-direction: column;
+      max-height: 200px;
+    }
+
+    &__buy-actions {
+      grid-column: 2/4;
+      grid-row: 3/4;
+    }
+
+    &__price-container {
+      margin-top: auto;
+      margin-bottom: 0;
+    }
+
+    .quantity-container {
+      margin-bottom: 16px;
     }
   }
 }
