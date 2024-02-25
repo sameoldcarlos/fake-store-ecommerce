@@ -5,6 +5,55 @@
   ></div>
   <Header :cart-items="cartItems" @openMobileMenu="openMobileMenu"/>
   <MenuMobile :is-active="isMobileMenuActive" @closeMobileMenu="closeMobileMenu" />
-  <main></main>
+  <main>
+    <SearchBar/>
+    <section class="product-page__resume">  
+      <h1 class="product-page__title">{{ product.title }}</h1>
+      <button class="btn__icon-only add-to-favorites">
+        <vue-feather type="heart" />
+      </button>
+      <div class="product-page__image-container">
+        <img class="product-page__image" :src="product.image" alt="Imagem do Produto">
+      </div>
+      <div class="rating-and-price">
+        <div class="product-page__price-container">
+          <h2 class="product-price">R$ 546,13</h2>
+          <p class="product-conciliations">ou 10x de R$ 54,62 sem juros</p>
+        </div>
+      </div>
+      <div class="product-page__buy-actions">
+        <div class="quantity-container d-flex flex-column">
+          <p class="mb-1 text--normal">Quantidade</p>      
+          <div class="quantity-selector w-100">
+            <button
+              :class="['quantity-selector__minus btn btn__icon-only', {'disabled': quantity <= 1}]"
+              @click="decrementQuantity"
+            >
+              <vue-feather type="minus"/>
+            </button>
+            <input
+              v-model="quantity"
+              class="quantity-selector__input"
+              type="text"
+            >
+            <button
+              class="quantity-selector__plus btn btn__icon-only"
+              @click="incrementQuantity"
+            >
+              <vue-feather type="plus" />
+            </button>
+          </div>
+        </div>
+        <button :class="['btn btn-success w-100 product-page__add text-uppercase', {'disabled': isAddingProductToCart}]"
+          @click="addToCart">
+          Comprar Agora
+        </button>
+        <button class="btn btn-outline-primary w-100 text-uppercase">
+          <vue-feather type="shopping-bag" />
+          Adicionar à sacola
+        </button>
+      </div>
+    </section>
+  </main>
   <Footer />
 </div>

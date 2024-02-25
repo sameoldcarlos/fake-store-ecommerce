@@ -72,6 +72,11 @@ body {
     width: 45%;
     color: var(--primary-text-color);
   }
+
+  &__minus,
+  &__plus {
+    max-width: 48px;
+  }
 }
 
 .btn__icon-only {
