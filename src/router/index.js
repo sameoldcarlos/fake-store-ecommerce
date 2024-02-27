@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import CheckoutView from '@/views/CheckoutView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
-import ProductPageView from '@/views/ProductPageView.vue'
+import ProductPage from '@/components/ProductPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,9 +18,10 @@ const router = createRouter({
       component: CheckoutView
     },
     {
-      path: '/product',
+      path: '/product/:id',
       name: 'product',
-      component: ProductPageView
+      component: ProductPage,
+      props: route => ({ productId: route.params.id })
     },
     {
       path: '/404',
