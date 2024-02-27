@@ -1,3 +1,42 @@
 .product-carousel {
-  
+  padding: 0 32px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  &__container {
+    gap: 16px;
+    transition: all .3s linear;
+  }
+
+  .product-card {
+    width: 180px;
+    
+    &__add {
+      background-color: #0d6efd;
+      border-color: #0d6efd;
+
+      &:hover {
+        background-color: #0e5ace;
+      }
+    }
+  }
+
+  &__display {
+    align-items: center;
+    box-shadow: inset 25px 0px 25px -25px rgba(0, 0, 0, 0.45),
+      inset -25px 0px 25px -25px rgba(0, 0, 0, 0.45);
+    border-radius: 16px;
+  }
+
+  &__controller {
+    display: inline-block;
+    width: 56px;
+    height: 56px;
+    padding: 8px;
+    background-color: var(--input-border-color);
+    border-radius: 50%;
+  }
 }

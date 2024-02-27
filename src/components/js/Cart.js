@@ -1,4 +1,4 @@
-import CheckoutCard from "@/components/CheckoutCard.vue"
+import CheckoutCard from '@/components/CheckoutCard.vue'
 import CartDB from '@/utils/IndexedDbCart.js'
 import formatPrice from '@/utils/formatPrice.ts'
 

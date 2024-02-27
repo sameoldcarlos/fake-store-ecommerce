@@ -2,15 +2,18 @@ import Header from '@/components/Header.vue'
 import Footer from '@/components/Footer.vue'
 import MenuMobile from '@/components/MenuMobile.vue'
 import SearchBar from '@/components/SearchBar.vue'
+import ProductCarousel from '@/components/ProductCarousel.vue'
 
 import CartDB from '@/utils/IndexedDbCart.js'
+import { getData } from '@/utils/CacheService'
 
 export default {
   components: {
     Header,
     Footer,
     MenuMobile,
-    SearchBar
+    SearchBar,
+    ProductCarousel
   },
 
   props: {
@@ -36,7 +39,10 @@ export default {
       cartItems: [],
       isMobileMenuActive: false,
       isAddingProductToCart: false,
-      quantity: 1
+      quantity: 1,
+      apiBaseUrl: new URL('/', import.meta.env.VITE_API_BASE_URL),
+      isWaitingProductsFetch: true,
+      relatedProducts: []
     }
   },
 
@@ -59,7 +65,31 @@ export default {
 
     decrementQuantity() {
       this.quantity--
-    }
+    },
+
+    async fetchRelatedProducts() {
+      this.isWaitingProductsFetch = true
+
+      const {product: {category}} = this
+
+      const pathname = `products/category/${category || ''}`
+
+      try {
+        const url = new URL(pathname, this.apiBaseUrl)
+
+        const response = await getData(this.appName, url)
+
+        const products = await response.json().then(products => products)
+
+        this.relatedProducts = products.filter(product => product.id !== this.product.id)
+
+      } catch (error) {
+        console.error('Erro ao buscar produtos')
+      } finally {
+        this.isWaitingProductsFetch = false
+      }
+
+    },
   },
 
   async created() {
@@ -73,5 +103,7 @@ export default {
         this.cartItems = []
       }
     }
+
+    await this.fetchRelatedProducts()
   }
 }

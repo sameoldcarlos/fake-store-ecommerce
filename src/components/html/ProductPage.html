@@ -54,6 +54,10 @@
         </button>
       </div>
     </section>
+    <section class="related-products">
+      <h2 class="text-center mb-5">Produtos Relacionados</h2>
+      <ProductCarousel v-if="!isWaitingProductsFetch && relatedProducts.length" :products="relatedProducts" />
+    </section>
   </main>
   <Footer />
 </div>

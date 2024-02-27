@@ -1,1 +1,26 @@
-<div class="product-carousel"></div>
+<div class="product-carousel w-100">
+  <button
+    class="btn__icon-only product-carousel__controller"
+    @click="swipePrevious"
+    :disabled="!canPagePrevious"
+  >
+    <vue-feather type="chevron-left" size="40"/>
+  </button>
+  <div class="product-carousel__display d-flex overflow-hidden" :style="`width:${displayWidth}px`">
+    <div class="product-carousel__container d-flex mx-auto" :style="`width:${carouselWidth}px; transform: translateX(${translate}px);`">
+      <ProductCard
+        class="product-card--carousel-item"
+        v-for="product in products"
+        :key="product.id"
+        :product-info="product"
+        />
+    </div>
+  </div>
+  <button
+    class="btn__icon-only product-carousel__controller product-carousel__controller--right"
+    @click="swipeNext"
+    :disabled="!canPageNext"
+  >
+    <vue-feather type="chevron-right" size="40"/>
+  </button>
+</div>
