@@ -7,7 +7,7 @@
   <MenuMobile :is-active="isMobileMenuActive" @closeMobileMenu="closeMobileMenu" />
   <main>
     <SearchBar/>
-    <section class="product-page__resume">  
+    <section class="product-page__section product-page__resume">
       <h1 class="product-page__title">{{ product.title }}</h1>
       <button class="btn__icon-only add-to-favorites">
         <vue-feather type="heart" />
@@ -16,14 +16,15 @@
         <img class="product-page__image" :src="product.image" alt="Imagem do Produto">
       </div>
       <div class="rating-and-price">
+        <RatingStars v-if="product && product.rating" :rating="product.rating.rate" :count="product.rating.count" showAdditionalInfo/>
         <div class="product-page__price-container">
           <h2 class="product-price">{{ productPrice }}</h2>
           <p class="product-conciliations">ou em até {{ installmentsCount }}x de {{ installmentValue }} sem juros</p>
         </div>
       </div>
       <div class="product-page__buy-actions">
-        <div class="quantity-container d-flex flex-column">
-          <p class="mb-1 text--normal">Quantidade</p>      
+        <div class="quantity-container d-flex flex-column mb-2">
+          <p class="mb-1 text--normal">Quantidade</p>
           <div class="quantity-selector w-100">
             <button
               :class="['quantity-selector__minus btn btn__icon-only', {'disabled': quantity <= 1}]"
@@ -59,9 +60,15 @@
         </button>
       </div>
     </section>
-    <section class="related-products">
+    <section class="product-page__section related-products">
       <h2 class="text-center mb-5">Produtos Relacionados</h2>
       <ProductCarousel v-if="!isWaitingProductsFetch && relatedProducts.length" :products="relatedProducts" />
+    </section>
+    <section class="product-page__section product-description">
+      <h2 class="mb-5">Sobre este produto</h2>
+      <p class="product-page__description">
+        {{ product.description }}
+      </p>
     </section>
   </main>
   <Footer />

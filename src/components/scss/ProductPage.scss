@@ -1,20 +1,42 @@
 .product-page {
+
+  main {
+    h2 {
+      font-weight: 500;
+      font-size: 32px;
+      font-family: var(--primary-font-family);
+    }
+
+    p {
+      font-weight: 400;
+      font-size: 20px;
+      font-family: var(--secondary-font-family);
+    }
+  }
+
   &__title {
     font-weight: 700;
     margin-bottom: 32px;
     text-align: justify;
   }
 
-  &__resume {
+  &__section {
     width: 100%;
     max-width: 1200px;
     margin: 88px auto;
     padding: 48px 16px;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--input-border-color);
+    }
+  }
+
+  &__resume {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 20px;
-    border-bottom: 1px solid var(--input-border-color);
   }
 
   &__add {
@@ -23,16 +45,16 @@
     margin-bottom: 8px;
   }
 
-  .rating-and-price {
+  &__price-container {
     display: inline-block;
-    margin-top: 36px;
-    
-    h2 {
+    width: 100%;
+
+    h2.product-price {
       font-weight: 700;
       font-size: 48px;
     }
 
-    p {
+    p.product-conciliations {
       color: var(--lowlight);
       font-size: 24px;
     }
@@ -41,7 +63,7 @@
   &__image-container {
     text-align: center;
   }
- 
+
   &__image {
     width: 100%;
     max-width: 320px;
@@ -63,6 +85,7 @@
 
   &__buy-actions {
     margin-bottom: 32px;
+    width: 100%;
 
     & > button {
       height: 48px;
@@ -73,7 +96,11 @@
     }
   }
 
-  @media screen and (min-width: 992px) {
+  &__description {
+    text-align: justify;
+  }
+
+  @media screen and (min-width: 768px) {
     &__resume {
       display: grid;
       grid-template-rows: 120px 200px 200px;
@@ -91,7 +118,6 @@
       img {
         max-width: 450px;
         height: 100%;
-        width: auto;
         margin: 0;
       }
     }

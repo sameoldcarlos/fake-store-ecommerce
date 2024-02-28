@@ -15,10 +15,10 @@
         alt="Adicionar aos favoritos"
       />
     </button>
-    
+
   </div>
   <div class="product-card__img-container d-flex">
-    <img 
+    <img
       :src="productInfo.image"
       class="product-card__image card-img-top"
       :alt="productInfo.title"
@@ -31,7 +31,7 @@
     >
       {{ productInfo.title }}
     </p>
-    <div class="d-flex flex-column-reverse flex-md-row justify-content-between mt-2 mt-md-3 px-1">
+    <div class="d-flex flex-column-reverse mt-2 mt-md-3 px-1">
       <h3 class="product-card__price py-1">
         {{ formattedPrice }}
       </h3>

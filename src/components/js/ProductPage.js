@@ -3,6 +3,7 @@ import Footer from '@/components/Footer.vue'
 import MenuMobile from '@/components/MenuMobile.vue'
 import SearchBar from '@/components/SearchBar.vue'
 import ProductCarousel from '@/components/ProductCarousel.vue'
+import RatingStars from '@/components/RatingStars.vue'
 
 import CartDB from '@/utils/IndexedDbCart.js'
 import { getData } from '@/utils/CacheService'
@@ -14,7 +15,8 @@ export default {
     Footer,
     MenuMobile,
     SearchBar,
-    ProductCarousel
+    ProductCarousel,
+    RatingStars
   },
 
   props: {
@@ -50,7 +52,7 @@ export default {
         return formatPrice(installment)
       }
 
-      return '$0,00'      
+      return '$0,00'
     },
 
     installmentsCount() {

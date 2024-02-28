@@ -17,7 +17,7 @@ export default {
     return {
       isFavorite: false,
       heartColor: getCssVariable('danger'),
-      ratingStars: getCssVariable('rating-stars')
+      ratingStars: getCssVariable('rating-stars-dark')
     }
   },
 
