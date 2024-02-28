@@ -22,7 +22,7 @@ export default {
   props: {
     productId: {
       type: String,
-      default: '1'
+      required: true
     }
   },
 

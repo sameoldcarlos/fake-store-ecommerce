@@ -25,12 +25,17 @@
     >
   </div>
   <div class="p-1">
-    <p
-      class="product-card__title card-title text-center"
-      :title="productInfo.title"
+    <router-link
+      :to="{name: 'product', params: { id: productInfo.id, title: productLink }}"
+      class="product-card__link"
     >
-      {{ productInfo.title }}
-    </p>
+      <p
+        class="product-card__title card-title text-center"
+        :title="productInfo.title"
+      >
+        {{ productInfo.title }}
+      </p>
+    </router-link>
     <div class="d-flex flex-column-reverse mt-2 mt-md-3 px-1">
       <h3 class="product-card__price py-1">
         {{ formattedPrice }}

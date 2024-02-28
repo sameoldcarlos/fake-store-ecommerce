@@ -92,4 +92,9 @@
     word-wrap: break-word;
     font-size: 18px;
   }
+
+  &__link {
+    text-decoration: none;
+    color: var(--highlight-dark);
+  }
 }

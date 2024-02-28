@@ -1,5 +1,6 @@
 import formatPrice from '@/utils/formatPrice.ts'
 import { getCssVariable } from '@/utils/cssVars'
+import normalizeText from '@/utils/normalizeText'
 
 export default {
   props: {
@@ -30,6 +31,10 @@ export default {
       const { isFavorite, heartColor } = this;
 
       return isFavorite ? {fill: heartColor, stroke: heartColor} : {fill: 'none', stroke: 'currentColor'}
+    },
+
+    productLink() {
+      return normalizeText(this.productInfo.title)
     }
   },
   methods: {
