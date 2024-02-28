@@ -17,24 +17,29 @@ export default {
     return {
       currentPage: 1,
       firstPage: 1,
-      total: this.products.length
+      total: this.products.length,
+      screenWidth: window.innerWidth,
+      deviceType: getDeviceType()
     }
   },
 
   computed: {
-    getDeviceType,
     perPage() {
-      const {getDeviceType} = this
+      const {deviceType} = this
 
-      if (getDeviceType ===  devices.mobile) {
+      if (deviceType ===  devices.mobile) {
         return 1
       }
 
-      if (getDeviceType === devices.tablet) {
+      if (deviceType ===  devices.highResMobile) {
+        return 2
+      }
+
+      if (deviceType === devices.tablet) {
         return 3
       }
 
-      if (getDeviceType === devices.lowResDesktop) {
+      if (deviceType === devices.lowResDesktop) {
         return 4
       }
 
@@ -67,6 +72,12 @@ export default {
 
     translate() {
       return -(180 + 16) * (this.currentPage - 1);
+    },
+
+    showControllers() {
+      this.currentPage = 1
+
+      return this.total > this.perPage
     }
   },
 
@@ -77,6 +88,16 @@ export default {
 
     swipePrevious() {
       this.currentPage--
+    },
+
+    getDeviceType() {
+      this.deviceType = getDeviceType()
     }
+  },
+
+  mounted() {
+    window.addEventListener('resize', () => {
+      this.getDeviceType()
+    })
   }
 }
