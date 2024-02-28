@@ -6,6 +6,7 @@ import ProductCarousel from '@/components/ProductCarousel.vue'
 
 import CartDB from '@/utils/IndexedDbCart.js'
 import { getData } from '@/utils/CacheService'
+import formatPrice from '../../utils/formatPrice'
 
 export default {
   components: {
@@ -36,6 +37,27 @@ export default {
     }
   },
 
+  computed: {
+    productPrice() {
+      return formatPrice(this.product.price) || '$0,00'
+    },
+
+    installmentValue() {
+      const { product: {price} } = this
+
+      if (price) {
+        const installment = Math.floor(price/10)
+        return formatPrice(installment)
+      }
+
+      return '$0,00'      
+    },
+
+    installmentsCount() {
+      return this.product.max_installments
+    }
+  },
+
   methods: {
     openMobileMenu() {
       this.isMobileMenuActive = true;
@@ -45,8 +67,28 @@ export default {
       this.isMobileMenuActive = false;
     },
 
-    addToCart() {
+    async addToCart() {
+      this.isAddingProductToCart = true
 
+      const alreadyOnCart = this.cartItems.find(item => this.product.id === item.id)
+      const {quantity, product} = this
+
+      if (alreadyOnCart) {
+        alreadyOnCart.quantity += quantity
+      } else {
+        const cartProduct = { ...product, quantity}
+        this.cartItems.push(cartProduct)
+      }
+
+      try {
+        const updateDBResult = await CartDB.updateCartDB(this.cartItems)
+        console.log(updateDBResult)
+        this.quantity = 1
+      } catch (err) {
+        console.log(err)
+      }
+
+      this.isAddingProductToCart = false
     },
 
     incrementQuantity() {
@@ -91,13 +133,18 @@ export default {
 
         const response = await getData(this.appName, url)
 
-        this.product = await response.json()
+        this.product = await response.json().then(product => ({...product, max_installments: 10}))
 
       } catch (error) {
         console.error('Erro ao buscar produtos')
       } finally {
         this.isWaitingProductsFetch = false
       }
+    },
+
+    async buyNow() {
+      await this.addToCart()
+      this.$router.push('/checkout')
     }
   },
 

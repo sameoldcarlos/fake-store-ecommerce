@@ -17,8 +17,8 @@
       </div>
       <div class="rating-and-price">
         <div class="product-page__price-container">
-          <h2 class="product-price">R$ 546,13</h2>
-          <p class="product-conciliations">ou 10x de R$ 54,62 sem juros</p>
+          <h2 class="product-price">{{ productPrice }}</h2>
+          <p class="product-conciliations">ou em até {{ installmentsCount }}x de {{ installmentValue }} sem juros</p>
         </div>
       </div>
       <div class="product-page__buy-actions">
@@ -27,7 +27,7 @@
           <div class="quantity-selector w-100">
             <button
               :class="['quantity-selector__minus btn btn__icon-only', {'disabled': quantity <= 1}]"
-              @click="decrementQuantity"
+              @click.stop="decrementQuantity"
             >
               <vue-feather type="minus"/>
             </button>
@@ -38,17 +38,22 @@
             >
             <button
               class="quantity-selector__plus btn btn__icon-only"
-              @click="incrementQuantity"
+              @click.stop="incrementQuantity"
             >
               <vue-feather type="plus" />
             </button>
           </div>
         </div>
-        <button :class="['btn btn-success w-100 product-page__add text-uppercase', {'disabled': isAddingProductToCart}]"
-          @click="addToCart">
+        <button
+          :class="['btn btn-success w-100 product-page__add text-uppercase', {'disabled': isAddingProductToCart}]"
+          @click="buyNow"
+        >
           Comprar Agora
         </button>
-        <button class="btn btn-outline-primary w-100 text-uppercase">
+        <button
+          class="btn btn-outline-primary w-100 text-uppercase"
+          @click="addToCart"
+        >
           <vue-feather type="shopping-bag" />
           Adicionar à sacola
         </button>

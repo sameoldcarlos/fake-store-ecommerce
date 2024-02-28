@@ -59,7 +59,7 @@ export default {
     },
 
     carouselWidth() {
-      return (16 * (this.total - 1) + (180 * this.total))
+      return (16 * (this.total - 1) + (180 * this.total) + 8)
     },
 
     displayWidth() {
