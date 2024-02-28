@@ -16,6 +16,12 @@ body {
   background-color: var(--primary-bg-color);
   font-family: var(--primary-font-family), sans-serif;
   color: var(--primary-text-color);
+  position: relative;
+  min-height: 100vh;
+}
+
+.main-container {
+  padding-bottom: 128px;
 }
 
 .modal-open {

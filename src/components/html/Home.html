@@ -14,7 +14,7 @@
     :is-active="isMobileMenuActive"
     @closeMobileMenu="closeMobileMenu"
   />
-  <main>
+  <main class="main-container">
     <search-bar
       @searchFor="fetchProducts({search: $event})"
     ></search-bar>
@@ -75,7 +75,7 @@
           @showAddToCartModal="showAddToCartModal"
         ></product-card>
       </div>
-      <div 
+      <div
         v-else
         class="spinner-border text-primary"
         role="status"

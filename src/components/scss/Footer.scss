@@ -6,9 +6,11 @@
   background-color: var(--secondary-bg-color);
   color: var(--primary-text-color);
   width: 100vw;
-  min-height: 60px;
+  height: 128px;
   box-shadow: var(--top-box-shadow);
   padding: 16px 0;
+  position: absolute;
+  bottom: 0;
 
   .logo {
     font-size: 20px;

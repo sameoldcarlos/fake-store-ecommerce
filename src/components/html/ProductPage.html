@@ -5,7 +5,7 @@
   ></div>
   <Header :cart-items="cartItems" @openMobileMenu="openMobileMenu"/>
   <MenuMobile :is-active="isMobileMenuActive" @closeMobileMenu="closeMobileMenu" />
-  <main>
+  <main class="main-container">
     <SearchBar/>
     <section class="product-page__section product-page__resume">
       <h1 class="product-page__title">{{ product.title }}</h1>
