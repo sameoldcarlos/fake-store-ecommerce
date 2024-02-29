@@ -18,7 +18,7 @@ const router = createRouter({
       component: CheckoutView
     },
     {
-      path: '/:id/:title',
+      path: '/product/:id/:title',
       name: 'product',
       component: ProductPage,
       props: route => ({ productId: route.params.id })

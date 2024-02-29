@@ -4,6 +4,7 @@ import MenuMobile from '@/components/MenuMobile.vue'
 import SearchBar from '@/components/SearchBar.vue'
 import ProductCarousel from '@/components/ProductCarousel.vue'
 import RatingStars from '@/components/RatingStars.vue'
+import RatingBars from '@/components/RatingBars.vue'
 
 import CartDB from '@/utils/IndexedDbCart.js'
 import { getData } from '@/utils/CacheService'
@@ -16,7 +17,8 @@ export default {
     MenuMobile,
     SearchBar,
     ProductCarousel,
-    RatingStars
+    RatingStars,
+    RatingBars
   },
 
   props: {
@@ -48,7 +50,7 @@ export default {
       const { product: {price} } = this
 
       if (price) {
-        const installment = Math.floor(price/10)
+        const installment = Math.ceil(price/10)
         return formatPrice(installment)
       }
 
