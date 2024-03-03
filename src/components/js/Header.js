@@ -2,6 +2,8 @@ import { getCssVariable } from "@/utils/cssVars"
 import { getData } from "@/utils/CacheService"
 import Menu from "@/components/Menu.vue"
 
+import profilePicture from "@/assets/img/profile_pictures/person-2.jpeg"
+
 export default {
   components: { Menu },
 
@@ -18,7 +20,8 @@ export default {
       iconLight: getCssVariable('primary-bg-color'),
       apiBaseUrl: new URL('/', import.meta.env.VITE_API_BASE_URL),
       userData: {},
-      isWaitingUserFetch: false
+      isWaitingUserFetch: false,
+      profilePicture
     }
   },
 

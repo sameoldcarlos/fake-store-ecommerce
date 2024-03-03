@@ -64,6 +64,11 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    font-family: var(--secondary-font-family), sans-serif;
+
+    @media(min-width: 992px) {
+      min-width: 380px;
+    }
 
     &__bar-continer {
       width: 250px;

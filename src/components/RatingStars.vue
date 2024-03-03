@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="d-flex gap-3 rating-stars" :title="rating">
+  <div class="rating-stars">
+    <div class="d-flex gap-3" :title="rating">
       <p class="mb-0" v-if="showAdditionalInfo">{{ rating }}</p>
       <svg class="svg-model" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="size" :height="size">
         <symbol viewBox="0 0 126.729 126.73" id="star" xmlns="http://www.w3.org/2000/svg">
@@ -12,21 +12,21 @@
           <svg class="svg-icon app-icon-star" :width="size" :height="size">
             <defs><mask id="mstar"><use fill="white" xlink:href="#star"></use></mask></defs>
             <rect :fill="fillColor" width="100%" height="100%" mask="url(#mstar)"/>
-            <use xlink:href="#star" stroke-width="6" stroke="#333" fill="none"></use>
+            <use xlink:href="#star" stroke-width="4" stroke="#333" fill="none"></use>
           </svg>
         </div>
         <div v-if="hasPartiallyFilledStar">
           <svg class="svg-icon app-icon-star" :width="size" :height="size">
             <defs><mask id="mstar"><use fill="white" xlink:href="#star"></use></mask></defs>
             <rect :fill="fillColor" :width="`${fillPercentage}%`" height="100%" mask="url(#mstar)"/>
-            <use xlink:href="#star" stroke-width="6" stroke="#333" fill="none"></use>
+            <use xlink:href="#star" stroke-width="4" stroke="#333" fill="none"></use>
           </svg>
         </div>
         <div v-for="star in emptyStarsCount">
           <svg class="svg-icon app-icon-star" :width="size" :height="size">
             <defs><mask id="mstar"><use fill="white" xlink:href="#star"></use></mask></defs>
             <rect :fill="fillColor" width="0%" height="100%" mask="url(#mstar)"/>
-            <use xlink:href="#star" stroke-width="6" stroke="#333" fill="none"></use>
+            <use xlink:href="#star" stroke-width="4" stroke="#333" fill="none"></use>
           </svg>
         </div>
       </div>
@@ -54,7 +54,7 @@ export default {
 
     count: {
       type: Number,
-      required: true
+      default: 0
     },
 
     showAdditionalInfo: {
@@ -127,5 +127,9 @@ export default {
 
   p {
     font-size: 16px;
+  }
+
+  .rating-stars--rating-section {
+    height: 64px;
   }
 </style>

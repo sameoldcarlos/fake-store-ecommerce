@@ -5,10 +5,13 @@ import SearchBar from '@/components/SearchBar.vue'
 import ProductCarousel from '@/components/ProductCarousel.vue'
 import RatingStars from '@/components/RatingStars.vue'
 import RatingBars from '@/components/RatingBars.vue'
+import Comments from '@/components/Comments.vue'
 
 import CartDB from '@/utils/IndexedDbCart.js'
 import { getData } from '@/utils/CacheService'
 import formatPrice from '../../utils/formatPrice'
+
+import CommentPicture from '@/assets/img/profile_pictures/person-24.jpeg'
 
 export default {
   components: {
@@ -18,7 +21,8 @@ export default {
     SearchBar,
     ProductCarousel,
     RatingStars,
-    RatingBars
+    RatingBars,
+    Comments
   },
 
   props: {
@@ -37,7 +41,18 @@ export default {
       apiBaseUrl: new URL('/', import.meta.env.VITE_API_BASE_URL),
       isWaitingProductsFetch: true,
       relatedProducts: [],
-      product: {}
+      product: {},
+
+      comments: [
+        {
+          author: {
+            name: 'alice',
+            image: CommentPicture
+          },
+          text: `Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima minus dolore dolor, veniam enim blanditiis
+              rerum atque deserunt necessitatibus repellat ipsum mollitia consequuntur officia error corporis eum consectetur modi earum.`
+        }
+      ]
     }
   },
 

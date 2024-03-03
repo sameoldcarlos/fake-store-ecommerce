@@ -71,9 +71,19 @@
       </p>
     </section>
     <section class="product-page__section product-rate">
-      <h2 class="mb-5 text-center">Avaliação dos clientes</h2>
-      <RatingStars v-if="product && product.rating" :rating="product.rating.rate" :count="product.rating.count" showAdditionalInfo />
-      <RatingBars v-if="product && product.rating" :count="product.rating.count" showAdditionalInfo />
+      <h2 class="mb-5">Avaliação dos clientes</h2>
+      <div class="section-content d-flex flex-column flex-lg-row gap-4 py-4">
+        <div class="ratings">
+          <RatingStars class="rating-stars--rating-section" v-if="product && product.rating" :rating="product.rating.rate" :count="product.rating.count" showAdditionalInfo />
+          <hr>
+          <RatingBars v-if="product && product.rating" :count="product.rating.count" showAdditionalInfo />
+        </div>
+        <div class="comments-container">
+          <Comments
+            :comments="comments"
+          />
+        </div>
+      </div>
     </section>
   </main>
   <Footer />

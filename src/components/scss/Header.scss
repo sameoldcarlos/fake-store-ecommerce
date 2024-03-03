@@ -54,13 +54,6 @@
         opacity: .7;
       }
     }
-
-    img {
-      position: absolute;
-      right: 10px;
-      top: 0;
-      z-index: 2;
-    }
   }
 
   .user-data {
@@ -94,7 +87,10 @@
   }
 
   .user-image {
-    border-radius: 50%;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    z-index: 2;
   }
 
   .open-cart {
