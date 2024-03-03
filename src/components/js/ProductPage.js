@@ -65,7 +65,7 @@ export default {
       const { product: {price} } = this
 
       if (price) {
-        const installment = Math.ceil(price/10)
+        const installment = (price/10).toFixed(2)
         return formatPrice(installment)
       }
 
