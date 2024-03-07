@@ -29,12 +29,15 @@ export default {
     productId: {
       type: String,
       required: true
+    },
+    cartItems: {
+      type: Array,
+      default: []
     }
   },
 
   data() {
     return {
-      cartItems: [],
       isMobileMenuActive: false,
       isAddingProductToCart: false,
       quantity: 1,
@@ -168,17 +171,6 @@ export default {
   },
 
   async created() {
-    try {
-      this.cartItems = await CartDB.getCartItemsFromDB()
-    } catch (err) {
-      console.error('Erro!', err)
-      if (this.$route.params && this.$route.params.cart_items) {
-        this.cartItems = JSON.parse(this.$route.params.cart_items)
-      } else {
-        this.cartItems = []
-      }
-    }
-
     await this.fetchProduct()
     await this.fetchRelatedProducts()
   }

@@ -42,7 +42,7 @@ export default {
     return {
       productsList: [],
       categoriesList: [],
-      cartItems: [],
+      cartItems: this.$route.params.cart_items,
       selectedProduct: {},
       isWaitingProductsFetch: true,
       isWaitingCategoriesFetch: true,
@@ -68,12 +68,12 @@ export default {
     async fetchProducts ({category, search}) {
       this.isWaitingProductsFetch = true
       this.isCategoriesVisible = false
-      
+
       const pathname = category?.length ? `products/category/${category}` : 'products'
 
       try {
         const url = new URL(pathname, this.apiBaseUrl)
-        
+
         const response = await getData(this.appName, url)
 
         this.productsList = await response.json().then(products => {
@@ -90,7 +90,7 @@ export default {
       } finally {
         this.isWaitingProductsFetch = false
       }
-      
+
     },
 
     async fetchCategories () {
@@ -98,7 +98,7 @@ export default {
 
       try {
         const url = new URL('products/categories', this.apiBaseUrl)
-        
+
         const response = await getData(this.appName, url)
 
         this.categoriesList = await response.json()
@@ -111,24 +111,24 @@ export default {
 
     async addToCart (product) {
       this.isAddingProductToCart = true
-      
+
       const alredyOnCart = this.cartItems.find(item => product.id === item.id)
 
       if (alredyOnCart) {
         alredyOnCart.quantity += product.quantity
-      } else { 
+      } else {
         const item = this.productsList.find(item => item.id === product.id)
         item.quantity = product.quantity
         this.cartItems.push(item)
       }
-      
+
       try {
         const updateDBResult = await CartDB.updateCartDB(this.cartItems)
         console.log(updateDBResult)
       } catch (err) {
         console.log(err)
       }
-      
+
       this.isAddingProductToCart = false
       this.hideAddToCartModal()
     },
@@ -159,7 +159,7 @@ export default {
 
       if (selectedSort === ascendingPrice.value) {
         this.productsList.sort((firstItem, secondItem) => firstItem.price - secondItem.price)
-        
+
         return
       }
 
@@ -198,19 +198,6 @@ export default {
   },
 
   async created () {
-    try {
-      this.cartItems = await CartDB.getCartItemsFromDB()
-    } catch (err) {
-      console.error(err)
-      if (this.$route.params && this.$route.params.cart_items) {
-        this.cartItems = JSON.parse(this.$route.params.cart_items)
-      } else {
-        this.cartItems = []
-      }
-    }
-    
-    this.isWaitingItemsFetch = false
-    
     await this.fetchCategories()
     await this.fetchProducts({})
   }

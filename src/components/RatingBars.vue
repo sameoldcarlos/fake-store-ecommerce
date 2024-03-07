@@ -7,7 +7,7 @@
     >
       <div
         class="rating-bars__bar-continer"
-        :title="`${rateCount} pessoas deram ${starsLabel[key]}`"
+        :title="`${ratingBarsTitle(rateCount)} ${starsLabel[key]}`"
       >
         <div
           class="rating-bars__bar"
@@ -52,10 +52,17 @@ export default {
 
   methods: {
     getFillPercentage(ratingCount) {
-      console.log(ratingCount)
       return (ratingCount * 100) / this.count
+    },
+
+    ratingBarsTitle(rateCount) {
+      if (rateCount > 1) {
+        return `${rateCount} pessoas deram`
+      }
+
+      return '1 pessoa deu'
     }
-  }
+  },
 }
 </script>
 

@@ -1,11 +1,8 @@
-<section 
-  v-if="cartItems && Object.keys(cartItems).length && !isWaitingItemsFetch"
+<section
+  v-if="cartItems && Object.keys(cartItems).length"
   class="cart"
 >
-  <div
-    v-if="!isWaitingItemsFetch"
-    class="cart__items"
-  >
+  <div class="cart__items">
     <transition-group name="product" tag="div">
       <checkout-card
         v-for="(item, index) in cartItems"
@@ -34,19 +31,7 @@
     <button class="btn btn-success payment-details__buy">Finalizar compra</button>
   </div>
 </section>
-<div 
-  v-else-if="isWaitingItemsFetch"
-  class="spinner-border text-primary"
-  role="status"
->
-  <span class="visually-hidden">
-    Loading...
-  </span>
-</div>
-<div
-  v-else
-  class="empty-cart"
->
+<div v-else class="empty-cart">
   <h5>
     Carrinho vazio...
   </h5>

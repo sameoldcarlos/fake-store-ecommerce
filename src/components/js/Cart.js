@@ -6,7 +6,7 @@ export default {
   components: {
     CheckoutCard
   },
-  
+
   props: {
     isVisible: {
       type: Boolean,
@@ -16,7 +16,7 @@ export default {
 
   data () {
     return {
-      cartItems: [],
+      cartItems: this.$route.params.cart_items,
       isWaitingItemsFetch: true
     }
   },
@@ -54,7 +54,7 @@ export default {
       this.isWaitingItemsFetch = true
 
       const spliced = this.cartItems.toSpliced(productIndex, 1)
-      this.$router.replace( {params: { cart_items: JSON.stringify(spliced) } })
+      this.$router.replace( {params: { cart_items: spliced } })
 
       this.cartItems = spliced
 
@@ -62,18 +62,24 @@ export default {
     }
   },
 
-  async created() {
-    try {
-      this.cartItems = await CartDB.getCartItemsFromDB()
-    } catch (err) {
-      this.cartItems = this.$route.params && this.$route.params.cart_items ? JSON.parse(this.$route.params.cart_items) : []
+  watch: {
+    async cartItems(value) {
+      this.$route.params.cart_items = value
+
+      try {
+        const updateDBResult = await CartDB.updateCartDB(this.cartItems)
+        this.$route.params.cart_items = this.cartItems
+        console.log(updateDBResult)
+      } catch (err) {
+        console.log(err)
+      }
     }
-    this.isWaitingItemsFetch = false
   },
 
   async beforeUnmount () {
     try {
       const updateDBResult = await CartDB.updateCartDB(this.cartItems)
+      this.$route.params.cart_items = this.cartItems
       console.log(updateDBResult)
     } catch (err) {
       console.log(err)
