@@ -15,20 +15,31 @@ export default {
   },
 
   async updateCartDB(cartItems) {
-    const cartDB = await openDB(dbName, version)
+    try {
+      const cartDB = await openDB(dbName, version)
 
-    const transaction = cartDB.transaction(storeName, 'readwrite')
-    const store = await transaction.objectStore(storeName)
+      const transaction = cartDB.transaction(storeName, 'readwrite')
+      const store = await transaction.objectStore(storeName)
+      const result = await store.put(JSON.stringify(cartItems), key)
 
-    const result = await store.put(JSON.stringify(cartItems), key)
-    await transaction.done
-    return result
+      await transaction.done
+
+      return result
+    } catch (error) {
+      console.error(error)
+      return
+    }
   },
 
   async getCartItemsFromDB() {
-    const cartDB = await openDB(dbName, version)
-    const item = await cartDB.transaction('user_cart').objectStore('user_cart').get(key)
-    
-    return item ? JSON.parse(item) : []
+    try {
+      const cartDB = await openDB(dbName, version)
+      const item = await cartDB.transaction('user_cart').objectStore('user_cart').get(key)
+
+      return item ? JSON.parse(item) : []
+    } catch (error) {
+      console.error(error)
+      return []
+    }
   }
 }
