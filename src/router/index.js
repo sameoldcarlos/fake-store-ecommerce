@@ -26,7 +26,7 @@ const router = createRouter({
       name: 'product',
       component: ProductPage,
       beforeEnter: async route => { route.params.cart_items = await CartDB.getCartItemsFromDB() },
-      props: route => ({ productId: route.params.id, cartItems: route.params.cart_items })
+      props: route => ({ productId: route.params.id })
     },
     {
       path: '/404',

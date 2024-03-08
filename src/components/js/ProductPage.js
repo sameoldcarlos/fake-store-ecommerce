@@ -29,10 +29,6 @@ export default {
     productId: {
       type: String,
       required: true
-    },
-    cartItems: {
-      type: Array,
-      default: []
     }
   },
 
@@ -45,6 +41,7 @@ export default {
       isWaitingProductsFetch: true,
       relatedProducts: [],
       product: {},
+      cartItems: this.$route.params.cart_items,
 
       comments: [
         {
