@@ -1,5 +1,5 @@
 import ProductCard from "@/components/ProductCard.vue"
-import Cart from "@/components/Cart.vue"
+import CartContainer from "@/components/CartContainer.vue"
 import SearchBar from "@/components/SearchBar.vue"
 import AddCartModal from "@/components/AddCartModal.vue"
 import Header from "@/components/Header.vue"
@@ -30,7 +30,7 @@ const SORT_OPTIONS = {
 export default {
   components: {
     ProductCard,
-    Cart,
+    CartContainer,
     SearchBar,
     AddCartModal,
     Header,
@@ -54,7 +54,8 @@ export default {
       selectedCategory: '',
       selectedSort: '',
       sortOptions: SORT_OPTIONS,
-      isMobileMenuActive: false
+      isMobileMenuActive: false,
+      isCartVisible: false
     }
   },
 
@@ -131,6 +132,7 @@ export default {
 
       this.isAddingProductToCart = false
       this.hideAddToCartModal()
+      this.showCart()
     },
 
     toggleCategories () {
@@ -175,11 +177,23 @@ export default {
     },
 
     openMobileMenu() {
-      this.isMobileMenuActive = true;
+      this.isMobileMenuActive = true
     },
 
     closeMobileMenu() {
-      this.isMobileMenuActive = false;
+      this.isMobileMenuActive = false
+    },
+
+    hideCart() {
+      this.isCartVisible = false
+    },
+
+    toggleCart() {
+      this.isCartVisible = !this.isCartVisible
+    },
+
+    showCart() {
+      this.isCartVisible = true
     }
   },
 

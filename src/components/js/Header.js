@@ -1,5 +1,6 @@
 import { getCssVariable } from "@/utils/cssVars"
 import { getData } from "@/utils/CacheService"
+import { isMobile } from "@/utils/breakPointsHelper"
 import Menu from "@/components/Menu.vue"
 
 import profilePicture from "@/assets/img/profile_pictures/person-2.jpeg"
@@ -21,7 +22,8 @@ export default {
       apiBaseUrl: new URL('/', import.meta.env.VITE_API_BASE_URL),
       userData: {},
       isWaitingUserFetch: false,
-      profilePicture
+      profilePicture,
+      isMobile: isMobile()
     }
   },
 
@@ -44,10 +46,20 @@ export default {
 
     openMobileMenu() {
       this.$emit('openMobileMenu')
+    },
+
+    toggleCart() {
+      this.$emit('toggleCart')
     }
   },
 
   created() {
     this.fetchUser();
+  },
+
+  mounted() {
+    window.addEventListener('resize', () => {
+      this.isMobile = isMobile();
+    })
   }
 }

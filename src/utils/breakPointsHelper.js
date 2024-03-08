@@ -18,7 +18,7 @@ export const devices = {
 export function getDeviceType() {
   const screenWidth = window.innerWidth
   const {extraSmall, small, medium, large} = maxWidthBreakPoints
-  
+
   if (screenWidth <= extraSmall) {
     return devices.mobile
   }
@@ -37,3 +37,5 @@ export function getDeviceType() {
 
   return devices.desktop
 }
+
+export const isMobile = () => window.innerWidth <= maxWidthBreakPoints.small;

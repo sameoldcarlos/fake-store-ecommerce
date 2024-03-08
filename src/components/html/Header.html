@@ -18,13 +18,23 @@
       menu-options="menuOptions"
     />
     <nav class="user-actions">
-      <router-link :to="{ name: 'checkout', params: { cart_items: JSON.stringify(cartItems) } }"
+      <router-link v-if="isMobile" :to="{ name: 'checkout', params: { cart_items: JSON.stringify(cartItems) } }"
         class="user-actions__action open-cart">
         <vue-feather type="shopping-bag" size="28" :stroke="iconLight" />
         <span v-if="cartItems.length" class="badge badge-primary open-cart__badge">
           {{ cartItems.length }}
         </span>
       </router-link>
+      <button
+        v-else
+        class="user-actions__action open-cart btn-icon-only"
+        @click="toggleCart"
+      >
+        <vue-feather type="shopping-bag" size="28" :stroke="iconLight" />
+        <span v-if="cartItems.length" class="badge badge-primary open-cart__badge">
+          {{ cartItems.length }}
+        </span>
+      </button>
       <button class="user-actions__action user-info" @click="isUserInfoVisible = !isUserInfoVisible">
         <img :src="profilePicture" alt="" width="40" height="40" class="user-image">
         <div v-if="!isWaitingUserFetch" class="user-data" :class="{'user-data--visible': isUserInfoVisible}">

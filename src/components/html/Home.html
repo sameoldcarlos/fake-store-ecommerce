@@ -9,11 +9,15 @@
   <Header
     :cart-items="cartItems"
     @openMobileMenu="openMobileMenu"
+    @toggleCart="toggleCart"
   />
   <MenuMobile
     :is-active="isMobileMenuActive"
     @closeMobileMenu="closeMobileMenu"
   />
+  <aside class="cart-container">
+    <CartContainer class="cart--aside" @hideCart="hideCart" :is-visible="isCartVisible"></CartContainer>
+  </aside>
   <main class="main-container">
     <search-bar
       @searchFor="fetchProducts({search: $event})"
