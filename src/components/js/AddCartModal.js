@@ -11,7 +11,7 @@ export default {
       quantity: 1
     }
   },
-  
+
   methods: {
     incrementQuantity () {
       this.quantity += 1
@@ -26,7 +26,9 @@ export default {
     },
 
     addProductToCart () {
-      this.$emit('addToCart', { id: this.productInfo.id, quantity: this.quantity })
+      const {productInfo: {id, title}, quantity} = this
+
+      this.$emit('addToCart', { id, title, quantity })
     },
   },
 }

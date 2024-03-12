@@ -140,7 +140,7 @@ export default {
       this.$refs.toast.show({
         toast_type: 'success',
         toast_title: 'Produto adicionado',
-        message: 'O produto foi adicionado à sacola com sucesso!'
+        message: `O produto ${product.title} foi adicionado à sacola com sucesso!`
       })
 
       this.showCart()
