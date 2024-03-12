@@ -73,7 +73,7 @@ export default {
   },
 
   methods: {
-    show({toast_type, toast_title, message }) {
+    show({ toast_type, toast_title, message }) {
       const isTypeValid = toastTypes.includes(toast_type)
       const insuficientContentProvided = !toast_title || !message
 

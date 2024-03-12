@@ -3,8 +3,11 @@
     :class="['mobile-menu-overlay', {'mobile-menu-overlay--visible': isMobileMenuActive}]"
     @click="closeMobileMenu"
   ></div>
-  <Header :cart-items="cartItems" @openMobileMenu="openMobileMenu" />
-  <MenuMobile :is-active="isMobileMenuActive" @closeMobileMenu="closeMobileMenu" />
+  <Header :cart-items="cartItems" @openMobileMenu="openMobileMenu" @toggleCart="toggleCart"></Header>
+  <MenuMobile :is-active="isMobileMenuActive" @closeMobileMenu="closeMobileMenu"></MenuMobile>
+  <aside class="cart-container">
+    <CartContainer class="cart--aside" @hideCart="hideCart" :is-visible="isCartVisible"></CartContainer>
+  </aside>
   <div v-if="isWaitingProductsFetch" class="spinner-border text-primary" role="status">
     <span class="visually-hidden">
       Loading...
@@ -90,6 +93,7 @@
         </div>
       </div>
     </section>
+    <Toast ref="toast" />
   </main>
   <Footer />
 </div>

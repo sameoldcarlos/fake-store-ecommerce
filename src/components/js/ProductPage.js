@@ -6,10 +6,13 @@ import ProductCarousel from '@/components/ProductCarousel.vue'
 import RatingStars from '@/components/RatingStars.vue'
 import RatingBars from '@/components/RatingBars.vue'
 import Comments from '@/components/Comments.vue'
+import Toast from '@/components/Toast.vue'
+import CartContainer from '@/components/CartContainer.vue'
 
 import CartDB from '@/utils/IndexedDbCart.js'
 import { getData } from '@/utils/CacheService'
-import formatPrice from '../../utils/formatPrice'
+import formatPrice from '@/utils/formatPrice'
+import { isMobile } from '@/utils/breakPointsHelper'
 
 import CommentPicture from '@/assets/img/profile_pictures/person-24.jpeg'
 
@@ -22,7 +25,9 @@ export default {
     ProductCarousel,
     RatingStars,
     RatingBars,
-    Comments
+    Comments,
+    Toast,
+    CartContainer
   },
 
   props: {
@@ -42,6 +47,7 @@ export default {
       relatedProducts: [],
       product: {},
       cartItems: this.$route.params.cart_items,
+      isCartVisible: false,
 
       comments: [
         {
@@ -91,11 +97,11 @@ export default {
 
       const alreadyOnCart = this.cartItems.find(item => this.product.id === item.id)
       const {quantity, product} = this
+      const cartProduct = { ...product, quantity}
 
       if (alreadyOnCart) {
         alreadyOnCart.quantity += quantity
       } else {
-        const cartProduct = { ...product, quantity}
         this.cartItems.push(cartProduct)
       }
 
@@ -108,6 +114,18 @@ export default {
       }
 
       this.isAddingProductToCart = false
+
+      this.$refs.toast.show({
+        toast_type: 'success',
+        toast_title: 'Adicionado ao carrinho',
+        message: `${cartProduct.title}. ${cartProduct.quantity} unidade${cartProduct.quantity > 1 ? 's' : ''}.`
+      })
+
+      console.log(isMobile())
+
+      if (!isMobile()) {
+        this.showCart()
+      }
     },
 
     incrementQuantity() {
@@ -164,6 +182,18 @@ export default {
     async buyNow() {
       await this.addToCart()
       this.$router.push('/checkout')
+    },
+
+    showCart() {
+      this.isCartVisible = true
+    },
+
+    hideCart() {
+      this.isCartVisible = false
+    },
+
+    toggleCart() {
+      this.isCartVisible = !this.isCartVisible
     }
   },
 

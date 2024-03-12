@@ -10,8 +10,7 @@ import Toast from "@/components/Toast.vue"
 import CartDB from '@/utils/IndexedDbCart.js'
 import { categories } from "@/utils/content.js"
 import { getData } from "@/utils/CacheService"
-
-import { h } from 'vue'
+import { isMobile } from "@/utils/breakPointsHelper"
 
 const SORT_OPTIONS = {
   decscendingPrice: {
@@ -139,11 +138,13 @@ export default {
 
       this.$refs.toast.show({
         toast_type: 'success',
-        toast_title: 'Produto adicionado',
-        message: `O produto ${product.title} foi adicionado à sacola com sucesso!`
+        toast_title: 'Adicionado ao carrinho',
+        message: `${product.title}. ${product.quantity} unidade${product.quantity > 1 ? 's' : ''}.`
       })
 
-      this.showCart()
+      if (!isMobile()) {
+        this.showCart()
+      }
     },
 
     toggleCategories () {

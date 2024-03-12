@@ -53,8 +53,8 @@ export default {
     }
   },
 
-  created() {
-    this.fetchUser();
+  async created() {
+    await this.fetchUser();
   },
 
   mounted() {

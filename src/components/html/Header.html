@@ -16,9 +16,9 @@
     </div>
     <Menu
       menu-options="menuOptions"
-    />
+    ></Menu>
     <nav class="user-actions">
-      <router-link v-if="isMobile" :to="{ name: 'checkout', params: { cart_items: JSON.stringify(cartItems) } }"
+      <router-link v-if="isMobile && cartItems" :to="{ name: 'checkout', params: { cart_items: JSON.stringify(cartItems) } }"
         class="user-actions__action open-cart">
         <vue-feather type="shopping-bag" size="28" :stroke="iconLight" />
         <span v-if="cartItems.length" class="badge badge-primary open-cart__badge">
@@ -26,7 +26,7 @@
         </span>
       </router-link>
       <button
-        v-else
+        v-else-if="cartItems"
         class="user-actions__action open-cart btn-icon-only"
         @click="toggleCart"
       >
