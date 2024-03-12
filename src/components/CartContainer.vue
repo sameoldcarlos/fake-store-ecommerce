@@ -37,7 +37,7 @@
     }
   }
 </script>
-<style soped lang="scss">
+<style lang="scss">
 .cart-container {
   height: 100vh;
   position: fixed;
@@ -48,7 +48,7 @@
   border: 1px solid var(--input-border-color);
   background-color: var(--primary-bg-color);
   border-radius: 8px;
-  transform: translateX(105%);
+  transform: translateX(120%);
 
   &--visible {
     transform: translateX(0);
@@ -88,6 +88,5 @@
       opacity: .7;
     }
   }
-
 }
 </style>

@@ -5,10 +5,13 @@ import AddCartModal from "@/components/AddCartModal.vue"
 import Header from "@/components/Header.vue"
 import MenuMobile from "@/components/MenuMobile.vue"
 import Footer from "@/components/Footer.vue"
+import Toast from "@/components/Toast.vue"
 
 import CartDB from '@/utils/IndexedDbCart.js'
 import { categories } from "@/utils/content.js"
 import { getData } from "@/utils/CacheService"
+
+import { h } from 'vue'
 
 const SORT_OPTIONS = {
   decscendingPrice: {
@@ -35,7 +38,8 @@ export default {
     AddCartModal,
     Header,
     MenuMobile,
-    Footer
+    Footer,
+    Toast
   },
 
   data () {
@@ -132,6 +136,7 @@ export default {
 
       this.isAddingProductToCart = false
       this.hideAddToCartModal()
+      this.$refs.toast.show()
       this.showCart()
     },
 
