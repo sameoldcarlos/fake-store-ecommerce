@@ -136,7 +136,13 @@ export default {
 
       this.isAddingProductToCart = false
       this.hideAddToCartModal()
-      this.$refs.toast.show()
+
+      this.$refs.toast.show({
+        toast_type: 'success',
+        toast_title: 'Produto adicionado',
+        message: 'O produto foi adicionado à sacola com sucesso!'
+      })
+
       this.showCart()
     },
 

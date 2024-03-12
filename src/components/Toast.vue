@@ -24,35 +24,23 @@
 <script>
 import { getCssVariable } from '@/utils/cssVars'
 
+const toastTypes = ['info', 'success', 'danger']
+
 export default {
   props: {
-    type: {
-      type: String,
-      validator(value) {
-        return ['info', 'success', 'danger'].includes(value)
-      },
-      default: 'info'
-    },
-
     duration: {
       type: Number,
       default: 3000
-    },
-
-    message: {
-      type: String,
-      required: true
-    },
-
-    toastTitle: {
-      type: String,
-      required: true
     }
   },
 
   data() {
     return {
       isVisible: false,
+
+      type: '',
+      toastTitle: '',
+      message: '',
 
       strokes: {
         info: getCssVariable('highlight-light'),
@@ -85,7 +73,18 @@ export default {
   },
 
   methods: {
-    show() {
+    show({toast_type, toast_title, message }) {
+      const isTypeValid = toastTypes.includes(toast_type)
+      const insuficientContentProvided = !toast_title || !message
+
+      if (!isTypeValid || insuficientContentProvided) {
+        return
+      }
+
+      this.type = toast_type
+      this.toastTitle = toast_title
+      this.message = message
+
       this.isVisible = true
 
       this.startCountdown()
