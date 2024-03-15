@@ -30,10 +30,10 @@ export default {
     }
   },
 
-  async getCartItemsFromDB() {
+  async getCartItemsFromDB(storeName, key) {
     try {
       const cartDB = await openDB(dbName, version)
-      const item = await cartDB.transaction('user_cart').objectStore('user_cart').get(key)
+      const item = await cartDB.transaction(storeName).objectStore(storeName).get(key)
 
       return item ? JSON.parse(item) : []
     } catch (error) {

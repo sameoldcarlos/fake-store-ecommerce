@@ -46,7 +46,7 @@ const router = createRouter({
 })
 
 router.beforeEach(async to => {
-  to.params.cart_items = await AppDB.getCartItemsFromDB()
+  to.params.cart_items = await AppDB.getCartItemsFromDB('user_cart', 'cart_items')
   window.scrollTo({
     top: 0,
     behavior: 'smooth'
