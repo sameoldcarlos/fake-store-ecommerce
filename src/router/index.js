@@ -12,26 +12,26 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-      beforeRouteLeave: async route => { await AppDB.updateAppDB(route.params.cart_items, 'user_cart', 'cart_items') }
+      beforeRouteLeave: async route => { await AppDB.updateAppDB(route.params.cart_items, 'user_store', 'cart_items') }
     },
     {
       path: '/checkout',
       name: 'checkout',
       component: CheckoutView,
-      beforeRouteLeave: async route => { await AppDB.updateAppDB(route.params.cart_items, 'user_cart', 'cart_items') }
+      beforeRouteLeave: async route => { await AppDB.updateAppDB(route.params.cart_items, 'user_store', 'cart_items') }
     },
     {
       path: '/product/:id/:title',
       name: 'product',
       component: ProductPage,
       props: route => ({ productId: route.params.id }),
-      beforeRouteLeave: async route => { await AppDB.updateAppDB(route.params.cart_items, 'user_cart', 'cart_items') }
+      beforeRouteLeave: async route => { await AppDB.updateAppDB(route.params.cart_items, 'user_store', 'cart_items') }
     },
     {
       path: '/products/:category',
       name: 'category-page',
       component: HomeView,
-      beforeRouteLeave: async route => { await AppDB.updateAppDB(route.params.cart_items, 'user_cart', 'cart_items') }
+      beforeRouteLeave: async route => { await AppDB.updateAppDB(route.params.cart_items, 'user_store', 'cart_items') }
     },
     {
       path: '/404',
@@ -46,7 +46,7 @@ const router = createRouter({
 })
 
 router.beforeEach(async to => {
-  to.params.cart_items = await AppDB.getCartItemsFromDB('user_cart', 'cart_items')
+  to.params.cart_items = await AppDB.getCartItemsFromDB('user_store', 'cart_items')
   window.scrollTo({
     top: 0,
     behavior: 'smooth'

@@ -6,7 +6,7 @@ import AppDB from './utils/appIndexedDb';
 
 
 (async () => {
-  await AppDB.openAppDB('user_cart')
+  await AppDB.openAppDB('user_store')
 })()
 
 const app = createApp(App)

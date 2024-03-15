@@ -213,7 +213,7 @@ export default {
 
     async updateCart(cartItems = this.cartItems) {
       this.cartItems = cartItems
-      const updateDBResult = await AppDB.updateAppDB(this.cartItems, 'user_cart', 'cart_items')
+      const updateDBResult = await AppDB.updateAppDB(this.cartItems, 'user_store', 'cart_items')
       console.log(updateDBResult)
     }
   },

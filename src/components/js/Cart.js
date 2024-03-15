@@ -78,7 +78,7 @@ export default {
       this.$route.params.cart_items = value
 
       try {
-        const updateDBResult = await AppDB.updateAppDB(this.cartItems, 'user_cart', 'cart_items')
+        const updateDBResult = await AppDB.updateAppDB(this.cartItems, 'user_store', 'cart_items')
         this.$route.params.cart_items = this.cartItems
         console.log(updateDBResult)
       } catch (err) {
@@ -89,7 +89,7 @@ export default {
 
   async beforeUnmount () {
     try {
-      const updateDBResult = await AppDB.updateAppDB(this.cartItems, 'user_cart', 'cart_items')
+      const updateDBResult = await AppDB.updateAppDB(this.cartItems, 'user_store', 'cart_items')
       this.$route.params.cart_items = this.cartItems
       console.log(updateDBResult)
     } catch (err) {
