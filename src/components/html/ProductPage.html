@@ -6,7 +6,7 @@
   <Header :cart-items="cartItems" @openMobileMenu="openMobileMenu" @toggleCart="toggleCart"></Header>
   <MenuMobile :is-active="isMobileMenuActive" @closeMobileMenu="closeMobileMenu"></MenuMobile>
   <aside class="cart-container">
-    <CartContainer class="cart--aside" @hideCart="hideCart" :is-visible="isCartVisible"></CartContainer>
+    <CartContainer class="cart--aside" @hideCart="hideCart" :is-visible="isCartVisible" @updateCart="updateCart"></CartContainer>
   </aside>
   <div v-if="isWaitingProductsFetch" class="spinner-border text-primary" role="status">
     <span class="visually-hidden">
@@ -14,7 +14,9 @@
     </span>
   </div>
   <main v-else class="main-container">
-    <SearchBar/>
+    <SearchBar
+      @searchFor="searchFor"
+    />
     <section class="product-page__section product-page__resume">
       <h1 class="product-page__title">{{ product.title }}</h1>
       <button

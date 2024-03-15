@@ -12,21 +12,26 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView,
-      beforeEnter: async route => { route.params.cart_items = await CartDB.getCartItemsFromDB() }
+      beforeRouteLeave: async route => { await CartDB.updateCartDB(route.params.cart_items) }
     },
     {
       path: '/checkout',
       name: 'checkout',
       component: CheckoutView,
-      beforeEnter: async route => { route.params.cart_items = await CartDB.getCartItemsFromDB() },
       beforeRouteLeave: async route => { await CartDB.updateCartDB(route.params.cart_items) }
     },
     {
       path: '/product/:id/:title',
       name: 'product',
       component: ProductPage,
-      beforeEnter: async route => { route.params.cart_items = await CartDB.getCartItemsFromDB() },
-      props: route => ({ productId: route.params.id })
+      props: route => ({ productId: route.params.id }),
+      beforeRouteLeave: async route => { await CartDB.updateCartDB(route.params.cart_items) }
+    },
+    {
+      path: '/products/:category',
+      name: 'category-page',
+      component: HomeView,
+      beforeRouteLeave: async route => { await CartDB.updateCartDB(route.params.cart_items) }
     },
     {
       path: '/404',
@@ -40,7 +45,8 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach(async () => {
+router.beforeEach(async to => {
+  to.params.cart_items = await CartDB.getCartItemsFromDB()
   window.scrollTo({
     top: 0,
     behavior: 'smooth'

@@ -16,7 +16,12 @@
     @closeMobileMenu="closeMobileMenu"
   />
   <aside class="cart-container">
-    <CartContainer class="cart--aside" @hideCart="hideCart" :is-visible="isCartVisible"></CartContainer>
+    <CartContainer
+      class="cart--aside"
+      :is-visible="isCartVisible"
+      @hideCart="hideCart"
+      @updateCart="updateCart"
+    ></CartContainer>
   </aside>
   <main class="main-container">
     <search-bar
@@ -69,7 +74,19 @@
         </div>
       </div>
       <div
-        v-if="!isWaitingProductsFetch"
+        v-if="isWaitingProductsFetch"
+        class="spinner-border text-primary"
+        role="status"
+      >
+        <span class="visually-hidden">
+          Loading...
+        </span>
+      </div>
+      <h2 v-else-if="noProductsFound">
+        Nenhum produto encontrado
+      </h2>
+      <div
+        v-else
         class="products__container row px-2 px-md-4"
       >
         <product-card
@@ -78,15 +95,6 @@
           :is-adding-product-to-cart="isAddingProductToCart"
           @showAddToCartModal="showAddToCartModal"
         ></product-card>
-      </div>
-      <div
-        v-else
-        class="spinner-border text-primary"
-        role="status"
-      >
-        <span class="visually-hidden">
-          Loading...
-        </span>
       </div>
     </section>
   </main>

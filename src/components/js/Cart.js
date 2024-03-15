@@ -58,6 +58,8 @@ export default {
 
       this.cartItems = spliced
 
+      this.$emit('updateCart', this.cartItems)
+
       this.isWaitingItemsFetch = false
     }
   },

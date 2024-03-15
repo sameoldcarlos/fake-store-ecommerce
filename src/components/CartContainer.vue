@@ -6,7 +6,10 @@
     >
       <vue-feather type="chevron-right"></vue-feather>
     </button>
-    <Cart class="cart--aside"></Cart>
+    <Cart
+      class="cart--aside"
+      @updateCart="$emit('updateCart', $event)"
+    ></Cart>
   </aside>
 </template>
 <script>

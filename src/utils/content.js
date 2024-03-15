@@ -22,9 +22,24 @@ export const categories = [
 ]
 
 export const formattedCategories = {
-  all: 'todas',
-  electronics: 'eletrônicos',
-  jewelery: 'joalheria',
-  mens_clothing: 'vestuário masculino',
-  womens_clothing: 'vestuário feminino'
+  all: {
+    en: 'all',
+    pt: 'todas'
+  },
+  electronics:  {
+    en: 'electronics',
+    pt: 'eletrônicos'
+  },
+  jewelery: {
+    en: 'jewelery',
+    pt: 'joalheria'
+  },
+  mens_clothing: {
+    en: 'men\'s clothing',
+    pt: 'vestuário masculino'
+  },
+  womens_clothing: {
+    en: 'women\'s clothing',
+    pt: 'vestuário feminino'
+  }
 }

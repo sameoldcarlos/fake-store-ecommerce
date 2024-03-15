@@ -121,13 +121,7 @@ export default {
         this.cartItems.push(product)
       }
 
-      try {
-        const updateDBResult = await CartDB.updateCartDB(this.cartItems)
-        console.log(updateDBResult)
-        this.quantity = 1
-      } catch (err) {
-        console.log(err)
-      }
+      await this.updateCart()
 
       this.isAddingProductToCart = false
 
@@ -220,6 +214,17 @@ export default {
 
     hideAddToCartModal() {
       this.isAddCartModalVisible = false
+    },
+
+    searchFor(searchParam) {
+      this.$router.push({name: 'home', query: {search: searchParam}})
+    },
+
+    async updateCart(cartItems = this.cartItems) {
+      this.cartItems = cartItems
+
+      const updateDBResult = await CartDB.updateCartDB(this.cartItems)
+      console.log(updateDBResult)
     }
   },
 

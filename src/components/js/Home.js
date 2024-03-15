@@ -8,7 +8,7 @@ import Footer from "@/components/Footer.vue"
 import Toast from "@/components/Toast.vue"
 
 import CartDB from '@/utils/IndexedDbCart.js'
-import { categories } from "@/utils/content.js"
+import { categories, formattedCategories } from "@/utils/content.js"
 import { getData } from "@/utils/CacheService"
 import { isMobile } from "@/utils/breakPointsHelper"
 
@@ -58,7 +58,8 @@ export default {
       selectedSort: '',
       sortOptions: SORT_OPTIONS,
       isMobileMenuActive: false,
-      isCartVisible: false
+      isCartVisible: false,
+      noProductsFound: false
     }
   },
 
@@ -87,6 +88,13 @@ export default {
 
           return products.filter(product => product.title.toLowerCase().includes(search.toLowerCase()))
         })
+
+        if (!this.productsList.length) {
+          this.noProductsFound = true
+
+          return
+        }
+        this.noProductsFound = false
 
         this.sortProducts()
       } catch (error) {
@@ -126,12 +134,7 @@ export default {
         this.cartItems.push(item)
       }
 
-      try {
-        const updateDBResult = await CartDB.updateCartDB(this.cartItems)
-        console.log(updateDBResult)
-      } catch (err) {
-        console.log(err)
-      }
+      this.updateCart()
 
       this.isAddingProductToCart = false
       this.hideAddToCartModal()
@@ -206,6 +209,12 @@ export default {
 
     showCart() {
       this.isCartVisible = true
+    },
+
+    async updateCart(cartItems = this.cartItems) {
+      this.cartItems = cartItems
+      const updateDBResult = await CartDB.updateCartDB(this.cartItems)
+      console.log(updateDBResult)
     }
   },
 
@@ -220,11 +229,27 @@ export default {
       if (sort !== oldSort) {
         this.sortProducts()
       }
+    },
+
+    cartItems(value, newValue) {
+      if (value !== newValue) {
+        this.updateCart()
+      }
     }
   },
 
   async created () {
     await this.fetchCategories()
-    await this.fetchProducts({})
+
+    const search = this.$route.query.search
+    const path = this.$route.path
+
+    const [,,categoryName] = path.split('/')
+    let category = null
+    if (categoryName) {
+      category = formattedCategories[categoryName]?.en
+    }
+
+    await this.fetchProducts({category, search})
   }
 }
