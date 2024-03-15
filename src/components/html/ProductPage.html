@@ -17,8 +17,15 @@
     <SearchBar/>
     <section class="product-page__section product-page__resume">
       <h1 class="product-page__title">{{ product.title }}</h1>
-      <button class="btn__icon-only add-to-favorites">
-        <vue-feather type="heart" />
+      <button
+        class="btn__icon-only add-to-favorites"
+        @click="toggleFavorite"
+      >
+        <vue-feather
+          type="heart"
+          :fill="favoriteFill"
+          :stroke="favoriteStroke"
+        />
       </button>
       <div class="product-page__image-container">
         <img class="product-page__image" :src="product.image" alt="Imagem do Produto">

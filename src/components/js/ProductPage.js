@@ -13,6 +13,7 @@ import CartDB from '@/utils/IndexedDbCart.js'
 import { getData } from '@/utils/CacheService'
 import formatPrice from '@/utils/formatPrice'
 import { isMobile } from '@/utils/breakPointsHelper'
+import { getCssVariable } from '@/utils/cssVars'
 
 import CommentPicture from '@/assets/img/profile_pictures/person-24.jpeg'
 
@@ -48,6 +49,7 @@ export default {
       product: {},
       cartItems: this.$route.params.cart_items,
       isCartVisible: false,
+      isFavorite: false,
 
       comments: [
         {
@@ -80,6 +82,14 @@ export default {
 
     installmentsCount() {
       return this.product.max_installments
+    },
+
+    favoriteFill() {
+      return this.isFavorite ? getCssVariable('danger') : 'none'
+    },
+
+    favoriteStroke() {
+      return this.isFavorite ? getCssVariable('danger') : 'currentColor'
     }
   },
 
@@ -90,6 +100,10 @@ export default {
 
     closeMobileMenu() {
       this.isMobileMenuActive = false;
+    },
+
+    toggleFavorite() {
+      this.isFavorite = !this.isFavorite
     },
 
     async addToCart() {
