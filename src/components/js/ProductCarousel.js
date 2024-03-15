@@ -19,7 +19,8 @@ export default {
       firstPage: 1,
       total: this.products.length,
       screenWidth: window.innerWidth,
-      deviceType: getDeviceType()
+      deviceType: getDeviceType(),
+      selectetdProduct: {}
     }
   },
 
@@ -53,7 +54,7 @@ export default {
     canPageNext() {
       return this.currentPage <= this.lastPage
     },
-    
+
     canPagePrevious() {
       return this.currentPage > this.firstPage
     },
@@ -92,6 +93,10 @@ export default {
 
     getDeviceType() {
       this.deviceType = getDeviceType()
+    },
+
+    showAddToCartModal() {
+      this.$emit('showAddToCartModal', this.selectetdProduct)
     }
   },
 

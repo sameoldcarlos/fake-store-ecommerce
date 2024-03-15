@@ -16,6 +16,7 @@
         v-for="product in products"
         :key="product.id"
         :product-info="product"
+        @showAddToCartModal="$emit('showAddToCartModal', $event)"
         />
     </div>
   </div>

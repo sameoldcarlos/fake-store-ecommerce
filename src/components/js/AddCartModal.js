@@ -26,9 +26,9 @@ export default {
     },
 
     addProductToCart () {
-      const {productInfo: {id, title}, quantity} = this
+      const {productInfo, quantity} = this
 
-      this.$emit('addToCart', { id, title, quantity })
+      this.$emit('addToCart', { ...productInfo, quantity })
     },
   },
 }

@@ -68,7 +68,7 @@
         </button>
         <button
           class="btn btn-outline-primary w-100 text-uppercase"
-          @click="addToCart"
+          @click="addToCart({...product, quantity})"
         >
           <vue-feather type="shopping-bag" />
           Adicionar à sacola
@@ -77,7 +77,11 @@
     </section>
     <section class="product-page__section related-products">
       <h2 class="text-center mb-5">Produtos Relacionados</h2>
-      <ProductCarousel v-if="!isWaitingProductsFetch && relatedProducts.length" :products="relatedProducts" />
+      <ProductCarousel
+        v-if="!isWaitingProductsFetch && relatedProducts.length"
+        :products="relatedProducts"
+        @showAddToCartModal="showAddToCartModal"
+      />
     </section>
     <section class="product-page__section product-description">
       <h2 class="mb-5">Sobre este produto</h2>
@@ -100,6 +104,12 @@
         </div>
       </div>
     </section>
+    <AddCartModal
+      v-if="isAddCartModalVisible"
+      @addToCart="addToCart"
+      @hideAddToCartModal="hideAddToCartModal"
+      :product-info="carouselProduct"
+    />
     <Toast ref="toast" />
   </main>
   <Footer />
