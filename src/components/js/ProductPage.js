@@ -10,7 +10,7 @@ import Toast from '@/components/Toast.vue'
 import CartContainer from '@/components/CartContainer.vue'
 import AddCartModal from '@/components/AddCartModal.vue'
 
-import CartDB from '@/utils/IndexedDbCart.js'
+import AppDB from '@/utils/appIndexedDb.js'
 import { getData } from '@/utils/CacheService'
 import formatPrice from '@/utils/formatPrice'
 import { isMobile } from '@/utils/breakPointsHelper'
@@ -223,7 +223,7 @@ export default {
     async updateCart(cartItems = this.cartItems) {
       this.cartItems = cartItems
 
-      const updateDBResult = await CartDB.updateCartDB(this.cartItems)
+      const updateDBResult = await AppDB.updateAppDB(this.cartItems, 'user_cart', 'cart_items')
       console.log(updateDBResult)
     }
   },

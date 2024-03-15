@@ -1,12 +1,11 @@
-import { openDB, deleteDB } from 'idb'
+import { openDB } from 'idb'
 
 const dbName = 'fakeStore'
-const storeName = 'user_cart'
 const version = 1
 const key = 'cart_items'
 
 export default {
-  async openCartDB () {
+  async openAppDB (storeName) {
     await openDB(dbName, version, {
       upgrade(db) {
         db.createObjectStore(storeName)
@@ -14,13 +13,13 @@ export default {
     })
   },
 
-  async updateCartDB(cartItems) {
+  async updateAppDB(payload, storeName, key) {
     try {
       const cartDB = await openDB(dbName, version)
 
       const transaction = cartDB.transaction(storeName, 'readwrite')
       const store = await transaction.objectStore(storeName)
-      const result = await store.put(JSON.stringify(cartItems), key)
+      const result = await store.put(JSON.stringify(payload), key)
 
       await transaction.done
 

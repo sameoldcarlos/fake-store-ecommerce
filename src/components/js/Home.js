@@ -7,7 +7,7 @@ import MenuMobile from "@/components/MenuMobile.vue"
 import Footer from "@/components/Footer.vue"
 import Toast from "@/components/Toast.vue"
 
-import CartDB from '@/utils/IndexedDbCart.js'
+import AppDB from '@/utils/appIndexedDb.js'
 import { categories, formattedCategories } from "@/utils/content.js"
 import { getData } from "@/utils/CacheService"
 import { isMobile } from "@/utils/breakPointsHelper"
@@ -213,7 +213,7 @@ export default {
 
     async updateCart(cartItems = this.cartItems) {
       this.cartItems = cartItems
-      const updateDBResult = await CartDB.updateCartDB(this.cartItems)
+      const updateDBResult = await AppDB.updateAppDB(this.cartItems, 'user_cart', 'cart_items')
       console.log(updateDBResult)
     }
   },

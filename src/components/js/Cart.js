@@ -1,5 +1,5 @@
 import CheckoutCard from '@/components/CheckoutCard.vue'
-import CartDB from '@/utils/IndexedDbCart.js'
+import AppDB from '@/utils/appIndexedDb.js'
 import formatPrice from '@/utils/formatPrice.ts'
 
 export default {
@@ -78,7 +78,7 @@ export default {
       this.$route.params.cart_items = value
 
       try {
-        const updateDBResult = await CartDB.updateCartDB(this.cartItems)
+        const updateDBResult = await AppDB.updateAppDB(this.cartItems, 'user_cart', 'cart_items')
         this.$route.params.cart_items = this.cartItems
         console.log(updateDBResult)
       } catch (err) {
@@ -89,7 +89,7 @@ export default {
 
   async beforeUnmount () {
     try {
-      const updateDBResult = await CartDB.updateCartDB(this.cartItems)
+      const updateDBResult = await AppDB.updateAppDB(this.cartItems, 'user_cart', 'cart_items')
       this.$route.params.cart_items = this.cartItems
       console.log(updateDBResult)
     } catch (err) {
