@@ -28,7 +28,12 @@
         <span class="subtotal">{{ subtotal }}</span>
       </div>
     </div>
-    <button class="btn btn-success payment-details__buy">Finalizar compra</button>
+    <button
+      class="btn btn-success payment-details__buy"
+      @click="finishRedirect"
+    >
+      Finalizar compra
+    </button>
   </div>
 </section>
 <div v-else class="empty-cart">

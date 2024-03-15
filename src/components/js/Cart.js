@@ -11,6 +11,11 @@ export default {
     isVisible: {
       type: Boolean,
       default: false
+    },
+
+    redirectPathName: {
+      type: String,
+      default: 'home'
     }
   },
 
@@ -61,6 +66,10 @@ export default {
       this.$emit('updateCart', this.cartItems)
 
       this.isWaitingItemsFetch = false
+    },
+
+    finishRedirect() {
+      this.$router.push({ name: this.redirectPathName })
     }
   },
 

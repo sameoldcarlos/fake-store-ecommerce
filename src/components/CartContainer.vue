@@ -8,6 +8,7 @@
     </button>
     <Cart
       class="cart--aside"
+      redirect-path-name="checkout"
       @updateCart="$emit('updateCart', $event)"
     ></Cart>
   </aside>
