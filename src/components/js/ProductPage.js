@@ -51,9 +51,9 @@ export default {
       product: {},
       cartItems: this.$route.params.cart_items,
       isCartVisible: false,
-      isFavorite: false,
       carouselProduct: {},
       isAddCartModalVisible: false,
+      favoriteItems: this.$route.params.favorite_items,
 
       comments: [
         {
@@ -94,6 +94,10 @@ export default {
 
     favoriteStroke() {
       return this.isFavorite ? getCssVariable('danger') : 'currentColor'
+    },
+
+    isFavorite() {
+      return this.favoriteItems.some(item => item.id === this.product.id)
     }
   },
 
@@ -107,7 +111,13 @@ export default {
     },
 
     toggleFavorite() {
-      this.isFavorite = !this.isFavorite
+      if (!this.isFavorite) {
+        this.addToFavorites(this.product)
+
+        return
+      }
+
+      this.removeFromFavorites(this.product)
     },
 
     async addToCart(product) {
@@ -138,6 +148,26 @@ export default {
       }
     },
 
+    addToFavorites(product) {
+      const alreadyOnFavorites = this.favoriteItems.find(item => product.id === item.id)
+
+      if (alreadyOnFavorites) {
+        return
+      }
+
+      this.favoriteItems.push(product)
+      product.is_favorite = true
+
+      this.updateFavorites()
+    },
+
+    removeFromFavorites(product) {
+      this.favoriteItems = this.favoriteItems.filter(item => item.id !== product.id)
+      product.is_favorite = false
+
+      this.updateFavorites()
+    },
+
     incrementQuantity() {
       this.quantity++
     },
@@ -160,7 +190,7 @@ export default {
 
         const products = await response.json().then(products => products)
 
-        this.relatedProducts = products.filter(product => product.id !== this.product.id)
+        this.relatedProducts = products.filter(product => product.id !== this.product.id).map(product => ({...product, is_favorite: this.favoriteItems.some(item => item.id === product.id)}))
 
       } catch (error) {
         console.error('Erro ao buscar produtos')
@@ -225,7 +255,12 @@ export default {
 
       const updateDBResult = await AppDB.updateAppDB(this.cartItems, 'user_store', 'cart_items')
       console.log(updateDBResult)
-    }
+    },
+
+    async updateFavorites() {
+      const updateDBResult = await AppDB.updateAppDB(this.favoriteItems, 'user_store', 'favorite_items')
+      console.log(updateDBResult)
+    },
   },
 
   async created() {

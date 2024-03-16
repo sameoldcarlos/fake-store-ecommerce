@@ -22,6 +22,10 @@
       background-color: transparent;
       z-index: 2;
     }
+
+    .add-to-favorites--active {
+      display: flex;
+    }
   }
 
   &:hover,

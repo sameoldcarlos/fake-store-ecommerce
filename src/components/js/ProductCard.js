@@ -11,12 +11,16 @@ export default {
     isAddingProductToCart: {
       type: Boolean,
       default: false
+    },
+
+    isFavorite: {
+      type: Boolean,
+      default: false
     }
   },
 
   data () {
     return {
-      isFavorite: false,
       heartColor: getCssVariable('danger'),
       ratingStars: getCssVariable('rating-stars-dark')
     }
@@ -48,7 +52,13 @@ export default {
     },
 
     toggleFavorite() {
-      this.isFavorite = !this.isFavorite
+      if (!this.isFavorite) {
+        this.$emit('addToFavorites', this.productInfo)
+
+        return
+      }
+
+      this.$emit('removeFromFavorites', this.productInfo)
     }
   }
 }

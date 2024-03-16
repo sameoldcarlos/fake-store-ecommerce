@@ -83,6 +83,8 @@
         v-if="!isWaitingProductsFetch && relatedProducts.length"
         :products="relatedProducts"
         @showAddToCartModal="showAddToCartModal"
+        @addToFavorites="addToFavorites"
+        @removeFromFavorites="removeFromFavorites"
       />
     </section>
     <section class="product-page__section product-description">

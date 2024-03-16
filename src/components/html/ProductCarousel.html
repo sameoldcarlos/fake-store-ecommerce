@@ -16,7 +16,10 @@
         v-for="product in products"
         :key="product.id"
         :product-info="product"
+        :is-favorite="product.is_favorite"
         @showAddToCartModal="$emit('showAddToCartModal', $event)"
+        @addToFavorites="$emit('addToFavorites', $event)"
+        @removeFromFavorites="$emit('removeFromFavorites', $event)"
         />
     </div>
   </div>

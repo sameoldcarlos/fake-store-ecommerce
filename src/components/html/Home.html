@@ -93,7 +93,10 @@
           v-for="product in productsList"
           :product-info="product"
           :is-adding-product-to-cart="isAddingProductToCart"
+          :is-favorite="product.is_favorite"
           @showAddToCartModal="showAddToCartModal"
+          @addToFavorites="addToFavorites"
+          @removeFromFavorites="removeFromFavorites"
         ></product-card>
       </div>
     </section>

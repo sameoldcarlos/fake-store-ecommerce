@@ -30,7 +30,7 @@ export default {
     }
   },
 
-  async getCartItemsFromDB(storeName, key) {
+  async getItemsFromDB(storeName, key) {
     try {
       const cartDB = await openDB(dbName, version)
       const item = await cartDB.transaction(storeName).objectStore(storeName).get(key)

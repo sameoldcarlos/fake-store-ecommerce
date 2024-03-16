@@ -46,6 +46,7 @@ export default {
       productsList: [],
       categoriesList: [],
       cartItems: this.$route.params.cart_items,
+      favoriteItems: this.$route.params.favorite_items,
       selectedProduct: {},
       isWaitingProductsFetch: true,
       isWaitingCategoriesFetch: true,
@@ -82,11 +83,12 @@ export default {
         const response = await getData(this.appName, url)
 
         this.productsList = await response.json().then(products => {
+          const preparedProducts = products.map(product => ({...product, is_favorite: this.favoriteItems.some(item => item.id === product.id)}))
           if (!search?.length) {
-            return products
+            return preparedProducts
           }
 
-          return products.filter(product => product.title.toLowerCase().includes(search.toLowerCase()))
+          return preparedProducts.filter(product => product.title.toLowerCase().includes(search.toLowerCase()))
         })
 
         if (!this.productsList.length) {
@@ -150,6 +152,30 @@ export default {
       }
     },
 
+    addToFavorites (product) {
+      const alreadyOnFavorites = this.favoriteItems.find(item => product.id === item.id)
+
+      if (alreadyOnFavorites) {
+        return
+      }
+
+      this.favoriteItems.push(product)
+      product.is_favorite = true
+
+      this.updateFavorites()
+    },
+
+    removeFromFavorites (product) {
+      this.favoriteItems = this.favoriteItems.filter(item => item.id !== product.id)
+      product.is_favorite = false
+
+      this.updateFavorites()
+    },
+
+    async updateFavorites() {
+      await AppDB.updateAppDB(this.favoriteItems, 'user_store', 'favorite_items')
+    },
+
     toggleCategories () {
       this.isCategoriesVisible = !this.isCategoriesVisible
     },
@@ -211,8 +237,7 @@ export default {
       this.isCartVisible = true
     },
 
-    async updateCart(cartItems = this.cartItems) {
-      this.cartItems = cartItems
+    async updateCart() {
       const updateDBResult = await AppDB.updateAppDB(this.cartItems, 'user_store', 'cart_items')
       console.log(updateDBResult)
     }
@@ -228,12 +253,6 @@ export default {
     selectedSort(sort, oldSort) {
       if (sort !== oldSort) {
         this.sortProducts()
-      }
-    },
-
-    cartItems(value, newValue) {
-      if (value !== newValue) {
-        this.updateCart()
       }
     }
   },
