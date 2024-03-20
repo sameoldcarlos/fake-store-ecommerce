@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import VueFeather from 'vue-feather';
-import AppDB from './utils/appIndexedDb';
+import AppDB from './utils/appIndexedDb.js';
 
 
 (async () => {

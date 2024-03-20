@@ -247,12 +247,10 @@ export default {
     },
 
     searchFor(searchParam) {
-      this.$router.push({name: 'home', query: {search: searchParam}})
+      this.$router.push({name: 'products', query: {search: searchParam}})
     },
 
-    async updateCart(cartItems = this.cartItems) {
-      this.cartItems = cartItems
-
+    async updateCart() {
       const updateDBResult = await AppDB.updateAppDB(this.cartItems, 'user_store', 'cart_items')
       console.log(updateDBResult)
     },

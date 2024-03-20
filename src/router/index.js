@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '@/views/HomeView.vue'
 import CheckoutView from '@/views/CheckoutView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
 import ProductPage from '@/components/ProductPage.vue'
 import AppDB from '@/utils/appIndexedDb.js'
+import NewHome from '@/components/NewHome.vue'
+import Products from '@/components/Products.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,7 +12,13 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView,
+      component: NewHome,
+      beforeRouteLeave: async route => { await AppDB.updateAppDB(route.params.cart_items, 'user_store', 'cart_items') }
+    },
+    {
+      path: '/products',
+      name: 'products',
+      component: Products,
       beforeRouteLeave: async route => { await AppDB.updateAppDB(route.params.cart_items, 'user_store', 'cart_items') }
     },
     {
@@ -30,7 +37,7 @@ const router = createRouter({
     {
       path: '/products/:category',
       name: 'category-page',
-      component: HomeView,
+      component: Products,
       beforeRouteLeave: async route => { await AppDB.updateAppDB(route.params.cart_items, 'user_store', 'cart_items') }
     },
     {
