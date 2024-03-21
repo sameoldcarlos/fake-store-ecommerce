@@ -104,7 +104,7 @@ import {isMobile} from '@/utils/breakPointsHelper.js'
 import { formattedCategories } from '@/utils/content.js'
 import normalizeText from '@/utils/normalizeText.js'
 
-import promotedProductBanner from '@/assets/img/banners/promoted_product_banner.jpg'
+import promotedProductBanner from '@/assets/img/banners/promoted_product_banner.png'
 
 export default {
   components: {
