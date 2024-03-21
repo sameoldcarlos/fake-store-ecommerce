@@ -1,19 +1,29 @@
-export function generateRandomRate(count) {
-  let remaining = count
-  const rates = {}
+export function generateRandomRate(ratingCount, averageRating) {
+  const ratingSum = Math.floor(ratingCount * averageRating)
 
-  for (let i = 5; i > 1; i--) {
-    const rateCount = getRandomArbitrary(-1, remaining)
-    rates[`rated${i}`] = rateCount
+  const ratingDistribution = new Array(ratingCount).fill(1)
 
-    remaining -= rateCount
+  const remaining = ratingSum - ratingCount
+
+  for (let i = 0; i < remaining; i++) {
+    const randomIndex = Math.floor(Math.random() * ratingCount)
+
+    if (ratingDistribution[randomIndex] < 5) {
+      ratingDistribution[randomIndex]++
+    }
   }
 
-  rates.rated1 = remaining
+  const ratings = {
+    rated5: 0,
+    rated4: 0,
+    rated3: 0,
+    rated2: 0,
+    rated1: 0
+  }
 
-  return rates
-}
+  ratingDistribution.forEach(rating => {
+    ratings[`rated${rating}`]++
+  })
 
-function getRandomArbitrary(min, max) {
-  return Math.ceil(Math.random() * (max - min) + min);
+  return ratings
 }

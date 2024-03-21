@@ -99,7 +99,7 @@
         <div class="ratings">
           <RatingStars class="rating-stars--rating-section" v-if="product && product.rating" :rating="product.rating.rate" :count="product.rating.count" showAdditionalInfo />
           <hr>
-          <RatingBars v-if="product && product.rating" :count="product.rating.count" showAdditionalInfo />
+          <RatingBars v-if="product && product.rating" :count="product.rating.count" :average="product.rating.rate" showAdditionalInfo />
         </div>
         <div class="comments-container">
           <Comments

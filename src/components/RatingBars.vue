@@ -31,6 +31,11 @@ export default {
       type: Number,
       required: true
     },
+
+    average: {
+      type: Number,
+      required: true
+    }
   },
 
   data() {
@@ -38,7 +43,7 @@ export default {
       fillColor: getCssVariable('rating-stars'),
       emptyColor: getCssVariable('lowlight'),
       strokeColor: getCssVariable('rating-stars-dark'),
-      ratings: generateRandomRate(this.count),
+      ratings: generateRandomRate(this.count, this.average),
 
       starsLabel: {
         rated1: '1 estrela',
