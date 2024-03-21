@@ -67,7 +67,10 @@
         </section>
         <hr class="home-page__divider">
         <section class="home-page__section related-products">
-          <h2 class="text-center mb-5">Seus Favoritos</h2>
+          <h2
+            v-if="!isWaitingProductsFetch && favoriteProducts.length"
+            class="text-center mb-5">Seus Favoritos
+          </h2>
           <ProductCarousel
             v-if="!isWaitingProductsFetch && favoriteProducts.length"
             :products="favoriteProducts"
