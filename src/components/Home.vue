@@ -69,7 +69,9 @@
         <section class="home-page__section related-products">
           <h2
             v-if="!isWaitingProductsFetch && favoriteProducts.length"
-            class="text-center mb-5">Seus Favoritos
+            class="text-center mb-5"
+          >
+            Seus Favoritos
           </h2>
           <ProductCarousel
             v-if="!isWaitingProductsFetch && favoriteProducts.length"
