@@ -220,7 +220,9 @@ export default {
     },
 
     async buyNow() {
-      await this.addToCart()
+      const {product, quantity} = this
+
+      await this.addToCart({...product, quantity})
       this.$router.push('/checkout')
     },
 

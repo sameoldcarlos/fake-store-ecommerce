@@ -3,7 +3,7 @@ import CheckoutView from '@/views/CheckoutView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
 import ProductPage from '@/components/ProductPage.vue'
 import AppDB from '@/utils/appIndexedDb.js'
-import NewHome from '@/components/NewHome.vue'
+import Home from '@/components/Home.vue'
 import Products from '@/components/Products.vue'
 
 const router = createRouter({
@@ -12,7 +12,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: NewHome,
+      component: Home,
       beforeRouteLeave: async route => { await AppDB.updateAppDB(route.params.cart_items, 'user_store', 'cart_items') }
     },
     {
