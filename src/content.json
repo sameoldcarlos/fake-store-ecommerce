@@ -44,12 +44,15 @@
     "subtotal": "Subtotal",
     "finish_purchase": "Finish Purchase",
     "my_bag": "My Bag",
+    "empty_bag": "Your bag is empty",
     "added_to_bag": "Added to bag",
     "unit": "unit",
     "units": "units",
     "of": "of",
     "or_pay_in": "or pay in",
-    "installments": "installments"
+    "installments": "installments",
+    "oops": "Oops!",
+    "page_not_found": "This page was not found"
   },
 
   "pt": {
@@ -97,12 +100,15 @@
     "subtotal": "Subtotal",
     "finish_purchase": "Finalizar Compra",
     "my_bag": "Minha Sacola",
+    "empty_bag": "Sua sacola está vazia",
     "added_to_bag": "Adicionado à sacola",
     "unit": "unidade",
     "units": "unidades",
     "of": "de",
     "or_pay_in": "ou pague em",
-    "installments": "vezes"
+    "installments": "vezes",
+    "oops": "Ops!",
+    "page_not_found": "Esta página não foi encontrada"
   },
 
   "es": {
@@ -150,11 +156,14 @@
     "subtotal": "Subtotal",
     "finish_purchase": "Finalizar Compra",
     "my_bag": "Mi Bolsa",
+    "empty_bag": "Tu bolsa está vacía",
     "added_to_bag": "Añadido a la bolsa",
     "unit": "unidad",
     "units": "unidades",
     "of": "de",
     "or_pay_in": "o pague en",
-    "installments": "cuotas"
+    "installments": "cuotas",
+    "oops": "¡Ups!",
+    "page_not_found": "Esta página no se encontró"
   }
 }
