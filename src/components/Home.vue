@@ -295,8 +295,6 @@ export default {
   async created() {
     await this.fetchProducts()
     this.promotedProduct = this.products.find(product => product.id === 14)
-
-    console.log(this.appTextData)
   }
 }
 </script>

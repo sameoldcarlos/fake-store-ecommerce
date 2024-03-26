@@ -12,6 +12,9 @@ import { categories, formattedCategories } from "@/utils/content.js"
 import { getData } from "@/utils/CacheService"
 import { isMobile } from "@/utils/breakPointsHelper"
 
+import { mapState } from 'pinia'
+import { useLanguageStore } from '@/stores/language'
+
 const SORT_OPTIONS = {
   decscendingPrice: {
     value: 'descending_price',
@@ -41,6 +44,8 @@ export default {
     Toast
   },
 
+  inject: ['appTextData'],
+
   data () {
     return {
       productsList: [],
@@ -57,7 +62,6 @@ export default {
       appName: import.meta.env.VITE_APP_NAME,
       selectedCategory: '',
       selectedSort: '',
-      sortOptions: SORT_OPTIONS,
       isMobileMenuActive: false,
       isCartVisible: false,
       noProductsFound: false
@@ -65,8 +69,35 @@ export default {
   },
 
   computed: {
+    ...mapState(useLanguageStore, ['selectedLanguage']),
+
+    textContent() {
+      return this.appTextData[this.selectedLanguage]
+    },
+
     categoriesIcon () {
       return this.isCategoriesVisible ? 'x' : 'chevron-down'
+    },
+
+    sortOptions () {
+      const { textContent: { ascending_price, descending_price, sort_by_rating } } = this
+
+      return {
+        descendingPrice: {
+          value: 'descending_price',
+          label: descending_price
+        },
+
+        ascendingPrice: {
+          value: 'ascending_price',
+          label: ascending_price
+        },
+
+        rating: {
+          value: 'rating',
+          label: sort_by_rating
+        }
+      }
     }
   },
 
@@ -184,7 +215,7 @@ export default {
       const categoryKey = category.replaceAll(/ /g, "_").replaceAll("'", "")
       const selectedCategory = categories.find(item => item.value === categoryKey)
 
-      return selectedCategory.label
+      return this.textContent[selectedCategory.value]
     },
 
     showAddToCartModal (product) {
@@ -245,6 +276,7 @@ export default {
 
   watch: {
     selectedCategory(category, oldCategory) {
+      console.log(category)
       if (category !== oldCategory) {
         this.fetchProducts({category})
       }
@@ -265,6 +297,7 @@ export default {
 
     const [,,categoryName] = path.split('/')
     let category = null
+
     if (categoryName) {
       category = formattedCategories[categoryName]?.en
     }

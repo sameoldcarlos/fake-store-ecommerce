@@ -29,11 +29,11 @@
     ></search-bar>
     <section class="products">
       <div class="products__header">
-        <h3 class="mb-4">Produtos</h3>
+        <h3 class="mb-4">{{ textContent.products }}</h3>
         <div class="d-flex justify-content-between gap-2">
           <div class="sort">
             <label for="sortSelect">
-              Ordenar
+              {{ textContent.sort_by }}
               <vue-feather size="16" type="arrow-up" style="margin-right: -8px" />
               <vue-feather size="16" type="arrow-down" />
             </label>
@@ -43,7 +43,7 @@
               aria-label="Default select example"
               v-model="selectedSort"
             >
-              <option value="" disabled>Selecione</option>
+              <option value="" disabled>{{ textContent.select }}</option>
               <option
                 v-for="sort in sortOptions"
                 :key="sort.value"
@@ -53,7 +53,7 @@
           </div>
           <div class="sort">
             <label for="filterSelect">
-              Filtrar por categoria
+              {{ textContent.filter_by_category }}
               <vue-feather size="16" type="filter" />
             </label>
             <select
@@ -61,7 +61,7 @@
               class="form-select form-select-md action-container"
               v-model="selectedCategory"
             >
-              <option class="category" value="">Todas</option>
+              <option class="category" value="">{{ textContent.all }}</option>
               <option
                 v-for="category in categoriesList"
                 :key="category"
@@ -83,7 +83,7 @@
         </span>
       </div>
       <h2 v-else-if="noProductsFound">
-        Nenhum produto encontrado
+        {{ textContent.no_products }}
       </h2>
       <div
         v-else
