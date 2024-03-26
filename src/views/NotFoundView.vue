@@ -3,7 +3,7 @@
     <h1>{{ textContent.oops }}</h1>
     <h4>{{ textContent.page_not_found }}</h4>
     <img
-      src="@/assets/img/bg_404_mobile.svg"
+      src="@/assets/img/bg_404.svg"
       alt="Página não encontrada"
       width="500"
     >
