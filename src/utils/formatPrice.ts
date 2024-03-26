@@ -1,10 +1,10 @@
 const formatPrice = (value: number): string => {
-  const priceFormat = new Intl.NumberFormat('pt-BR', {
+  const priceFormat = new Intl.NumberFormat('en', {
     style: 'currency',
-    currency: 'BRL'
+    currency: 'USD'
   })
 
-  const result = priceFormat.format(value).replace('R', '')
+  const result = priceFormat.format(value)
   return result
 }
 

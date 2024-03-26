@@ -16,15 +16,15 @@
   </div>
   <div class="payment-details">
     <h5>
-      Detalhes do Pagamento
+      {{ textContent.payment_details }}
     </h5>
     <div class="payment-details__info-container">
       <div class="payment-details__info">
-        <span>Número de itens:</span>
-        <span>{{ `${cartItems.length} itens` }}</span>
+        <span>{{ textContent.items_number }}</span>
+        <span>{{ cartItems.length }} {{ textContent.items }}</span>
       </div>
       <div class="payment-details__info">
-        <span>Subtotal</span>
+        <span>{{ textContent.subtotal }}</span>
         <span class="subtotal">{{ subtotal }}</span>
       </div>
     </div>
@@ -32,7 +32,7 @@
       class="btn btn-success payment-details__buy"
       @click="finishRedirect"
     >
-      Finalizar compra
+      {{ textContent.finish_purchase }}
     </button>
   </div>
 </section>

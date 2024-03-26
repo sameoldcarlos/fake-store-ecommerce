@@ -1,5 +1,23 @@
-<script setup lang="ts">
+<script>
 import Cart from '@/components/Cart.vue'
+import { mapState } from 'pinia'
+import { useLanguageStore } from '@/stores/language'
+
+export default {
+  components: {
+    Cart
+  },
+
+  inject: ['appTextData'],
+
+  computed: {
+    ...mapState(useLanguageStore, ['selectedLanguage']),
+
+    textContent() {
+      return this.appTextData[this.selectedLanguage]
+    }
+  }
+}
 </script>
 
 <template>
@@ -10,7 +28,7 @@ import Cart from '@/components/Cart.vue'
       >
         <vue-feather type="chevron-left" size="48"></vue-feather>
       </router-link>
-      Meu Carrinho
+      {{ textContent.my_bag }}
     </h5>
   </header>
   <main class="checkout">
@@ -30,7 +48,7 @@ import Cart from '@/components/Cart.vue'
       margin: 0;
 
       a {
-        margin-right: 10px;        
+        margin-right: 10px;
 
         .back {
           transform: rotate(90deg);
