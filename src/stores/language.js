@@ -1,8 +1,18 @@
 import { defineStore } from 'pinia';
+import Cookies from 'js-cookie';
+
+let selectedLanguage = (Cookies.get('language'));
+
+if (!selectedLanguage) {
+  Cookies.set('language', 'en');
+  selectedLanguage = 'en';
+}
+
+console.log(selectedLanguage);
 
 export const useLanguageStore = defineStore('language', {
   state: () => ({
-    selectedLanguage: 'en',
+    selectedLanguage,
   }),
 
   getters: {
@@ -12,6 +22,7 @@ export const useLanguageStore = defineStore('language', {
   actions: {
     setSelectedLanguage(language) {
       this.selectedLanguage = language
+      Cookies.set('language', language, { sameSite: 'strict' });
     }
   }
 });

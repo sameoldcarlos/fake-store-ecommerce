@@ -36,12 +36,16 @@
         <RatingStars v-if="product && product.rating" :rating="product.rating.rate" :count="product.rating.count" showAdditionalInfo/>
         <div class="product-page__price-container">
           <h2 class="product-price">{{ productPrice }}</h2>
-          <p class="product-conciliations">ou em até {{ installmentsCount }}x de {{ installmentValue }}</p>
+          <p class="product-conciliations">
+            {{ installmentsText}}
+          </p>
         </div>
       </div>
       <div class="product-page__buy-actions">
         <div class="quantity-container d-flex flex-column mb-2">
-          <p class="mb-1 text--normal">Quantidade</p>
+          <p class="mb-1 text--normal">
+            {{ textContent.quantity }}
+          </p>
           <div class="quantity-selector w-100">
             <button
               :class="['quantity-selector__minus btn btn__icon-only', {'disabled': quantity <= 1}]"
@@ -66,19 +70,19 @@
           :class="['btn btn-success w-100 product-page__add text-uppercase', {'disabled': isAddingProductToCart}]"
           @click="buyNow"
         >
-          Comprar Agora
+          {{ textContent.shop_now }}
         </button>
         <button
           class="btn btn-outline-primary w-100 text-uppercase"
           @click="addToCart({...product, quantity})"
         >
           <vue-feather type="shopping-bag" />
-          Adicionar à sacola
+          {{ textContent.add_to_bag }}
         </button>
       </div>
     </section>
     <section class="product-page__section related-products">
-      <h2 class="text-center mb-5">Produtos Relacionados</h2>
+      <h2 class="text-center mb-5">{{ textContent.related_products }}</h2>
       <ProductCarousel
         v-if="!isWaitingProductsFetch && relatedProducts.length"
         :products="relatedProducts"
@@ -88,13 +92,13 @@
       />
     </section>
     <section class="product-page__section product-description">
-      <h2 class="mb-5">Sobre este produto</h2>
+      <h2 class="mb-5">{{ textContent.about_this_product }}</h2>
       <p class="product-page__description">
         {{ product.description }}
       </p>
     </section>
     <section class="product-page__section product-rate">
-      <h2 class="mb-5">Avaliação dos clientes</h2>
+      <h2 class="mb-5">{{ textContent.customers_reviews }}</h2>
       <div class="section-content d-flex flex-column flex-lg-row gap-4 py-4">
         <div class="ratings">
           <RatingStars class="rating-stars--rating-section" v-if="product && product.rating" :rating="product.rating.rate" :count="product.rating.count" showAdditionalInfo />

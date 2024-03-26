@@ -3,7 +3,7 @@
     v-model="searchParam"
     type="search"
     class="search-bar__input"
-    placeholder="O que você procura?"
+    :placeholder="textContent.what_are_you_looking_for"
     @keyup.enter="submit"
     @keydown.enter="$event.preventDefault()"
   >
@@ -11,6 +11,7 @@
     type="button"
     class="search-bar__btn"
     @click="submit"
+    :title="textContent.search_now"
   >
     <vue-feather
       type="search"

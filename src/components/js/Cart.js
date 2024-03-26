@@ -2,6 +2,9 @@ import CheckoutCard from '@/components/CheckoutCard.vue'
 import AppDB from '@/utils/appIndexedDb.js'
 import formatPrice from '@/utils/formatPrice.ts'
 
+import { mapState } from 'pinia'
+import { useLanguageStore } from '@/stores/language'
+
 export default {
   components: {
     CheckoutCard
@@ -19,6 +22,8 @@ export default {
     }
   },
 
+  inject: ['appTextData'],
+
   data () {
     return {
       cartItems: this.$route.params.cart_items,
@@ -27,6 +32,12 @@ export default {
   },
 
   computed: {
+    ...mapState(useLanguageStore, ['selectedLanguage']),
+
+    textContent() {
+      return this.appTextData[this.selectedLanguage]
+    },
+
     subtotal() {
       if (!this.cartItems.length ) {
         return 'R$ 0,00'
@@ -38,7 +49,7 @@ export default {
         subtotal += cartItem.price * cartItem.quantity
       })
 
-      return `R${formatPrice(subtotal)}`
+      return `${formatPrice(subtotal)}`
     }
   },
 

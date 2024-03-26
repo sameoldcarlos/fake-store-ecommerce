@@ -1,14 +1,30 @@
 <template>
   <main class="not-found-main">
-    <h1>OPS...</h1>
-    <h4>Esta página não foi encontrada</h4>
+    <h1>{{ textContent.oops }}</h1>
+    <h4>{{ textContent.page_not_found }}</h4>
     <img
-      src="@/assets/img/bg_404_mobile.svg"
+      src="@/assets/img/bg_404.svg"
       alt="Página não encontrada"
       width="500"
     >
   </main>
 </template>
+<script>
+import { mapState } from 'pinia'
+import { useLanguageStore } from '@/stores/language'
+
+export default {
+  inject: ['appTextData'],
+
+  computed: {
+    ...mapState(useLanguageStore, ['selectedLanguage']),
+
+    textContent() {
+      return this.appTextData[this.selectedLanguage]
+    }
+  }
+}
+</script>
 <style lang="scss">
   .not-found-main {
     width: 100%;

@@ -18,6 +18,9 @@ import { getCssVariable } from '@/utils/cssVars'
 
 import CommentPicture from '@/assets/img/profile_pictures/person-24.jpeg'
 
+import { mapState } from 'pinia'
+import { useLanguageStore } from '@/stores/language'
+
 export default {
   components: {
     Header,
@@ -39,6 +42,8 @@ export default {
       required: true
     }
   },
+
+  inject: ['appTextData'],
 
   data() {
     return {
@@ -69,6 +74,12 @@ export default {
   },
 
   computed: {
+    ...mapState(useLanguageStore, ['selectedLanguage']),
+
+    textContent() {
+      return this.appTextData[this.selectedLanguage]
+    },
+
     productPrice() {
       return formatPrice(this.product.price) || '$0,00'
     },
@@ -98,6 +109,12 @@ export default {
 
     isFavorite() {
       return this.favoriteItems.some(item => item.id === this.product.id)
+    },
+
+    installmentsText() {
+      const { textContent: { or_pay_in, installments, of } } = this
+
+      return `${or_pay_in} ${this.installmentsCount} ${installments} ${of} ${this.installmentValue}`
     }
   },
 

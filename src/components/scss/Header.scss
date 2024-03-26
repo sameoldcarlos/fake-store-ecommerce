@@ -28,7 +28,7 @@
   .user-actions {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
 
     svg:hover {
       stroke: var(--highlight-light);
@@ -59,7 +59,7 @@
   .user-data {
     opacity: 0;
     position: absolute;
-    right: 0px;
+    right: -8px;
     top: -8px;
     width: 210px;
     height: 0;
@@ -87,7 +87,6 @@
   }
 
   .user-image {
-    position: absolute;
     right: 10px;
     top: 0;
     z-index: 2;
@@ -109,5 +108,44 @@
       border-radius: 50%;
       font-size: 8px;
     }
+  }
+
+  .language-select {
+    height: 25px;
+    position: relative;
+    cursor: pointer;
+    width: 50px;
+    margin-left: 8px;
+  }
+
+  .lang-button--inactive {
+    opacity: 0;
+  }
+
+  .lang-options {
+    display: block;
+    position: absolute;
+    background-color: var(--highlight);
+    padding: 0;
+    border-radius: 8px;
+    top: 0;
+
+    &--active {
+      display: block;
+    }
+  }
+
+  .btn.lang-option {
+    padding: 4px 8px;
+    border-radius: 8px;
+  }
+
+  .lang-option:hover {
+    background-color: var(--highlight-dark);
+    opacity: 1;
+  }
+
+  .btn {
+    padding: 0;
   }
 }

@@ -56,6 +56,39 @@
           </p>
         </div>
       </button>
+      <div class="language-select">
+        <button
+          :class="['btn btn-icon-only d-flex', {'lang-button--inactive': isLangOptionsVisible}]"
+          @click="openLangOptions"
+        >
+          <img :src="selectedLanguageFlag" width="25" height="25">
+          <vue-feather type="chevron-down" size="24" :stroke="iconLight" />
+        </button>
+        <div
+          :class="['lang-options', {'d-none': !isLangOptionsVisible}]">
+          <button
+            class="btn btn-icon-only lang-option d-flex gap-2"
+            @click="setSelectedLanguage('en')"
+          >
+            <img :src="flags.usa" alt="United States Flag" width="25" height="25">
+            <span>EN</span>
+          </button>
+          <button
+            class="btn btn-icon-only lang-option d-flex gap-2"
+            @click="setSelectedLanguage('pt')"
+          >
+            <img :src="flags.brazil" alt="Brazil Flag" width="25" height="25">
+            <span>PT</span>
+          </button>
+          <button
+            class="btn btn-icon-only lang-option d-flex gap-2"
+            @click="setSelectedLanguage('es')"
+          >
+            <img :src="flags.mexico" alt="Mexico Flag" width="25" height="25">
+            <span>ES</span>
+          </button>
+        </div>
+      </div>
     </nav>
   </div>
 </header>

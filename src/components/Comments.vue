@@ -1,6 +1,6 @@
 <template>
   <div class="comments">
-    <h3 class="comments__title">O que os compradores têm a dizer</h3>
+    <h3 class="comments__title">{{ textContent.what_customers_say }}</h3>
     <hr>
     <div
       v-for="comment in comments"
@@ -24,6 +24,10 @@
 <script>
 import RatingStars from "@/components/RatingStars.vue"
 
+import { mapState } from 'pinia'
+import { useLanguageStore } from '@/stores/language'
+
+
 
 export default {
   components: {
@@ -34,6 +38,16 @@ export default {
     comments: {
       type: Array,
       required: true
+    }
+  },
+
+  inject: ['appTextData'],
+
+  computed: {
+    ...mapState(useLanguageStore, ['selectedLanguage']),
+
+    textContent() {
+      return this.appTextData[this.selectedLanguage]
     }
   }
 }
