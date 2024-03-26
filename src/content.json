@@ -34,6 +34,7 @@
     "star": "star",
     "what_customers_say": "What customers say",
     "people_rated": "people rated",
+    "person_rated": "person rated",
     "payment_details": "Payment Details",
     "items_number": "Items number",
     "subtotal": "Subtotal",
@@ -41,7 +42,10 @@
     "my_bag": "My Bag",
     "added_to_bag": "Added to bag",
     "unit": "unit",
-    "units": "units"
+    "units": "units",
+    "of": "of",
+    "or_pay_in": "or pay in",
+    "installments": "installments"
   },
 
   "pt": {
@@ -78,7 +82,8 @@
     "stars": "estrelas",
     "star": "estrela",
     "what_customers_say": "O que os clientes têm a dizer",
-    "people_rated": "pessoas avaliaram",
+    "people_rated": "pessoas deram",
+    "person_rated": "pessoa deu",
     "payment_details": "Detalhes de Pagamento",
     "items_number": "Número de itens",
     "subtotal": "Subtotal",
@@ -86,7 +91,10 @@
     "my_bag": "Minha Sacola",
     "added_to_bag": "Adicionado à sacola",
     "unit": "unidade",
-    "units": "unidades"
+    "units": "unidades",
+    "of": "de",
+    "or_pay_in": "ou pague em",
+    "installments": "vezes"
   },
 
   "es": {
@@ -124,6 +132,7 @@
     "star": "estrella",
     "what_customers_say": "Lo que dicen los clientes",
     "people_rated": "personas valoraron",
+    "person_rated": "persona valoró",
     "payment_details": "Detalles de Pago",
     "items_number": "Número de Artículos",
     "subtotal": "Subtotal",
@@ -131,6 +140,9 @@
     "my_bag": "Mi Bolsa",
     "added_to_bag": "Añadido a la bolsa",
     "unit": "unidad",
-    "units": "unidades"
+    "units": "unidades",
+    "of": "de",
+    "or_pay_in": "o pague en",
+    "installments": "cuotas"
   }
 }

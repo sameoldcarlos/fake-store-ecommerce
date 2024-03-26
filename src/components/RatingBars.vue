@@ -23,7 +23,8 @@
 import { getCssVariable } from '@/utils/cssVars.js'
 import { generateRandomRate } from '@/utils/randomRates.js'
 
-const totalStars = 5
+import { mapState } from 'pinia'
+import { useLanguageStore } from '@/stores/language'
 
 export default {
   props: {
@@ -38,19 +39,31 @@ export default {
     }
   },
 
+  inject: ['appTextData'],
+
   data() {
     return {
       fillColor: getCssVariable('rating-stars'),
       emptyColor: getCssVariable('lowlight'),
       strokeColor: getCssVariable('rating-stars-dark'),
-      ratings: generateRandomRate(this.count, this.average),
+      ratings: generateRandomRate(this.count, this.average)
+    }
+  },
 
-      starsLabel: {
-        rated1: '1 estrela',
-        rated2: '2 estrelas',
-        rated3: '3 estrelas',
-        rated4: '4 estrelas',
-        rated5: '5 estrelas',
+  computed: {
+    ...mapState(useLanguageStore, ['selectedLanguage']),
+
+    textContent() {
+      return this.appTextData[this.selectedLanguage]
+    },
+
+    starsLabel() {
+      return {
+        rated1: `1 ${this.textContent.star}`,
+        rated2: `2 ${this.textContent.stars}`,
+        rated3: `3 ${this.textContent.stars}`,
+        rated4: `4 ${this.textContent.stars}`,
+        rated5: `5 ${this.textContent.stars}`,
       }
     }
   },
@@ -61,11 +74,12 @@ export default {
     },
 
     ratingBarsTitle(rateCount) {
+      const { textContent: { people_rated, person_rated } } = this
       if (rateCount > 1) {
-        return `${rateCount} pessoas deram`
+        return `${rateCount} ${ people_rated }`
       }
 
-      return '1 pessoa deu'
+      return `1 ${ person_rated }`
     }
   },
 }
