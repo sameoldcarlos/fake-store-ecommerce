@@ -31,12 +31,14 @@
         </div>
       </div>
     </div>
-    <p v-if="showAdditionalInfo">({{ count }} avaliações)</p>
+    <p v-if="showAdditionalInfo">({{ count }} {{ textContent.reviews }})</p>
   </div>
 </template>
 
 <script>
 import { getCssVariable } from '@/utils/cssVars.js'
+import { mapState } from 'pinia'
+import { useLanguageStore } from '@/stores/language'
 
 const totalStars = 5
 
@@ -63,6 +65,8 @@ export default {
     }
   },
 
+  inject: ['appTextData'],
+
   data() {
     return {
       fillColor: getCssVariable('rating-stars'),
@@ -73,6 +77,12 @@ export default {
   },
 
   computed: {
+    ...mapState(useLanguageStore, ['selectedLanguage']),
+
+    textContent() {
+      return this.appTextData[this.selectedLanguage]
+    },
+
     fullFilledStarsCount() {
       if (!this.rating) {
         return 0
