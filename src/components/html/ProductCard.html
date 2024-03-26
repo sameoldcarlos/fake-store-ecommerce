@@ -51,7 +51,8 @@
       :class="['btn btn-success w-100 product-card__add', {'disabled': isAddingProductToCart}]"
       @click="showAddToCartModal"
     >
-      Adicionar
+      <vue-feather  type="shopping-bag" size="16" />
+      {{ textContent.add }}
     </button>
   </div>
 </div>

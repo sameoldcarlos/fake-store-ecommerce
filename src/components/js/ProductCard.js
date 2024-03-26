@@ -2,6 +2,9 @@ import formatPrice from '@/utils/formatPrice.ts'
 import { getCssVariable } from '@/utils/cssVars'
 import normalizeText from '@/utils/normalizeText'
 
+import { mapState } from 'pinia'
+import { useLanguageStore } from '@/stores/language'
+
 export default {
   props: {
     productInfo: {
@@ -19,6 +22,8 @@ export default {
     }
   },
 
+  inject: ['appTextData'],
+
   data () {
     return {
       heartColor: getCssVariable('danger'),
@@ -27,6 +32,12 @@ export default {
   },
 
   computed : {
+    ...mapState(useLanguageStore, ['selectedLanguage']),
+
+    textContent() {
+      return this.appTextData[this.selectedLanguage]
+    },
+
     formattedPrice() {
       return formatPrice(this.productInfo.price) || '0'
     },

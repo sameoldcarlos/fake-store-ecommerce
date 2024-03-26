@@ -5,6 +5,9 @@ import Menu from "@/components/Menu.vue"
 
 import profilePicture from "@/assets/img/profile_pictures/person-2.jpeg"
 
+import { mapActions, mapState } from 'pinia'
+import { useLanguageStore } from '@/stores/language'
+
 export default {
   components: { Menu },
 
@@ -14,6 +17,8 @@ export default {
       required: true
     }
   },
+
+  inject: ['appTextData'],
 
   data() {
     return {
@@ -27,7 +32,17 @@ export default {
     }
   },
 
+  computed: {
+    ...mapState(useLanguageStore, ['selectedLanguage']),
+
+    textContent() {
+      return this.appTextData[this.selectedLanguage]
+    }
+  },
+
   methods: {
+    ...mapActions(useLanguageStore, ['setSelectedLanguage']),
+
     async fetchUser() {
       this.isWaitingUserFetch = true
 

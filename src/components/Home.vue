@@ -1,96 +1,59 @@
 <template>
   <div class="home-page">
-    <Header
-      :cart-items="cartItems"
-      @openMobileMenu="openMobileMenu"
-      @toggleCart="toggleCart"
-    ></Header>
-    <MenuMobile
-      :is-active="isMobileMenuActive"
-      @closeMobileMenu="closeMobileMenu"
-    />
+    <Header :cart-items="cartItems" @openMobileMenu="openMobileMenu" @toggleCart="toggleCart"></Header>
+    <MenuMobile :is-active="isMobileMenuActive" @closeMobileMenu="closeMobileMenu" />
     <aside class="cart-container">
-      <CartContainer
-        class="cart--aside"
-        :is-visible="isCartVisible"
-        @hideCart="hideCart"
-        @updateCart="updateCart"
-      ></CartContainer>
+      <CartContainer class="cart--aside" :is-visible="isCartVisible" @hideCart="hideCart" @updateCart="updateCart">
+      </CartContainer>
     </aside>
     <main class="main-container">
       <section class="promoted-product-section">
         <div class="promoted-product__info">
-          <h1 class="promoted-product__title">Experimente cada pixel</h1>
-          <p class="promoted-product__subtitle">Samsung Ultrawide 49”, onde clareza e conforto se encontram</p>
+          <h1 class="promoted-product__title">{{ textContent.experience_every_pixel }}</h1>
+          <p class="promoted-product__subtitle">Samsung Ultrawide 49”, {{ textContent.where_clarity_meets_comfort }}</p>
           <div class="action-container d-grid gap-2 mt-lg-4">
-            <a
-              :href="productLink"
-              class="promoted-product__buy btn btn-success btn-full"
-            >
-              Comprar agora
+            <a :href="productLink" class="promoted-product__buy btn btn-success btn-full">
+              {{ textContent.shop_now }}
             </a>
           </div>
         </div>
       </section>
       <div class="home-page__content-container">
         <section class="home-page__section related-products">
-          <h2 class="text-center mb-5">Mais da categoria {{ promotedProductCategory }}</h2>
-          <ProductCarousel
-            v-if="!isWaitingProductsFetch && relatedProducts.length"
-              :products="relatedProducts"
-              @showAddToCartModal="showAddToCartModal"
-              @addToFavorites="addToFavorites"
-              @removeFromFavorites="removeFromFavorites"
-          ></ProductCarousel>
+          <h2 class="text-center mb-5">{{ textContent.more_in_category }} {{ promotedProductCategory }}</h2>
+          <ProductCarousel v-if="!isWaitingProductsFetch && relatedProducts.length" :products="relatedProducts"
+            @showAddToCartModal="showAddToCartModal" @addToFavorites="addToFavorites"
+            @removeFromFavorites="removeFromFavorites"></ProductCarousel>
         </section>
         <hr class="home-page__divider">
         <section class="home-page__section related-products">
-          <h2 class="text-center mb-5">Mais vendidos</h2>
-          <ProductCarousel
-            v-if="!isWaitingProductsFetch && mostBoughtProducts.length"
-            :products="mostBoughtProducts"
-            @showAddToCartModal="showAddToCartModal"
-            @addToFavorites="addToFavorites"
-            @removeFromFavorites="removeFromFavorites"
-          ></ProductCarousel>
+          <h2 class="text-center mb-5">{{ textContent.most_popular }}</h2>
+          <ProductCarousel v-if="!isWaitingProductsFetch && mostBoughtProducts.length" :products="mostBoughtProducts"
+            @showAddToCartModal="showAddToCartModal" @addToFavorites="addToFavorites"
+            @removeFromFavorites="removeFromFavorites"></ProductCarousel>
         </section>
         <hr class="home-page__divider">
         <section class="home-page__section related-products">
-          <h2 class="text-center mb-5">Melhor avaliados</h2>
-          <ProductCarousel
-            v-if="!isWaitingProductsFetch && bestRatedProducts.length"
-              :products="bestRatedProducts"
-              @showAddToCartModal="showAddToCartModal"
-              @addToFavorites="addToFavorites"
-              @removeFromFavorites="removeFromFavorites"
-          ></ProductCarousel>
+          <h2 class="text-center mb-5">{{ textContent.best_rated }}</h2>
+          <ProductCarousel v-if="!isWaitingProductsFetch && bestRatedProducts.length" :products="bestRatedProducts"
+            @showAddToCartModal="showAddToCartModal" @addToFavorites="addToFavorites"
+            @removeFromFavorites="removeFromFavorites"></ProductCarousel>
         </section>
         <hr class="home-page__divider">
         <section class="home-page__section related-products">
-          <h2
-            v-if="!isWaitingProductsFetch && favoriteProducts.length"
-            class="text-center mb-5"
-          >
-            Seus Favoritos
+          <h2 v-if="!isWaitingProductsFetch && favoriteProducts.length" class="text-center mb-5">
+            {{ textContent.your_favorites }}
           </h2>
-          <ProductCarousel
-            v-if="!isWaitingProductsFetch && favoriteProducts.length"
-            :products="favoriteProducts"
-            @showAddToCartModal="showAddToCartModal"
-            @addToFavorites="addToFavorites"
-            @removeFromFavorites="removeFromFavorites"
-          ></ProductCarousel>
+          <ProductCarousel v-if="!isWaitingProductsFetch && favoriteProducts.length" :products="favoriteProducts"
+            @showAddToCartModal="showAddToCartModal" @addToFavorites="addToFavorites"
+            @removeFromFavorites="removeFromFavorites"></ProductCarousel>
         </section>
       </div>
     </main>
     <Toast ref="toast" />
     <Footer></Footer>
-    <add-cart-modal
-      v-if="isAddCartModalVisible"
-      :product-info="selectedProduct"
-      @addToCart="addToCart"
-      @hideAddToCartModal="hideAddToCartModal"
-    ></add-cart-modal>
+    <add-cart-modal v-if="isAddCartModalVisible" :product-info="selectedProduct" @addToCart="addToCart"
+      @hideAddToCartModal="hideAddToCartModal"></add-cart-modal>
   </div>
 </template>
 
@@ -111,6 +74,11 @@ import normalizeText from '@/utils/normalizeText.js'
 
 import promotedProductBanner from '@/assets/img/banners/promoted_product_banner.png'
 
+import { mapState } from 'pinia'
+import { useLanguageStore } from '@/stores/language.js'
+
+const useStore = useLanguageStore
+
 export default {
   components: {
     Header,
@@ -121,6 +89,9 @@ export default {
     MenuMobile,
     Toast
   },
+
+  inject: ['appTextData'],
+
   data() {
     return {
       cartItems: this.$route.params.cart_items,
@@ -147,6 +118,16 @@ export default {
   },
 
   computed: {
+    ...mapState(useLanguageStore, ['selectedLanguage']),
+
+    language() {
+      return this.selectedLanguage
+    },
+
+    textContent() {
+      return this.appTextData[this.language]
+    },
+
     favoriteProducts() {
       return this.products.filter(product => product.is_favorite)
     },
@@ -180,7 +161,7 @@ export default {
         return ''
       }
 
-      return formattedCategories[this.promotedProduct.category].pt
+      return formattedCategories[this.promotedProduct.category][this.selectedLanguage]
     },
 
     productLink() {
@@ -314,6 +295,8 @@ export default {
   async created() {
     await this.fetchProducts()
     this.promotedProduct = this.products.find(product => product.id === 14)
+
+    console.log(this.appTextData)
   }
 }
 </script>

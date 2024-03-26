@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import VueFeather from 'vue-feather';
-import { createPinia } from 'pinia'
+import { createPinia } from 'pinia';
 import AppDB from './utils/appIndexedDb.js';
 
 import data from './content.json' assert { type: 'json' }
@@ -12,8 +12,8 @@ import data from './content.json' assert { type: 'json' }
   await AppDB.openAppDB('user_store')
 })()
 
+const pinia = createPinia()
 const app = createApp(App)
-const pinia = createPinia(App)
 
 app.component(VueFeather.name, VueFeather)
 
