@@ -18,7 +18,7 @@ A tabela abaixo detalha algumas features implementadas de acordo com os requisit
 | Remover item do carrinho quando a quantidade for zero | ✔️ Sim         |
 | Calcular subtotal no checkout                         | ✔️ Sim         |
 | Redirecionar para 404 ao acessar rota não existente   | ✔️ Sim         |
-| Carrossel de produtos na home                         | ❌ Não         |
+| Carrossel de produtos na home                         | ✔️ Sim         |
 
 
 ## Tecnologias Utilizadas
@@ -27,6 +27,8 @@ A tabela abaixo detalha algumas features implementadas de acordo com os requisit
 * Sass
 * Bootstrap
 * IndexedDB
+* [js-cookie](https://github.com/js-cookie/js-cookie)
+* Pinia
 
 O gerenciador de pacotes utilizado no processo de desenvolvimento foi o NPM, utilizando a versão 16.15.0 do node.
 Abaixo, deixo alguns comandos para que a aplicação seja executada em ambiente local.
