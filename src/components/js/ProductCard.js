@@ -43,7 +43,7 @@ export default {
     },
 
     favoriteColors() {
-      const { isFavorite, heartColor } = this;
+      const { isFavorite, heartColor } = this
 
       return isFavorite ? {fill: heartColor, stroke: heartColor} : {fill: 'none', stroke: 'currentColor'}
     },

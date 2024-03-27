@@ -72,7 +72,7 @@ export default {
     },
 
     translate() {
-      return -(180 + 16) * (this.currentPage - 1);
+      return -(180 + 16) * (this.currentPage - 1)
     },
 
     showControllers() {

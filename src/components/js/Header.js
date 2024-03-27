@@ -94,12 +94,12 @@ export default {
   },
 
   async created() {
-    await this.fetchUser();
+    await this.fetchUser()
   },
 
   mounted() {
     window.addEventListener('resize', () => {
-      this.isMobile = isMobile();
+      this.isMobile = isMobile()
     })
   },
 

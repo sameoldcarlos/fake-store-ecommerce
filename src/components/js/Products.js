@@ -228,7 +228,7 @@ export default {
     },
 
     sortProducts() {
-      const { selectedSort } = this;
+      const { selectedSort } = this
       const { ascendingPrice, decscendingPrice, rating } = SORT_OPTIONS
 
       if (selectedSort === ascendingPrice.value) {

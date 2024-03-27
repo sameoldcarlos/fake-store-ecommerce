@@ -120,11 +120,11 @@ export default {
 
   methods: {
     openMobileMenu() {
-      this.isMobileMenuActive = true;
+      this.isMobileMenuActive = true
     },
 
     closeMobileMenu() {
-      this.isMobileMenuActive = false;
+      this.isMobileMenuActive = false
     },
 
     toggleFavorite() {

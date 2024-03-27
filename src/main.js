@@ -1,9 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import VueFeather from 'vue-feather';
-import { createPinia } from 'pinia';
-import AppDB from './utils/appIndexedDb.js';
+import VueFeather from 'vue-feather'
+import { createPinia } from 'pinia'
+import AppDB from './utils/appIndexedDb.js'
 
 import data from './content.json' assert { type: 'json' }
 
