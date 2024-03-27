@@ -1,12 +1,12 @@
-import { getCssVariable } from "@/utils/cssVars"
-import { getData } from "@/utils/CacheService"
-import { isMobile } from "@/utils/breakPointsHelper"
-import Menu from "@/components/Menu.vue"
+import { getCssVariable } from '@/utils/cssVars'
+import { getData } from '@/utils/CacheService'
+import { isMobile } from '@/utils/breakPointsHelper'
+import Menu from '@/components/Menu.vue'
 
-import profilePicture from "@/assets/img/profile_pictures/person-2.jpeg"
-import brazilFlag from "@/assets/img/flags/brazil.svg"
-import usaFlag from "@/assets/img/flags/us.svg"
-import mexicoFlag from "@/assets/img/flags/mexico.svg"
+import profilePicture from '@/assets/img/profile_pictures/person-2.jpeg'
+import brazilFlag from '@/assets/img/flags/brazil.svg'
+import usaFlag from '@/assets/img/flags/us.svg'
+import mexicoFlag from '@/assets/img/flags/mexico.svg'
 
 import { mapActions, mapState } from 'pinia'
 import { useLanguageStore } from '@/stores/language'

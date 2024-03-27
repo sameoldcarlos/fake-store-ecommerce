@@ -1,4 +1,4 @@
-import { getCssVariable } from "@/utils/cssVars"
+import { getCssVariable } from '@/utils/cssVars'
 
 import { mapState } from 'pinia'
 import { useLanguageStore } from '@/stores/language'

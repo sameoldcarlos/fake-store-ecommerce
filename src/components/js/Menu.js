@@ -1,4 +1,4 @@
-import { categories } from "@/utils/content"
+import { categories } from '@/utils/content'
 import { mapState } from 'pinia'
 import { useLanguageStore } from '@/stores/language'
 

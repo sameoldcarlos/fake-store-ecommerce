@@ -1,16 +1,16 @@
-import ProductCard from "@/components/ProductCard.vue"
-import CartContainer from "@/components/CartContainer.vue"
-import SearchBar from "@/components/SearchBar.vue"
-import AddCartModal from "@/components/AddCartModal.vue"
-import Header from "@/components/Header.vue"
-import MenuMobile from "@/components/MenuMobile.vue"
-import Footer from "@/components/Footer.vue"
-import Toast from "@/components/Toast.vue"
+import ProductCard from '@/components/ProductCard.vue'
+import CartContainer from '@/components/CartContainer.vue'
+import SearchBar from '@/components/SearchBar.vue'
+import AddCartModal from '@/components/AddCartModal.vue'
+import Header from '@/components/Header.vue'
+import MenuMobile from '@/components/MenuMobile.vue'
+import Footer from '@/components/Footer.vue'
+import Toast from '@/components/Toast.vue'
 
 import AppDB from '@/utils/appIndexedDb.js'
-import { categories, formattedCategories } from "@/utils/content.js"
-import { getData } from "@/utils/CacheService"
-import { isMobile } from "@/utils/breakPointsHelper"
+import { categories, formattedCategories } from '@/utils/content.js'
+import { getData } from '@/utils/CacheService'
+import { isMobile } from '@/utils/breakPointsHelper'
 
 import { mapState } from 'pinia'
 import { useLanguageStore } from '@/stores/language'
@@ -212,7 +212,7 @@ export default {
     },
 
     translatedCategory(category) {
-      const categoryKey = category.replaceAll(/ /g, "_").replaceAll("'", "")
+      const categoryKey = category.replaceAll(/ /g, '_').replaceAll('\'', '')
       const selectedCategory = categories.find(item => item.value === categoryKey)
 
       return this.textContent[selectedCategory.value]
