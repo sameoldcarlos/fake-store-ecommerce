@@ -52,7 +52,10 @@
     "or_pay_in": "or pay in",
     "installments": "installments",
     "oops": "Oops!",
-    "page_not_found": "This page was not found"
+    "page_not_found": "This page was not found",
+    "choose_quantity": "Choose Quantity",
+    "cancel": "Cancel",
+    "buy": "Buy"
   },
 
   "pt": {
@@ -108,7 +111,10 @@
     "or_pay_in": "ou pague em",
     "installments": "vezes",
     "oops": "Ops!",
-    "page_not_found": "Esta página não foi encontrada"
+    "page_not_found": "Esta página não foi encontrada",
+    "choose_quantity": "Escolha a quantidade",
+    "cancel": "Cancelar",
+    "buy": "Comprar"
   },
 
   "es": {
@@ -164,6 +170,9 @@
     "or_pay_in": "o pague en",
     "installments": "cuotas",
     "oops": "¡Ups!",
-    "page_not_found": "Esta página no se encontró"
+    "page_not_found": "Esta página no se encontró",
+    "choose_quantity": "Elige la cantidad",
+    "cancel": "Cancelar",
+    "buy": "Compra"
   }
 }

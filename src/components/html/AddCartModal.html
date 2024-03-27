@@ -1,11 +1,11 @@
 <div
-  class="add-cart-modal"  
+  class="add-cart-modal"
   @click.self="hideAddToCartModal"
 >
   <div class="modal-dialog add-cart-modal__dialog">
     <div class="modal-content">
       <div class="modal-header add-cart-modal__header">
-        <h3 class="modal-title">Escolha a quantidade</h3>
+        <h3 class="modal-title">{{ textContent.choose_quantity }}</h3>
         <button
           class="add-cart-modal__close"
           type="button"
@@ -48,14 +48,14 @@
               class="btn btn-link add-cart-modal__cancel"
               @click.self="hideAddToCartModal"
             >
-              Cancelar
+              {{ textContent.cancel }}
             </button>
             <button
               type="button"
               class="btn btn-primary add-cart-modal__buy"
               @click="addProductToCart"
             >
-              Comprar
+              {{ textContent.buy }}
             </button>
           </div>
         </div>

@@ -1,3 +1,6 @@
+import { useLanguageStore } from '@/stores/language'
+import { mapState } from 'pinia'
+
 export default {
   props: {
     productInfo: {
@@ -6,9 +9,19 @@ export default {
     }
   },
 
+  inject: ['appTextData'],
+
   data() {
     return {
       quantity: 1
+    }
+  },
+
+  computed: {
+    ...mapState(useLanguageStore, ['selectedLanguage']),
+
+    textContent() {
+      return this.appTextData[this.selectedLanguage]
     }
   },
 
