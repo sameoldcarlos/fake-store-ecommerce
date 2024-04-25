@@ -99,10 +99,12 @@ a {
   color: currentColor;
 }
 
-.logo {
-  font-family: var(--logo-font-family);
-  font-size: 32px;
+.logo-container {
   text-align: center;
+
+  img {
+    object-fit: contain;
+  }
 }
 
 .sublogo {
